@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/menu"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/nav_icon"
+            android:foregroundTint="@color/tabselected"
+            android:layout_alignParentLeft="true"
+            android:layout_width="25dp"
+            android:padding="10dp"
+            android:layout_height="20dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <sportsfight.com.s.common.Heading
+            android:id="@+id/yourLocation_tv"
+            android:textColor="@color/light_grey"
+            android:text="Current location"
+            android:textSize="14dp"
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_height="match_parent">
+            <sportsfight.com.s.common.Bold_TextView
+                android:id="@+id/heading_tv"
+                android:textColor="@color/black_font"
+                android:gravity="center_vertical"
+                android:maxLength="22"
+                android:text=""
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/distance_tv"
+                     android:layout_marginLeft="5dp"
+                    android:textColor="@color/light_grey"
+                    android:text="  "
+                    android:textSize="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:layout_marginLeft="10dp"
+             android:layout_marginTop="13dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/drop_down"
+
+                    android:src="@drawable/drop_down_dashboard"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+            </LinearLayout>
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frame"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout >
+        <RelativeLayout
+            android:id="@+id/createTeamBg"
+
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+
+            android:layout_marginBottom="65dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/expadedView"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+android:textColor="@color/black_font"
+                    android:paddingRight="5dp"
+                    android:text="Create Team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <RelativeLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/blue_circle">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:drawablePadding="10dp"
+                        android:scaleType="centerInside"
+
+                        android:src="@drawable/create_team"
+                        android:tint="@color/white" />
+                    <View
+                        android:id="@+id/createTeam"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black_font"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="5dp"
+                    android:text="My Team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <RelativeLayout
+
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/green_circle">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:drawablePadding="10dp"
+                        android:scaleType="centerInside"
+
+                        android:src="@drawable/myteam"
+                        android:tint="@color/white" />
+                    <View
+                        android:id="@+id/myTeam"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </RelativeLayout>
+        </LinearLayout>
+            </LinearLayout>
+            <RelativeLayout
+               android:id="@+id/addView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:background="@drawable/orange_gradient_circle">
+
+                <ImageView
+                    android:id="@+id/addIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:drawablePadding="10dp"
+                    android:scaleType="centerInside"
+
+                    android:src="@drawable/add"
+                    android:tint="@color/white" />
+                <View
+                    android:id="@+id/add_team"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
