@@ -9,14 +9,17 @@ public class RegistrationModel {
     String userMobile;
     String password;
     String userEmail;
+    String role;
     Integer[] intGame=null;
 
-    public RegistrationModel(String userName, String userEmail, String userMobile, String password) {
+
+    public RegistrationModel(String userName, String userEmail, String userMobile, String password,String role) {
         this.userEmail = userEmail;
         this.password = password;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userMobile = userMobile;
+        this.role=role;
     }
 
     public Integer[] getIntGame() {
@@ -41,5 +44,9 @@ public class RegistrationModel {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

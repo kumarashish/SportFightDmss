@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,10 +52,13 @@ public class Registration extends Activity implements View.OnClickListener,WebAp
     Button next;
     @BindView(R.id.signIn)
     TextView signIn;
+    @BindView(R.id.role)
+    Spinner role;
     Dialog progressDialog = null;
     public static RegistrationModel model=null;
     public int apiCall=-1;
-    int getGames=2,validateUser=1;
+    int getGames=2,registerReferee=3,validateUser=1;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +67,6 @@ public class Registration extends Activity implements View.OnClickListener,WebAp
     }
 
     public void initializeAll() {
-
         ButterKnife.bind(this);
         controller = (AppController) getApplicationContext();
         controller.getPrefManager().setFirstTimeLaunch(false);
@@ -73,18 +78,53 @@ public class Registration extends Activity implements View.OnClickListener,WebAp
         next.setTypeface(controller.getDetailsFont());
         next.setOnClickListener(this);
         signIn.setOnClickListener(this);
-
+        role.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+                ((TextView) parent.getChildAt(0)).setTypeface(controller.getDetailsFont());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
+
 public void callGetGames()
 {   if (Util.isNetworkAvailable(this)) {
-
     apiCall=getGames;
-    model = new RegistrationModel(name.getText().toString(), email.getText().toString(), mobile.getText().toString(), password.getText().toString());
+    model = new RegistrationModel(name.getText().toString(), email.getText().toString(), mobile.getText().toString(), password.getText().toString(),role.getSelectedItem().toString());
     progressDialog = Util.showPogress(this);
     controller.getApiCall().getData(Common.GetListOfGames, "", this);
 }
 }
+public void navigateToOtp()
+{
+    if (Util.isNetworkAvailable(this)) {
+        apiCall=registerReferee;
+        model = new RegistrationModel(name.getText().toString(), email.getText().toString(), mobile.getText().toString(), password.getText().toString(),role.getSelectedItem().toString());
+        progressDialog = Util.showPogress(this);
+        controller.getApiCall().postData(Common.SignUpUrl, getRegistrationJson().toString(),"", this);
+    }
+}
+    public JSONObject getRegistrationJson() {
+        RegistrationModel model = Registration.model;
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("Name", model.getUserName());
+            jsonObject.put("Password", model.getPassword());
+            jsonObject.put("Email", model.getUserEmail());
+            jsonObject.put("Mobile", model.getUserMobile());
+            jsonObject.put("DeviceId",Util.getDeviceID(Registration.this));
+            jsonObject.put("FCMId", controller.getPrefManager().getFcmToken());
+            jsonObject.put("UserInterestedGamesDTO",null);
+            jsonObject.put("RoleType", model.getRole());
 
+        } catch (Exception ex) {
+            ex.fillInStackTrace();
+        }
+        return jsonObject;
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -122,13 +162,25 @@ public void callGetGames()
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        callGetGames();
+                       if(role.getSelectedItemPosition()==1)
+                       {
+                           navigateToOtp();
+                       }else{
+                           callGetGames();
+                       }
                     }
                 });
             } else {
                 Util.showToast(Registration.this, Util.getMessage(value));
             }
-        }else {
+        }else if(apiCall==registerReferee) {
+            if (Util.isNextScreenNeedTobeCalled(value, Registration.this)) {
+                Intent in = new Intent(Registration.this, Verification.class);
+                Util.startActivityCommon(Registration.this, in);
+                Util.showToast(Registration.this, Util.getMessage(value));
+            }
+        }
+        else {
             if (Util.isNextScreenNeedTobeCalled(value, Registration.this)) {
                 Intent in = new Intent(Registration.this, PrefsScreen.class);
                 in.putExtra("Value", value);

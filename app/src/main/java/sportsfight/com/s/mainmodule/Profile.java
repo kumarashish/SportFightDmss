@@ -338,7 +338,6 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
                     dialog = Util.showPogress(Profile.this);
                     apiCall = updateProfilePic;
                     controller.getApiCall().postData(Common.getUpdateProfilePic_Url, getUpdateProfilePicJSON().toString(),controller.getPrefManager().getUserToken(), Profile.this);
-
                 }
             }
         });

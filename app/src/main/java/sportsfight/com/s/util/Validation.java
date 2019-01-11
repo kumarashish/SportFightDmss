@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class Validation {
     private static Pattern pattern;
     private static Matcher matcher;
-    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,3})$";
+    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,9})$";
     private static final String PASSWORD_REGEX = "[_A-Za-z0-9]{8,16}";
     Context context;
 
@@ -68,7 +68,7 @@ public class Validation {
             if (matcher.matches()) {
                 return true;
             } else {
-               Toast.makeText(context,"Please enter valid email id",Toast.LENGTH_SHORT).show();
+               Toast.makeText(context,"Please enter valid emailid",Toast.LENGTH_SHORT).show();
 
             }
         } else {

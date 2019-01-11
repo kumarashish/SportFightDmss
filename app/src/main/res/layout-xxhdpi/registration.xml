@@ -233,6 +233,41 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/blurr_bg_edittext"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_height="40dp">
+                            <ImageView
+                                android:padding="9dp"
+                                android:src="@drawable/username"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp" />
+                            <View
+                                android:visibility="invisible"
+                                android:layout_margin="1dp"
+                                android:background="@color/white"
+                                android:layout_width="0.5dp"
+                                android:layout_height="match_parent"/>
+
+                            <Spinner
+                                android:singleLine="true"
+                                android:id="@+id/role"
+                                android:gravity="center_vertical"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="-5dp"
+                                android:entries="@array/role"
+                                android:inputType="textPassword|textNoSuggestions"
+                                android:tint="@color/white"
+                                android:backgroundTint="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
 
                         <Button
                             android:id="@+id/btn_next"

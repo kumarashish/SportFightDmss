@@ -93,12 +93,10 @@ public class WebApiCall {
             } else {
                 return getErrorData();
             }
-
         } catch (Exception ex) {
             ex.fillInStackTrace();
             return getErrorData();
         }
-
     }
 
     public String getErrorData() {
@@ -220,7 +218,6 @@ public class WebApiCall {
         }
         }
 public void login(String url,String json,String userName,String password,final WebApiResponseCallback callback) {
-
         String credential = Credentials.basic( userName, password);
     OkHttpClient client = new OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)

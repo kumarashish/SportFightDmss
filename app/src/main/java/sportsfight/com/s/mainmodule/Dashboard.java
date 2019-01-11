@@ -114,6 +114,10 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             Button declareResult;
     @BindView(R.id.ipl)
     ImageButton ipl;
+    @BindView(R.id.message)
+            TextView message;
+    @BindView(R.id.main_view)
+            RelativeLayout main_view;
     Dialog dialog;
     ArrayList<MatchesModel> myMatches=new ArrayList<>();
     ArrayList<MatchesModel> upComingMatches=new ArrayList<>();
@@ -131,7 +135,7 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
      Dialog dialogg;
     MatchesModel matchmodel=null;
     public static boolean isCongratulationShown=false;
-    String urlString = "https://www.news18.com/rss/cricketnext.xml";
+    //String urlString = "https://www.news18.com/rss/cricketnext.xml";
     Parser parser;
     ArrayList<Article> newslist=new ArrayList<>();
     NoInternetDialog noInternetDialog ;
@@ -140,7 +144,7 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
-      parser= new Parser();
+         parser= new Parser();
         initializeAll();
     }
 
@@ -174,8 +178,34 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             declareResult.setVisibility(View.GONE);
         }
         declareResult.setOnClickListener(this);
+        dialog = Util.showPogress(Dashboard.this);
+          Thread T =new Thread(new Runnable() {
+              @Override
+              public void run() {
+                 final String result=controller.getApiCall().getData("http://api.sportsfight.co.in/api/login/isLive");
+                  runOnUiThread(new Runnable() {
+                      @Override
+                      public void run() {
+                          dialog.cancel();
 
-        getDashBoardData();
+                          if(Util.getStatus(result))
+                          {
+                              main_view.setVisibility(View.VISIBLE);
+                              message.setVisibility(View.GONE);
+                              getDashBoardData();
+
+                          }else{
+                              main_view.setVisibility(View.GONE);
+                              message.setVisibility(View.VISIBLE);
+                              message.setText(Util.getMessage(result));
+                          }
+                      }
+                  });
+
+              }
+          });
+          T.start();
+       // getDashBoardData();
     }
     @Override
     public void onClick(View view) {
@@ -270,36 +300,39 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         if (Util.isNetworkAvailable(Dashboard.this)) {
             getWallet();
             dialog = Util.showPogress(Dashboard.this);
+            apiCall = getDashBoardApiCall;
+            controller.getApiCall().getData(Common.getGetDashBoardrl(controller.getProfile().getUserId()), controller.getPrefManager().getUserToken(), Dashboard.this);
+
 //            apiCall = getDashBoardApiCall;
 //            dialog = Util.showPogress(Dashboard.this);
 //            controller.getApiCall().getData(Common.getGetDashBoardrl(controller.getProfile().getUserId()),controller.getPrefManager().getUserToken(), Dashboard.this);
-            if (newslist.size() == 0) {
-                parser.execute(urlString);
-                parser.onFinish(new Parser.OnTaskCompleted() {
-
-                    @Override
-                    public void onTaskCompleted(ArrayList<Article> list) {
-                        //what to do when the parsing is done
-                        //the Array List contains all article's data. For example you can use it for your adapter.
-                        //   Util.showToast(Dashboard.this, "Success");
-                        newslist = list;
-                        apiCall = getDashBoardApiCall;
-                        controller.getApiCall().getData(Common.getGetDashBoardrl(controller.getProfile().getUserId()), controller.getPrefManager().getUserToken(), Dashboard.this);
-
-                    }
-
-                    @Override
-                    public void onError() {
-                        dialog.cancel();
-                        //what to do in case of error
-                        Util.showToast(Dashboard.this, "error");
-
-                    }
-                });
-            } else {
-                apiCall = getDashBoardApiCall;
-                controller.getApiCall().getData(Common.getGetDashBoardrl(controller.getProfile().getUserId()), controller.getPrefManager().getUserToken(), Dashboard.this);
-            }
+//            if (newslist.size() == 0) {
+//                parser.execute(urlString);
+//                parser.onFinish(new Parser.OnTaskCompleted() {
+//
+//                    @Override
+//                    public void onTaskCompleted(ArrayList<Article> list) {
+//                        //what to do when the parsing is done
+//                        //the Array List contains all article's data. For example you can use it for your adapter.
+//                        //   Util.showToast(Dashboard.this, "Success");
+//                        newslist = list;
+//                        apiCall = getDashBoardApiCall;
+//                        controller.getApiCall().getData(Common.getGetDashBoardrl(controller.getProfile().getUserId()), controller.getPrefManager().getUserToken(), Dashboard.this);
+//
+//                    }
+//
+//                    @Override
+//                    public void onError() {
+//                        dialog.cancel();
+//                        //what to do in case of error
+//                        Util.showToast(Dashboard.this, "error");
+//
+//                    }
+//                });
+//            } else {
+//                apiCall = getDashBoardApiCall;
+//                controller.getApiCall().getData(Common.getGetDashBoardrl(controller.getProfile().getUserId()), controller.getPrefManager().getUserToken(), Dashboard.this);
+//            }
         }
     }
 

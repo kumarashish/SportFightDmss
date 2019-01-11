@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg">
+
+
     <RelativeLayout
         android:background="@color/silver"
         android:layout_width="match_parent"
@@ -41,9 +43,20 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         />
-
+<TextView
+    android:id="@+id/message"
+    android:gravity="center"
+    android:textStyle="bold"
+    android:textAllCaps="true"
+    android:textSize="18dp"
+    android:textColor="@color/purple"
+    android:layout_margin="20dp"
+    android:text=""
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
     <RelativeLayout
-
+android:visibility="gone"
+        android:id="@+id/main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
       <android.support.v7.widget.RecyclerView
