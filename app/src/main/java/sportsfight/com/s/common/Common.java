@@ -97,8 +97,8 @@ public class Common {
     public static final String pool = "pool or snooker";
     public static final String minibasketball = "Mini Basketball";
     public static final String airhockey = "Air Hockey";
-    public static final String fussball = "Fussball";
-    public static final String tt = "Table Tennis";
+    public static final String fussball = "Fossball(S)";
+    public static final String tt = "Table Tennis(S)";
     public static final String carrom = "Carrom";
     public static final String golf = "Mini Golf";
     public static String SessionExpired="Session Expired";

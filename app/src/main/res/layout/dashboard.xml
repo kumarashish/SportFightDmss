@@ -79,15 +79,13 @@ android:visibility="gone"
             android:layout_height="match_parent" />
         <ImageButton
             android:id="@+id/ipl"
-android:visibility="gone"
             android:padding="1dp"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="70dp"
-            android:layout_marginRight="10dp"
-
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="100dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/icon" />
 
 <View

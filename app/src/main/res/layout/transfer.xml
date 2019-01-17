@@ -58,11 +58,10 @@
             android:gravity="center"
             android:text="Sports Fight User"
             android:textColor="@color/white"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <sportsfight.com.s.common.Heading
-            android:visibility="gone"
             android:id="@+id/bank"
             android:gravity="center"
             android:text="Bank"

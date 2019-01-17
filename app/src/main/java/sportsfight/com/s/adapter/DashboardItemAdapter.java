@@ -45,7 +45,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
     Activity act;
     AppController controller;
     ViewAllCallBack callBack;
-
+    PlaceBidCallBack placeBidCallBack;
     MatchesModel model;
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -63,6 +63,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
        this.act=act;
        controller=(AppController)act.getApplicationContext();
         callBack=(ViewAllCallBack)act;
+        placeBidCallBack=(PlaceBidCallBack)act;
         //callback=(PlaceBidCallBack)act;
     }
 
@@ -117,20 +118,22 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 c_holder.info_text.setText(model.getGameName().toUpperCase());
 
 
-                if (model.getPlayer1ImageUrl().length() > 0) {
-
-                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
-                            .centerInside().placeholder(R.drawable.user_icon).into(   c_holder.circleImageView);
-                } else {
-                    c_holder.circleImageView.setImageResource(R.drawable.user_icon);
-                }
+//                if (model.getPlayer1ImageUrl().length() > 0) {
+//
+//                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into(   c_holder.circleImageView);
+//                } else {
+//                    c_holder.circleImageView.setImageResource(R.drawable.user_icon);
+//                }
+                c_holder.circleImageView.setImageResource(R.drawable.user_icon);
                 c_holder.player1Name.setText(model.getPlayer1Name());
                 c_holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" pts");
-                if (model.getPlayer2ImageUrl().length() > 0) {
-                    Picasso.with(act).load(model.getPlayer2ImageUrl()).placeholder(R.drawable.user_icon).into(   c_holder.circleImageView2);
-                } else {
-                    c_holder.circleImageView2.setImageResource(R.drawable.user_icon);
-                }
+//                if (model.getPlayer2ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer2ImageUrl()).placeholder(R.drawable.user_icon).into(   c_holder.circleImageView2);
+//                } else {
+//                    c_holder.circleImageView2.setImageResource(R.drawable.user_icon);
+//                }
+                c_holder.circleImageView2.setImageResource(R.drawable.user_icon);
                 c_holder.Player2Name.setText(model.getPlayer2Name());
                 c_holder.Player2Bid.setText("Bids : "+Integer.toString(model.getPlayer2Bids()));
                 c_holder.yourBid.setText("My Bid :"+Integer.toString(model.getMyBid()));
@@ -180,23 +183,23 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 holderr.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
                 holderr.info_text.setText(model.getGameName().toUpperCase());
                 holderr.info_text.setTextColor(Util.getTextColor(model.getGameName(),act));
-                if (model.getPlayer1ImageUrl().length() > 0) {
-                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200).centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView);
-                } else {
-                    holderr.circleImageView.setImageResource(R.drawable.user_icon);
-                }
-
+//                if (model.getPlayer1ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200).centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView);
+//                } else {
+//                    holderr.circleImageView.setImageResource(R.drawable.user_icon);
+//                }
+                holderr.circleImageView.setImageResource(R.drawable.user_icon);
                 holderr.player1Name.setText(model.getPlayer1Name());
                 holderr.player1Bid.setText("");
-                if (model.getPlayer2ImageUrl().length() > 0) {
-                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
-                            .centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView2);
-                } else {
-                    holderr. circleImageView2.setImageResource(R.drawable.user_icon);
-                }
+//                if (model.getPlayer2ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView2);
+//                } else {
+//                    holderr. circleImageView2.setImageResource(R.drawable.user_icon);
+//                }
                 holderr. Player2Name.setText(model.getPlayer2Name());
                 holderr.Player2Bid.setText("");
-
+                holderr. circleImageView2.setImageResource(R.drawable.user_icon);
                 holderr. viewAllResult.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -212,7 +215,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 UpComingMatches holderrr=(UpComingMatches)holder;
                 int vall=model.getPlayer1Bids()+model.getPlayer2Bids();
 
-                holderrr.bid_count.setText("");
+                holderrr.bid_count.setText("Total bid (Current) "+Integer.toString(vall) +"pts");
                 holderrr.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getMatchDate().length()+7}));
                 holderrr.time.setText(Util.getMulticolorTextView("Time : "+model.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getSlotTime().length()+7}));
                 holderrr.heading.setText("Upcoming Matches(" + upComingMatches.size() + ")");
@@ -220,26 +223,34 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 holderrr.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
                 holderrr.info_text.setText(model.getGameName().toUpperCase());
                 holderrr.info_text.setTextColor(Util.getTextColor(model.getGameName(),act));
-
-                if (model.getPlayer1ImageUrl().length() > 0) {
-                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
-                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView);
-                } else {
-                    holderrr.circleImageView.setImageResource(R.drawable.user_icon);
-                }
+                holderrr.circleImageView.setImageResource(R.drawable.user_icon);
+//                if (model.getPlayer1ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView);
+//                } else {
+//                    holderrr.circleImageView.setImageResource(R.drawable.user_icon);
+//                }
                 holderrr.player1Name.setText(model.getPlayer1Name());
-                holderrr.player1Bid.setText("");
-                if (model.getPlayer2ImageUrl().length() > 0) {
-                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
-                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView2);
-                } else {
-                    holderrr.circleImageView2.setImageResource(R.drawable.user_icon);
-                }
+                holderrr.player1Bid.setText("Bids : "+Integer.toString(model.getPlayer1Bids())+" pts");
+//                if (model.getPlayer2ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView2);
+//                } else {
+//                    holderrr.circleImageView2.setImageResource(R.drawable.user_icon);
+//                }
+                holderrr.circleImageView2.setImageResource(R.drawable.user_icon);
                 holderrr.Player2Name.setText(model.getPlayer2Name());
-                holderrr.Player2Bid.setText("");
-                holderrr.myBid.setText("");
+                holderrr.Player2Bid.setText("Bids : "+Integer.toString(model.getPlayer2Bids())+" pts");
+                if(model.getMyBidToId()==model.getPlayer1Id()) {
+                    holderrr.myBid.setText("My Bid on "+model.getPlayer1Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+                }else if(model.getMyBidToId()==model.getPlayer2Id())
+                {
+                    holderrr.myBid.setText("My Bid on "+model.getPlayer2Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+                }else{
+                    holderrr.myBid.setText("My Bid  : " + Integer.toString(model.getMyBid()) + " pts" );
+                }
                 holderrr.placeBid.setTypeface(controller.getDetailsFont());
-                holderrr.placeBid.setVisibility(View.GONE);
+                holderrr.placeBid.setVisibility(View.VISIBLE);
                 holderrr.viewAllResult.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -249,9 +260,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 holderrr.placeBid.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-
-
+                     placeBidCallBack.onPlaceBidClick(model);
                     }
                 });
                 break;

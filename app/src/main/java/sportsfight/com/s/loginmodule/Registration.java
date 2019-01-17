@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,10 +56,17 @@ public class Registration extends Activity implements View.OnClickListener,WebAp
     TextView signIn;
     @BindView(R.id.role)
     Spinner role;
+    @BindView(R.id.gender)
+    RadioGroup gender;
+    @BindView(R.id.male)
+    RadioButton male;
+    @BindView(R.id.female)
+    RadioButton female;
     Dialog progressDialog = null;
     public static RegistrationModel model=null;
     public int apiCall=-1;
     int getGames=2,registerReferee=3,validateUser=1;
+    String genderValue="Male";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +85,8 @@ public class Registration extends Activity implements View.OnClickListener,WebAp
         password.setTypeface(controller.getDetailsFont());
         confirmpassword.setTypeface(controller.getDetailsFont());
         next.setTypeface(controller.getDetailsFont());
+        male.setTypeface(controller.getDetailsFont());
+        female.setTypeface(controller.getDetailsFont());
         next.setOnClickListener(this);
         signIn.setOnClickListener(this);
         role.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -88,12 +99,29 @@ public class Registration extends Activity implements View.OnClickListener,WebAp
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId)
+                {
+                    case R.id.male:
+                        genderValue="Male";
+                        break;
+                    case R.id.female:
+                        genderValue="Female";
+                        break;
+
+                }
+            }
+        });
     }
 
 public void callGetGames()
 {   if (Util.isNetworkAvailable(this)) {
     apiCall=getGames;
     model = new RegistrationModel(name.getText().toString(), email.getText().toString(), mobile.getText().toString(), password.getText().toString(),role.getSelectedItem().toString());
+    model.setGender(genderValue);
     progressDialog = Util.showPogress(this);
     controller.getApiCall().getData(Common.GetListOfGames, "", this);
 }
@@ -103,6 +131,7 @@ public void navigateToOtp()
     if (Util.isNetworkAvailable(this)) {
         apiCall=registerReferee;
         model = new RegistrationModel(name.getText().toString(), email.getText().toString(), mobile.getText().toString(), password.getText().toString(),role.getSelectedItem().toString());
+        model.setGender(genderValue);
         progressDialog = Util.showPogress(this);
         controller.getApiCall().postData(Common.SignUpUrl, getRegistrationJson().toString(),"", this);
     }
@@ -119,6 +148,7 @@ public void navigateToOtp()
             jsonObject.put("FCMId", controller.getPrefManager().getFcmToken());
             jsonObject.put("UserInterestedGamesDTO",null);
             jsonObject.put("RoleType", model.getRole());
+            jsonObject.put("Gender", model.getGender());
 
         } catch (Exception ex) {
             ex.fillInStackTrace();

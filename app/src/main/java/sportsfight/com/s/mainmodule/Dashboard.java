@@ -21,6 +21,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -171,7 +172,8 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         challengeIcon.setOnClickListener(this);
         challengeTv.setOnClickListener(this);
         challengeTv.setTypeface(controller.getDetailsFont());
-        ipl.setVisibility(View.GONE);
+        ipl.setBackgroundResource(R.drawable.event_icon);
+        ipl.setVisibility(View.VISIBLE);
         if (controller.getProfile().getUserId() == 1) {
             declareResult.setVisibility(View.VISIBLE);
         } else {
@@ -187,7 +189,9 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
                       @Override
                       public void run() {
                           dialog.cancel();
-
+                          main_view.setVisibility(View.VISIBLE);
+                              message.setVisibility(View.GONE);
+                      //    getDashBoardData();
                           if(Util.getStatus(result))
                           {
                               main_view.setVisibility(View.VISIBLE);
@@ -250,8 +254,18 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
                 startActivity(in);
                 break;
             case R.id.ipl:
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.dmss.dmssevent");
+                if (intent != null) {
+                    // We found the activity now start the activity
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else{
+                    String url="https://play.google.com/store/apps/details?id=com.dmss.dmssevent";
+                    intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }
 
-                startActivity(new Intent(this, IplMatches.class));
                 break;
         }
     }

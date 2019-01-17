@@ -79,7 +79,7 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
        }
         int val=model.getPlayer1Bids()+model.getPlayer2Bids();
 
-        holder.bid_count.setText("Current no. of Bids : "+val+" pts");
+        holder.bid_count.setText("Total bid (Current) : "+val+" pts");
         holder.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getMatchDate().length()+7}));
         holder.time.setText(Util.getMulticolorTextView("Time : "+model.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getSlotTime().length()+7}));
         holder.heading.setText("");
@@ -104,7 +104,16 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
         }
         holder.Player2Name.setText(model.getPlayer2Name());
         holder.Player2Bid.setText("Bids: "+Integer.toString(model.getPlayer2Bids())+" pts");
-        holder. myBid.setText("My Bid : "+Integer.toString(model.getMyBid())+" pts");
+
+        if(model.getMyBidToId()==model.getPlayer1Id()) {
+            holder. myBid.setText("My Bid on "+model.getPlayer1Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+        }else if(model.getMyBidToId()==model.getPlayer2Id())
+        {
+            holder. myBid.setText("My Bid on "+model.getPlayer2Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+        }else{
+            holder. myBid.setText("My Bid  : " + Integer.toString(model.getMyBid()) + " pts" );
+        }
+
         holder. placeBid.setTypeface(controller.getDetailsFont());
         holder. viewAllResult.setText("");
         holder.placeBid.setOnClickListener(new View.OnClickListener() {

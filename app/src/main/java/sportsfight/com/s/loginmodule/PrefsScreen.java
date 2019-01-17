@@ -175,6 +175,7 @@ public class PrefsScreen extends Activity implements View.OnClickListener ,WebAp
             jsonObject.put("FCMId", controller.getPrefManager().getFcmToken());
             jsonObject.put("UserInterestedGamesDTO", PrefferedGame());
             jsonObject.put("RoleType", model.getRole());
+            jsonObject.put("Gender", model.getGender());
 
         } catch (Exception ex) {
             ex.fillInStackTrace();

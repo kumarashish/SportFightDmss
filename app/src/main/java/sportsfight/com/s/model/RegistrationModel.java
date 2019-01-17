@@ -11,6 +11,7 @@ public class RegistrationModel {
     String userEmail;
     String role;
     Integer[] intGame=null;
+    String gender="";
 
 
     public RegistrationModel(String userName, String userEmail, String userMobile, String password,String role) {
@@ -20,6 +21,14 @@ public class RegistrationModel {
         this.userEmail = userEmail;
         this.userMobile = userMobile;
         this.role=role;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public Integer[] getIntGame() {

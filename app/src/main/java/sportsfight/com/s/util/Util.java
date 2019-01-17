@@ -241,6 +241,15 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
         }
         return d;
     }
+    public static boolean isAppInstalled(Context context, String packageName) {
+        try {
+            context.getPackageManager().getApplicationInfo(packageName, 0);
+            return true;
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
 public static String getDefaultStartDate()
 {
     Calendar c = Calendar.getInstance();
