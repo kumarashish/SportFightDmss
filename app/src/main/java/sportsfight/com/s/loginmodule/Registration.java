@@ -160,12 +160,18 @@ public void navigateToOtp()
         switch (view.getId()) {
             case R.id.btn_next:
                 if (isFieldsValidated()) {
-                    if (Util.isNetworkAvailable(this)) {
-                        apiCall=validateUser;
-                        progressDialog = Util.showPogress(this);
-                        controller.getApiCall().getData(Common.isUserAlreadyExist( mobile.getText().toString(),email.getText().toString()), "", this);
-                    }
+//                    if (Util.isNetworkAvailable(this)) {
+//                        apiCall=validateUser;
+//                        progressDialog = Util.showPogress(this);
+//                        controller.getApiCall().getData(Common.isUserAlreadyExist( mobile.getText().toString(),email.getText().toString()), "", this);
+//                    }
 
+                                if(role.getSelectedItemPosition()==1)
+                                {
+                                    navigateToOtp();
+                                }else{
+                                    callGetGames();
+                                }
 
                 }
                 break;

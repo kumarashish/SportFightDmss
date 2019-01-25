@@ -114,7 +114,6 @@ public class Splash extends Activity {
                 } else {
 
                     Toast.makeText(Splash.this,"Please provide read external storage permission.",Toast.LENGTH_SHORT).show();
-
                 }
                 return;
             }

@@ -147,6 +147,7 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         setContentView(R.layout.dashboard);
          parser= new Parser();
         initializeAll();
+
     }
 
     public void initializeAll() {
@@ -180,36 +181,40 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             declareResult.setVisibility(View.GONE);
         }
         declareResult.setOnClickListener(this);
-        dialog = Util.showPogress(Dashboard.this);
-          Thread T =new Thread(new Runnable() {
-              @Override
-              public void run() {
-                 final String result=controller.getApiCall().getData("http://api.sportsfight.co.in/api/login/isLive");
-                  runOnUiThread(new Runnable() {
-                      @Override
-                      public void run() {
-                          dialog.cancel();
-                          main_view.setVisibility(View.VISIBLE);
-                              message.setVisibility(View.GONE);
-                      //    getDashBoardData();
-                          if(Util.getStatus(result))
-                          {
-                              main_view.setVisibility(View.VISIBLE);
-                              message.setVisibility(View.GONE);
-                              getDashBoardData();
+        main_view.setVisibility(View.VISIBLE);
+        message.setVisibility(View.GONE);
+        getDashBoardData();
+       // dialog = Util.showPogress(Dashboard.this);
 
-                          }else{
-                              main_view.setVisibility(View.GONE);
-                              message.setVisibility(View.VISIBLE);
-                              message.setText(Util.getMessage(result));
-                          }
-                      }
-                  });
+//          Thread T =new Thread(new Runnable() {
+//              @Override
+//              public void run() {
+//                 final String result=controller.getApiCall().getData("http://api.sportsfight.co.in/api/login/isLive");
+//                  runOnUiThread(new Runnable() {
+//                      @Override
+//                      public void run() {
+//                          dialog.cancel();
+//                          main_view.setVisibility(View.VISIBLE);
+//                              message.setVisibility(View.GONE);
+//                      //    getDashBoardData();
+//                          if(Util.getStatus(result))
+//                          {
+//                              main_view.setVisibility(View.VISIBLE);
+//                              message.setVisibility(View.GONE);
+//                              getDashBoardData();
+//
+//                          }else{
+//                              main_view.setVisibility(View.GONE);
+//                              message.setVisibility(View.VISIBLE);
+//                              message.setText(Util.getMessage(result));
+//                          }
+//                      }
+//                  });
+//
+//              }
+//          });
+//          T.start();
 
-              }
-          });
-          T.start();
-       // getDashBoardData();
     }
     @Override
     public void onClick(View view) {
@@ -256,8 +261,18 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             case R.id.ipl:
                 Intent intent = getPackageManager().getLaunchIntentForPackage("com.dmss.dmssevent");
                 if (intent != null) {
+
+                    Bundle b=new Bundle();
                     // We found the activity now start the activity
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    //Intent sendIntent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    b.putString("SportsFight","SportsFight");
+                    b.putString("Profile", controller.getPrefManager().getUserProfile());
+                    intent.putExtras(b);
+                    intent.setType("text/plain");
+                    //startActivity(sendIntent);
+
                     startActivity(intent);
                 }else{
                     String url="https://play.google.com/store/apps/details?id=com.dmss.dmssevent";

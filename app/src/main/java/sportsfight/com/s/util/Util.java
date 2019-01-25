@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -536,7 +538,18 @@ public static String getDefaultStartDate()
         return status;
     }
 
-
+    public static String getSharedPrefs(Context c) {
+        try {
+            Context con = c.createPackageContext("com.sharedpref1", Context.CONTEXT_IGNORE_SECURITY);
+            SharedPreferences pref = con.getSharedPreferences("demopref", Context.MODE_PRIVATE);
+            String your_data =
+                    pref.getString("demostring", "No Value");
+            return your_data;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("Not data shared", e.toString());
+        }
+        return "";
+    }
     /* * camera module popup
     *************************************/
     public static void selectImageDialog(final Activity act) {
@@ -553,13 +566,9 @@ public static String getDefaultStartDate()
                         Toast.makeText(act, "Sorry! Your device doesn't support camera", Toast.LENGTH_LONG).show();
                     }
                 } else if (items[item].equals("Choose from gallery")) {
-                    Intent intent = new Intent(
-                            Intent.ACTION_PICK,
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
-                    act.startActivityForResult(
-                            Intent.createChooser(intent, "Select File"),
-                            Profile.SELECT_FILE);
+                    act.startActivityForResult(Intent.createChooser(intent, "Select File"), Profile.SELECT_FILE);
                 } else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
@@ -584,11 +593,8 @@ public static String getDefaultStartDate()
 
     public static void captureImage(Activity act) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         Common.imageUri = getOutputMediaFileUri(Common.MEDIA_TYPE_IMAGE);
-
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Common.imageUri);
-
         // start the image capture Intent
         try {
             act.startActivityForResult(intent, Profile.CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
@@ -609,7 +615,6 @@ public static String getDefaultStartDate()
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-
                 return null;
             }
         }

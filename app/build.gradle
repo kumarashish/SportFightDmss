@@ -27,6 +27,7 @@ android {
 }
 dependencies {
     implementation 'com.google.firebase:firebase-messaging:10.2.1'
+    //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:26.+'
     compile 'com.ms-square:etsyblur:0.2.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])

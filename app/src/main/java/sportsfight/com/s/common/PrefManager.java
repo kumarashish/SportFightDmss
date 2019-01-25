@@ -15,7 +15,6 @@ public class PrefManager {
     Context _context;
 
     // shared pref mode
-    int PRIVATE_MODE = 0;
     private static final String PREF_NAME = "SportsFight";
     private static final String LoggedIn = "SportsFightUserLoggedIn";
     private static final String FcmToken = "FcmToken";
@@ -24,7 +23,7 @@ public class PrefManager {
 
     public PrefManager(Context context) {
         this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        pref = _context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = pref.edit();
 
     }

@@ -85,7 +85,6 @@ public class UserProfile  {
         } else {
             gender = "Female";
         }
-
     }
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
