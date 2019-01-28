@@ -297,7 +297,12 @@ public void getTransactions(String startDate,String endDate)
             JSONArray addedItems = result.getJSONArray("Added");
             if (allItems.length() > 0) {
                 for (int i = 0; i < allItems.length(); i++) {
-                    allItemsList.add(new TransactionHistoryModel(allItems.getJSONObject(i),Common.all));
+                    TransactionHistoryModel model=new TransactionHistoryModel(addedItems.getJSONObject(i),Common.all);
+                    if(model.getMessage().length()==0)
+                    {int val=Integer.parseInt(model.getAmount())*10;
+                        model.setMessage("You have sucessfully added "+val +" Points to your wallet");
+                    }
+                    allItemsList.add(model);
                 }
             }
             if (wonItems.length() > 0) {
@@ -312,7 +317,12 @@ public void getTransactions(String startDate,String endDate)
             }
             if (addedItems.length() > 0) {
                 for (int i = 0; i < addedItems.length(); i++) {
-                    addedItemsList.add(new TransactionHistoryModel(addedItems.getJSONObject(i),Common.added));
+                    TransactionHistoryModel model=new TransactionHistoryModel(addedItems.getJSONObject(i),Common.added);
+                    if(model.getMessage().length()==0)
+                    {int val=Integer.parseInt(model.getAmount())*10;
+                        model.setMessage("You have sucessfully added "+val +" Points to your wallet");
+                    }
+                    addedItemsList.add(model);
                 }
             }
         } catch (Exception ex) {
@@ -321,7 +331,7 @@ public void getTransactions(String startDate,String endDate)
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                //viewPager.setAdapter(new CustomPagerAdapter(Wallet.this, allItemsList, wonItemsList,spendItemsList,addedItemsList));
+               viewPager.setAdapter(new CustomPagerAdapter(Wallet.this, allItemsList, wonItemsList,spendItemsList,addedItemsList));
 
             }
         });

@@ -71,7 +71,7 @@ public class WalletFragment  extends Fragment implements View.OnClickListener {
         all.setOnClickListener(this);
         won.setOnClickListener(this);
         spend.setOnClickListener(this);
-        viewPager.setAdapter(new CustomPagerAdapter(getActivity(), allItemsList, wonItemsList,spendItemsList,addedItemsList,header));
+        viewPager.setAdapter(new CustomPagerAdapter(getActivity(), allItemsList, wonItemsList,spendItemsList,addedItemsList));
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

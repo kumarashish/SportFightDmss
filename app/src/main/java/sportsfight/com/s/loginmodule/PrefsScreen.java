@@ -105,6 +105,7 @@ public class PrefsScreen extends Activity implements View.OnClickListener ,WebAp
             Picasso.with(PrefsScreen.this).load(model.getGameImage()).resize(40, 40).placeholder(R.drawable.logo).into(icon);
             name.setText(model.getGameName());
             gameSelected.setId(model.getGameId());
+
             linearLayout.addView(GameRow);
             View blankview = getLayoutInflater().inflate(R.layout.emptyview, null, false);
             linearLayout.addView(blankview);

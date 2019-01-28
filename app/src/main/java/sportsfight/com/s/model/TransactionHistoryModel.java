@@ -58,4 +58,8 @@ public TransactionHistoryModel(){}
     public String getTransactionId() {
         return transactionId;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

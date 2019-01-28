@@ -7,6 +7,7 @@ import org.json.JSONObject;
  */
 
 public class InterestedGameModel {
+    String gameImage;
     int gameId;
     String gameName;
     String GameLevelId;
@@ -24,6 +25,7 @@ public class InterestedGameModel {
 public InterestedGameModel(JSONObject jsonObject)
 {
     try{
+        this.gameImage=jsonObject.isNull("Image")?"":jsonObject.getString("Image");
         this.gameId=jsonObject.getInt("GameId");
         this.gameName=jsonObject.getString("Name");
         this.GameLevelId=jsonObject.isNull("GameLevelId")?"":jsonObject.getString("GameLevelId");
@@ -37,6 +39,10 @@ public InterestedGameModel(JSONObject jsonObject)
         ex.fillInStackTrace();
     }
 }
+
+    public String getGameImage() {
+        return gameImage;
+    }
 
     public boolean isGameIsActive() {
         return GameIsActive;

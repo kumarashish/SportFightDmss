@@ -61,6 +61,7 @@ import sportsfight.com.s.interfaces.WebApiResponseCallback;
 import sportsfight.com.s.ipl.MyBid;
 import sportsfight.com.s.launchingmodule.Splash;
 import sportsfight.com.s.loginmodule.Login;
+import sportsfight.com.s.loginmodule.PrefsScreen;
 import sportsfight.com.s.model.GameModel;
 import sportsfight.com.s.model.InterestedGameModel;
 import sportsfight.com.s.model.UserProfile;
@@ -130,12 +131,14 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
     ArrayList<GameModel> list = new ArrayList<>();
     ArrayList<Integer> interestedGameList = new ArrayList<>();
     ArrayList<Integer> tempInterestedGame = new ArrayList<>();
+;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
         initializeAll();
         setValues();
+
         int permissionCheck = ContextCompat.checkSelfPermission(Profile.this,
                 Manifest.permission.CAMERA);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -147,27 +150,74 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
             if (Util.isNetworkAvailable(Profile.this)) {
                 dialog = Util.showPogress(Profile.this);
                 apiCall = getGameList;
+               // getAllGames();
                 controller.getApiCall().getData(Common.GetListOfGames,controller.getPrefManager().getUserToken(), this);
             }
         }
         appVersion.setText("Version : "+Util.getAppVersion(Profile.this));
     }
+    public void getGameView(LinearLayout gameList) {
+        int count = 1;
+        View inflatedLayout = null;
+        LinearLayout linearLayout = null;
+        for (int i = 0; i < list.size(); i++) {
+            GameModel model = list.get(i);
+            if (count == 1) {
+                inflatedLayout = getLayoutInflater().inflate(R.layout.game_list, gameList, false);
+                linearLayout = (LinearLayout) inflatedLayout.findViewById(R.id.inflated_layout);
+            }
+            View GameRow = getLayoutInflater().inflate(R.layout.game_row,  linearLayout, false);
+            ImageView icon = (ImageView) GameRow.findViewById(R.id.game_icon);
+            TextView name = (TextView) GameRow.findViewById(R.id.game_name);
+            final View gameSelected = (View) GameRow.findViewById(R.id.selected_icon);
+            Picasso.with(Profile.this).load(model.getGameImage()).resize(40, 40).placeholder(R.drawable.logo).into(icon);
+            name.setText(model.getGameName());
+            gameSelected.setId(model.getGameId());
+            if(interestedGameList.contains(model.getGameId()))
+            {
+                gameSelected.setBackgroundResource(R.drawable.selected_button);
+            }
+            linearLayout.addView(GameRow);
+            View blankview = getLayoutInflater().inflate(R.layout.emptyview, null, false);
+            linearLayout.addView(blankview);
+            count++;
+            if((count == 4)||(i==list.size()-1)) {
+                count = 1;
+                gameList.addView(inflatedLayout);
+            }
+            gameSelected.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!tempInterestedGame.contains(gameSelected.getId())) {
+                        tempInterestedGame.add(gameSelected.getId());
+                        gameSelected.setBackgroundResource(R.drawable.selected_button);
+                    } else {
+                        if (tempInterestedGame.contains(gameSelected.getId())) {
+                            tempInterestedGame.remove(tempInterestedGame.indexOf(gameSelected.getId()));
+                            gameSelected.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                        }
+                    }
+                }
+            });
+
+        }
+    }
+
+
     public void addInterestedGames(UserProfile profile) {
         interestedGameList.clear();
         tempInterestedGame.clear();
         interestedGame.removeAllViews();
         for (int i = 0; i < profile.getInterestedGame().size(); i++) {
-            int gameIcon = getGameIcon(profile.getInterestedGame().get(i).getGameName());
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(140, 140);
-            layoutParams.setMargins(5, 5, 5, 5);
-            ImageButton icon = new ImageButton(this);
-            icon.setLayoutParams(layoutParams);
-            icon.setId(profile.getInterestedGame().get(i).getGameId());
-            icon.setImageResource(gameIcon);
-            icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            icon.setPadding(10, 10, 10, 10);
-            icon.setBackgroundResource(R.drawable.selector);
-            interestedGame.addView(icon);
+            InterestedGameModel model=profile.getInterestedGame().get(i);
+            View GameRow = getLayoutInflater().inflate(R.layout.game_row,  interestedGame, false);
+            ImageView icon = (ImageView) GameRow.findViewById(R.id.game_icon);
+            TextView name = (TextView) GameRow.findViewById(R.id.game_name);
+            final View gameSelected = (View) GameRow.findViewById(R.id.selected_icon);
+            Picasso.with(Profile.this).load(model.getGameImage()).resize(40, 40).placeholder(R.drawable.logo).into(icon);
+            name.setText(model.getGameName());
+            gameSelected.setId(model.getGameId());
+            interestedGame.addView(GameRow);
             interestedGameList.add(profile.getInterestedGame().get(i).getGameId());
             tempInterestedGame.add(profile.getInterestedGame().get(i).getGameId());
         }
@@ -222,7 +272,7 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
         } else {
             noInterest.setVisibility(View.VISIBLE);
         }
-        switch (profile.getGender()) {
+        switch (profile.getGender().trim()) {
             case "Male":
                 radioGroup.check(male.getId());
                 break;
@@ -260,36 +310,6 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
         }
     }
 
-    public int getGameIcon(String gameName) {
-        int gameIcon = 0;
-        switch (gameName) {
-            case Common.chess:
-                gameIcon = R.drawable.chess;
-                break;
-            case Common.pool:
-                gameIcon = R.drawable.snooker;
-                break;
-            case Common.minibasketball:
-                gameIcon = R.drawable.mini_basketball;
-                break;
-            case Common.airhockey:
-                gameIcon = R.drawable.air_hockey;
-                break;
-            case Common.fussball:
-                gameIcon = R.drawable.football;
-                break;
-            case Common.tt:
-                gameIcon = R.drawable.tt;
-                break;
-            case Common.carrom:
-                gameIcon = R.drawable.carroms;
-                break;
-            case Common.golf:
-                gameIcon = R.drawable.glolf;
-                break;
-        }
-        return gameIcon;
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -459,7 +479,7 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
         switch (apiCall) {
             case updateGender:
                 if (Util.getStatus(value) == true) {
-               //   controller.updateGender(genderid);
+                  controller.updateGender(((RadioButton)findViewById(radioGroup.getCheckedRadioButtonId())).getText().toString());
                 }
                 break;
             case updateProfilePic:
@@ -667,46 +687,8 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
         gamePrefs = builder.create();
         LayoutInflater inflater = gamePrefs.getLayoutInflater();
         final View dialoglayout = inflater.inflate(R.layout.game_prefs_popup, frameView);
-        final ImageButton chess = (ImageButton) dialoglayout.findViewById(R.id.chess);
-        final ImageButton pool = (ImageButton) dialoglayout.findViewById(R.id.pool);
-        final ImageButton basketball = (ImageButton) dialoglayout.findViewById(R.id.basketball);
-        final ImageButton airhockey = (ImageButton) dialoglayout.findViewById(R.id.airhockey);
-        final ImageButton foosball = (ImageButton) dialoglayout.findViewById(R.id.foosball);
-        final ImageButton tt = (ImageButton) dialoglayout.findViewById(R.id.tt);
-        final ImageButton carrom = (ImageButton) dialoglayout.findViewById(R.id.carrom);
-        final ImageButton mini_golf = (ImageButton) dialoglayout.findViewById(R.id.mini_golf);
-        if (interestedGameList.contains(Util.getGameId(Common.chess,list))) {
-            isChessSelected = true;
-            chess.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.pool,list))) {
-            isPoolSelected = true;
-            pool.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.minibasketball,list))) {
-            isBasketBallSelected = true;
-            basketball.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.airhockey,list))) {
-            isAirHockeySelected = true;
-            airhockey.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.fussball,list))) {
-            isFoosBallSelected = true;
-            foosball.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.tt,list))) {
-            isTTSelected = true;
-            tt.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.carrom,list))) {
-            isCarromSlected = true;
-            carrom.setBackgroundResource(R.drawable.selected_button);
-        }
-        if (interestedGameList.contains(Util.getGameId(Common.golf,list))) {
-            isMiniGolfSelected = true;
-            mini_golf.setBackgroundResource(R.drawable.selected_button);
-        }
+        LinearLayout gameList=(LinearLayout)dialoglayout.findViewById(R.id.gameList);
+        getGameView(gameList);
         Button submit = (Button) dialoglayout.findViewById(R.id.submit);
         submit.setTypeface(controller.getDetailsFont());
         submit.setOnClickListener(new View.OnClickListener() {
@@ -724,59 +706,7 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
             }
         });
 
-        chess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(chess, isChessSelected, 1, Common.chess);
-            }
-        });
-        pool.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(pool, isPoolSelected, 2, Common.pool);
-            }
-        });
-        basketball.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(basketball, isBasketBallSelected, 3, Common.minibasketball);
-            }
-        });
-        airhockey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(airhockey, isAirHockeySelected, 4, Common.airhockey);
 
-            }
-        });
-        foosball.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(foosball, isFoosBallSelected, 5, Common.fussball);
-
-            }
-        });
-        tt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(tt, isTTSelected, 6, Common.tt);
-
-            }
-        });
-        carrom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(carrom, isCarromSlected, 7, Common.carrom);
-            }
-        });
-        mini_golf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleButtonClick(mini_golf, isMiniGolfSelected, 8, Common.golf);
-
-            }
-        });
-        gamePrefs.setCancelable(false);
         gamePrefs.show();
     }
 

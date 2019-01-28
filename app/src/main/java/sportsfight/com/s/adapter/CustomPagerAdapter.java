@@ -29,13 +29,13 @@ public class CustomPagerAdapter extends PagerAdapter {
     ArrayList<TransactionHistoryModel> added;
     RelativeLayout header;
 
-    public CustomPagerAdapter(Activity context, ArrayList<TransactionHistoryModel> all, ArrayList<TransactionHistoryModel> won, ArrayList<TransactionHistoryModel> spend, ArrayList<TransactionHistoryModel> added,RelativeLayout header) {
+    public CustomPagerAdapter(Activity context, ArrayList<TransactionHistoryModel> all, ArrayList<TransactionHistoryModel> won, ArrayList<TransactionHistoryModel> spend, ArrayList<TransactionHistoryModel> added) {
         mContext = context;
         this.all = all;
         this.spend = spend;
         this.won = won;
         this.added = added;
-        this.header=header;
+
     }
 
     @Override
@@ -68,49 +68,49 @@ public class CustomPagerAdapter extends PagerAdapter {
 
         switch (position) {
             case 0:
-//                if (all.size() > 0) {
+                if (all.size() > 0) {
                     list.setVisibility(View.VISIBLE);
                     noItem.setVisibility(View.GONE);
                     list.setAdapter(new TransactionListItemAdapter(mContext,all));
 
-//                } else {
-//                    list.setVisibility(View.GONE);
-//                    noItem.setVisibility(View.VISIBLE);
-//
-//                }
+                } else {
+                    list.setVisibility(View.GONE);
+                    noItem.setVisibility(View.VISIBLE);
+
+                }
                 break;
             case 1:
-//                if (won.size() > 0) {
+                if (won.size() > 0) {
                     list.setVisibility(View.VISIBLE);
                     noItem.setVisibility(View.GONE);
                     list.setAdapter(new TransactionListItemAdapter(mContext,won));
-//                } else {
-//                    list.setVisibility(View.GONE);
-//                    noItem.setVisibility(View.VISIBLE);
-//
-//                }
+                } else {
+                    list.setVisibility(View.GONE);
+                    noItem.setVisibility(View.VISIBLE);
+
+                }
                 break;
             case 2:
-//                if (spend.size() > 0) {
+                if (spend.size() > 0) {
                     list.setVisibility(View.VISIBLE);
                     noItem.setVisibility(View.GONE);
                     list.setAdapter(new TransactionListItemAdapter(mContext,spend));
-//                } else {
-//                    list.setVisibility(View.GONE);
-//                    noItem.setVisibility(View.VISIBLE);
-//
-//                }
+                } else {
+                    list.setVisibility(View.GONE);
+                    noItem.setVisibility(View.VISIBLE);
+
+                }
                 break;
             case 3:
-//                if (added.size() > 0) {
+                if (added.size() > 0) {
                     list.setVisibility(View.VISIBLE);
                     noItem.setVisibility(View.GONE);
                     list.setAdapter(new TransactionListItemAdapter(mContext,added));
-//                } else {
-//                    list.setVisibility(View.GONE);
-//                    noItem.setVisibility(View.VISIBLE);
-//
-//                }
+                } else {
+                    list.setVisibility(View.GONE);
+                    noItem.setVisibility(View.VISIBLE);
+
+                }
                 break;
         }
         collection.addView(layout);
