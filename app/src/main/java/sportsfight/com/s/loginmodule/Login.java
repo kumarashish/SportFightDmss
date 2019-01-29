@@ -50,6 +50,7 @@ import sportsfight.com.s.util.Validation;
 
 public class Login extends Activity  implements View.OnClickListener,WebApiResponseCallback{
    // Receiver myBroadcastReceiver;
+    public static String EmailId="";
     @BindView(R.id.icon)
     ImageView icon;
     @BindView(R.id.emailId_mobile_edt)
@@ -86,6 +87,11 @@ public class Login extends Activity  implements View.OnClickListener,WebApiRespo
         signUp.setOnClickListener(this);
         forgetpassword.setOnClickListener(this);
         forgetpassword.setTypeface(typeface);
+        if(EmailId.length()>0)
+        {
+            mobile_email.setText(EmailId);
+            icon.setImageResource(R.drawable.username);
+        }
         mobile_email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

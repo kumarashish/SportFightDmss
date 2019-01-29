@@ -212,10 +212,13 @@ EditText userNumber;
                             public void run() {
                                 beneficeryName.setText(beneficieryProfile.getUserName());
                                 beneficeryNumber.setText(beneficieryProfile.getMobile());
-                                Picasso.with(mContext).load(beneficieryProfile.getProfilePic()).resize(200, 200).placeholder(mContext.getDrawable(R.drawable.user_icon)).into(profilePic);
-                                beneficeryLayout.setVisibility(View.VISIBLE);
+                                if(((beneficieryProfile.getProfilePic())!=null)&&(beneficieryProfile.getProfilePic().length()>0)) {
+                                    Picasso.with(mContext).load(beneficieryProfile.getProfilePic()).resize(200, 200).placeholder(mContext.getDrawable(R.drawable.user_icon)).into(profilePic);
+
+                                }
                                 points.requestFocus();
                                 points.setSelection(1);
+                                beneficeryLayout.setVisibility(View.VISIBLE);
                             }
                         });
                     } else {

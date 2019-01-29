@@ -255,24 +255,22 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
                 }else{
                     challengeLayout.setBackground(getResources().getDrawable(R.drawable.challenge_selector));
                 }
-                Intent in = new Intent(Dashboard.this, Challenge.class);
-                startActivity(in);
+               Toast.makeText(Dashboard.this,"This section has been disabled for short time",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ipl:
                 Intent intent = getPackageManager().getLaunchIntentForPackage("com.dmss.dmssevent");
                 if (intent != null) {
-
                     Bundle b=new Bundle();
                     // We found the activity now start the activity
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     //Intent sendIntent = new Intent();
                     intent.setAction(Intent.ACTION_SEND);
                     b.putString("SportsFight","SportsFight");
+                    b.putString("SessionToken",controller.getPrefManager().getUserToken());
                     b.putString("Profile", controller.getPrefManager().getUserProfile());
                     intent.putExtras(b);
                     intent.setType("text/plain");
                     //startActivity(sendIntent);
-
                     startActivity(intent);
                 }else{
                     String url="https://play.google.com/store/apps/details?id=com.dmss.dmssevent";
@@ -384,6 +382,7 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
     }
     @Override
     public void onSucess(String value) {
+
         if (Util.getStatus(value) == true) {
             if (apiCall == getDashBoardApiCall) {
                 dashBoardJsonParsing(value);

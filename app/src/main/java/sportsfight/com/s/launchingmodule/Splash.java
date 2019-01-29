@@ -82,21 +82,60 @@ public class Splash extends Activity {
     }
 
     public void launchHomeScreen() {
-        if (controller.getPrefManager().isFirstTimeLaunch()) {
-            controller.getPrefManager().setFirstTimeLaunch(false);
-            Intent i = new Intent(Splash.this,Registration.class);
-            Registration.isCalledFromSplash=true;
-            startActivity(i);
-        } else {
+        Intent intent=getIntent();
+        if(intent!=null)
+        {
+           String email=intent.getStringExtra("email");
             if (controller.getPrefManager().isUserLoggedIn()) {
-                Intent i = new Intent(Splash.this, Dashboard.class);
-                startActivity(i);
-            } else {
+                if ((email != null) && (email.equalsIgnoreCase(controller.getProfile().getEmail()))) {
+                    Intent i = new Intent(Splash.this, Dashboard.class);
+                    startActivity(i);
+                }else{
+
+                    if(email==null) {
+                        if (controller.getPrefManager().isUserLoggedIn()) {
+                            Intent i = new Intent(Splash.this, Dashboard.class);
+                            startActivity(i);
+                        }else{
+                            Intent i = new Intent(Splash.this, Login.class);
+                            startActivity(i);
+                        }
+
+                        }else{
+                            if (email.length() > 0) {
+                                Login.EmailId = email;
+                            }
+                            controller.logout();
+                            Intent i = new Intent(Splash.this, Login.class);
+                            startActivity(i);
+                        }
+
+
+                }
+            }else {
+                if((email!=null)&&(email.length()>0))
+                {
+                    Login.EmailId=email;
+                }
                 Intent i = new Intent(Splash.this, Login.class);
                 startActivity(i);
             }
-
-
+        }else {
+            if (controller.getPrefManager().isFirstTimeLaunch()) {
+                controller.getPrefManager().setFirstTimeLaunch(false);
+                Intent i = new Intent(Splash.this, Registration.class);
+                Registration.isCalledFromSplash = true;
+                startActivity(i);
+            } else {
+                if (controller.getPrefManager().isUserLoggedIn()) {
+                    Intent i = new Intent(Splash.this, Dashboard.class);
+                    startActivity(i);
+                } else {
+                    Intent i = new Intent(Splash.this, Login.class);
+                    Login.EmailId="";
+                    startActivity(i);
+                }
+            }
         }
         // close this activity
         finish();

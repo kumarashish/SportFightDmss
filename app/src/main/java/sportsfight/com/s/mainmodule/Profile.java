@@ -214,7 +214,12 @@ public class Profile extends Activity implements View.OnClickListener,WebApiResp
             ImageView icon = (ImageView) GameRow.findViewById(R.id.game_icon);
             TextView name = (TextView) GameRow.findViewById(R.id.game_name);
             final View gameSelected = (View) GameRow.findViewById(R.id.selected_icon);
-            Picasso.with(Profile.this).load(model.getGameImage()).resize(40, 40).placeholder(R.drawable.logo).into(icon);
+            if((model.getGameImage()!=null)&&(model.getGameImage().length()>0))
+            {
+                Picasso.with(Profile.this).load(model.getGameImage()).resize(40, 40).placeholder(R.drawable.logo).into(icon);
+            }else{
+                icon.setImageResource(R.drawable.logo);
+            }
             name.setText(model.getGameName());
             gameSelected.setId(model.getGameId());
             interestedGame.addView(GameRow);

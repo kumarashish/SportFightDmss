@@ -29,7 +29,7 @@
             android:layout_alignParentBottom="true"
             android:textColor="@color/white"
             android:text="Yes"
-            android:background="@drawable/orange_gradient_button"
+            android:background="@drawable/purplebutton"
             android:layout_width="80dp"
             android:layout_height="30dp" />
         <Button
@@ -39,7 +39,7 @@
             android:layout_alignParentBottom="true"
             android:textColor="@color/white"
             android:text="No"
-            android:background="@drawable/orange_gradient_button"
+            android:background="@drawable/purplebutton"
             android:layout_width="80dp"
             android:layout_height="30dp" />
 
