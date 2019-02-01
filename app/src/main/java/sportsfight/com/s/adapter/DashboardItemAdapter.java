@@ -346,13 +346,13 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                    holderrr4.circleImageView2.setText(Util.getInitial(modell.getPlayer2Name()));
                    holderrr4.Player2Name.setText(Util.getUpdatedName(modell.getPlayer2Name()).toUpperCase());
                    holderrr4.Player2Bid.setText("Bids : "+Integer.toString(modell.getPlayer2Bids())+" pts");
-                   if(modell.getMyBidToId()==modell.getPlayer1Id()) {
-                       holderrr4.myBid.setText("My Bid on "+modell.getPlayer1Name()+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
-                   }else if(modell.getMyBidToId()==modell.getPlayer2Id())
+                   if((modell.getMyBidToId()==modell.getPlayer1Id())||((modell.getMyBidToId()==Integer.parseInt(modell.getTeam1Id())))) {
+                       holderrr4.myBid.setText("My Bid on "+Util.getUpdatedName(modell.getPlayer1Name())+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
+                   }else if((modell.getMyBidToId()==modell.getPlayer2Id())||((modell.getMyBidToId()==Integer.parseInt(modell.getTeam2Id()))))
                    {
-                       holderrr4.myBid.setText("My Bid on "+modell.getPlayer2Name()+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
-                   }else{
-                       holderrr4.myBid.setText("My Bid  : " + Integer.toString(modell.getMyBid()) + " pts" );
+                       holderrr4.myBid.setText("My Bid on "+Util.getUpdatedName(modell.getPlayer2Name())+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
+                   }else {
+                       holderrr4.myBid.setText("My Bid : "+ Integer.toString(modell.getMyBid()) + " pts" );
                    }
                    holderrr4.placeBid.setTypeface(controller.getDetailsFont());
                    holderrr4.placeBid.setVisibility(View.VISIBLE);

@@ -134,11 +134,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Dashboard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/mainmodule/Dashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="498" column="42" lean-forward="false" selection-start-line="498" selection-start-column="42" selection-end-line="498" selection-end-column="42" />
+            <state relative-caret-position="-772">
+              <caret line="501" column="45" lean-forward="false" selection-start-line="501" selection-start-column="45" selection-end-line="501" selection-end-column="45" />
               <folding>
                 <element signature="e#15761#15931#0" expanded="true" />
                 <element signature="e#15930#15931#0" expanded="true" />
@@ -192,11 +192,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DashboardItemAdapter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DashboardItemAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/DashboardItemAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="319" column="0" lean-forward="false" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
+            <state relative-caret-position="248">
+              <caret line="350" column="124" lean-forward="false" selection-start-line="350" selection-start-column="124" selection-end-line="350" selection-end-column="124" />
               <folding />
             </state>
           </provider>
@@ -2053,9 +2053,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/WonViewAllAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/MyMatchesAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/util/Util.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/DashboardItemAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/mainmodule/UpcomingMatchesViewAll.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/mainmodule/Dashboard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/DashboardItemAdapter.java" />
       </list>
     </option>
   </component>
@@ -2623,7 +2623,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1549022704882" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1549023219018" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2671,7 +2671,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1549022704883" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1549023219018" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2854,7 +2854,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1549022704884" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1549023219021" />
       </method>
     </configuration>
     <list size="3">
@@ -4468,19 +4468,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/DashboardItemAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="319" column="0" lean-forward="false" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/util/Util.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1727">
           <caret line="208" column="25" lean-forward="false" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/mainmodule/Dashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-772">
+          <caret line="501" column="45" lean-forward="false" selection-start-line="501" selection-start-column="45" selection-end-line="501" selection-end-column="45" />
+          <folding>
+            <element signature="e#15761#15931#0" expanded="true" />
+            <element signature="e#15930#15931#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4492,14 +4495,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/mainmodule/Dashboard.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/sportsfight/com/s/adapter/DashboardItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="498" column="42" lean-forward="false" selection-start-line="498" selection-start-column="42" selection-end-line="498" selection-end-column="42" />
-          <folding>
-            <element signature="e#15761#15931#0" expanded="true" />
-            <element signature="e#15930#15931#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="248">
+          <caret line="350" column="124" lean-forward="false" selection-start-line="350" selection-start-column="124" selection-end-line="350" selection-end-column="124" />
+          <folding />
         </state>
       </provider>
     </entry>
