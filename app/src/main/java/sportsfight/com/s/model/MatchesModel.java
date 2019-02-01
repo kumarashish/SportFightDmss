@@ -26,6 +26,10 @@ public class MatchesModel {
     int WinnerId;
 String Message;
 String MatchPlace;
+    boolean IsTeam ;
+    String Team1Id;
+    String Team2Id;
+    String GameRound;
    public MatchesModel(JSONObject jsonObject)
     {
         try{
@@ -48,6 +52,10 @@ String MatchPlace;
             IsWon = jsonObject.isNull("IsWon") ? false : jsonObject.getBoolean("IsWon");
             Message= jsonObject.isNull("Message") ? "" : jsonObject.getString("Message");
             MatchPlace=jsonObject.isNull("MatchPlace") ? "" : jsonObject.getString("MatchPlace");
+            IsTeam= jsonObject.isNull("IsTeam") ? false : jsonObject.getBoolean("IsTeam"); ;
+            Team1Id=jsonObject.isNull("Team1Id") ? "" : jsonObject.getString("Team1Id");
+            Team2Id=jsonObject.isNull("Team2Id") ? "" : jsonObject.getString("Team2Id");
+           GameRound=jsonObject.isNull("GameRound") ? "" : jsonObject.getString("GameRound");
         }catch (Exception ex)
         {
             ex.fillInStackTrace();
@@ -142,7 +150,15 @@ String MatchPlace;
         return Player2Name;
     }
 
+    public boolean isTeam() {
+        return IsTeam;
+    }
 
+    public String getTeam1Id() {
+        return Team1Id;
+    }
 
-
+    public String getTeam2Id() {
+        return Team2Id;
+    }
 }

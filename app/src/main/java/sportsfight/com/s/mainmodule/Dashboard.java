@@ -22,6 +22,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -121,7 +122,9 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             RelativeLayout main_view;
     Dialog dialog;
     ArrayList<MatchesModel> myMatches=new ArrayList<>();
+    ArrayList<MatchesModel> myMatchesDoubles=new ArrayList<>();
     ArrayList<MatchesModel> upComingMatches=new ArrayList<>();
+    ArrayList<MatchesModel> upComingDoublesMatches=new ArrayList<>();
   public static  ArrayList<MatchesModel> upComingEventMatches=new ArrayList<>();
     ArrayList<MatchesModel> bids=new ArrayList<>();
     ArrayList<MatchesModel> tournaments=new ArrayList<>();
@@ -417,18 +420,23 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
 
     public void dashBoardJsonParsing(String value) {
         myMatches.clear();
+        myMatchesDoubles.clear();
         upComingMatches.clear();
+        upComingDoublesMatches.clear();
         bids.clear();
         tournaments.clear();
         upComingEventMatches.clear();
+
         news.clear();
         try {
             JSONObject jsonObject = new JSONObject(value);
             JSONObject result = jsonObject.getJSONObject("Result");
             JSONArray mybidsResult = result.isNull("Bids") ? null : result.getJSONArray("Bids");
             JSONArray mymatchesResult = result.isNull("MyMatches") ? null : result.getJSONArray("MyMatches");
+            JSONArray myMatchesDoubleResult = result.isNull("MyMatchesDouble") ? null : result.getJSONArray("MyMatchesDouble");
             JSONArray upComingEventMatchess = result.isNull("UpcomingEventMatches") ? null : result.getJSONArray("UpcomingEventMatches");
             JSONArray upcomingmatchesResult = result.isNull("UpcomingMatches") ? null : result.getJSONArray("UpcomingMatches");
+            JSONArray upComingDoublesMatchesResult = result.isNull("UpcomingMatchesDouble") ? null : result.getJSONArray("UpcomingMatchesDouble");
             JSONArray tournamentResults = result.isNull("Tournaments") ? null : result.getJSONArray("Tournaments");
             JSONArray newsResult = result.isNull("News") ? null : result.getJSONArray("News");
             if (mybidsResult != null) {
@@ -436,14 +444,33 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
                     bids.add(new MatchesModel(mybidsResult.getJSONObject(i)));
                 }
             }
+
             if (mymatchesResult != null) {
                 for (int i = 0; i < mymatchesResult.length(); i++) {
                     myMatches.add(new MatchesModel(mymatchesResult.getJSONObject(i)));
                 }
             }
+            if ( myMatchesDoubleResult != null) {
+                for (int i = 0; i < myMatchesDoubleResult.length(); i++) {
+                    MatchesModel model=new MatchesModel(myMatchesDoubleResult.getJSONObject(i));
+                    if(model.getPlayer1Id()!=0)
+                    {
+                    myMatchesDoubles.add(model);
+                    }
+                }
+            }
             if (upcomingmatchesResult != null) {
                 for (int i = 0; i < upcomingmatchesResult.length(); i++) {
                     upComingMatches.add(new MatchesModel(upcomingmatchesResult.getJSONObject(i)));
+                }
+            }
+            if (upComingDoublesMatchesResult != null) {
+                for (int i = 0; i <upComingDoublesMatchesResult.length(); i++) {
+                    MatchesModel model=new MatchesModel(upComingDoublesMatchesResult.getJSONObject(i));
+                    if(model.getPlayer1Id()!=0)
+                    {
+                        upComingDoublesMatches.add(model);
+                    }
                 }
             }
             if (upComingEventMatchess != null) {
@@ -466,11 +493,11 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
  {        runOnUiThread(new Runnable() {
      @Override
      public void run() {
-         if ((myMatches.size() > 0) || (upComingMatches.size() > 0) || (bids.size() > 0) || (tournaments.size() > 0) || (newslist.size() > 0)) {
+         if ((myMatches.size() > 0) || (upComingMatches.size() > 0) || (bids.size() > 0) || (upComingDoublesMatches.size() > 0) || (myMatchesDoubles.size() > 0)) {
              MyCustomLayoutManager mLayoutManager = new MyCustomLayoutManager(Dashboard.this);
              list.setLayoutManager(mLayoutManager);
              list.smoothScrollToPosition(2);
-             list.setAdapter(new DashboardItemAdapter(Dashboard.this, bids, myMatches, upComingMatches, tournaments, newslist));
+             list.setAdapter(new DashboardItemAdapter(Dashboard.this, bids, myMatches, upComingMatches, myMatchesDoubles, upComingDoublesMatches));
              list.setVisibility(View.VISIBLE);
              noItem.setVisibility(View.GONE);
          } else {
@@ -602,27 +629,44 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         View player1View = (View) dialogg.findViewById(R.id.view1);
         View player2View = (View) dialogg.findViewById(R.id.view2);
         placeBid.setTypeface(controller.getDetailsFont());
-        player1Name.setText(model.getPlayer1Name());
-        player2Name.setText(model.getPlayer2Name());
-        if (model.getPlayer2ImageUrl().length() > 0) {
-            Picasso.with(Dashboard.this).load(model.getPlayer2ImageUrl()).placeholder(R.drawable.user_icon).into(player2);
-        } else {
-            player2.setImageResource(R.drawable.user_icon);
-        }
-        if (model.getPlayer1ImageUrl().length() > 0) {
-            Picasso.with(Dashboard.this).load(model.getPlayer1ImageUrl()).placeholder(R.drawable.user_icon).into(player1);
-        } else {
+        player1Name.setText(Util.getUpdatedName(model.getPlayer1Name()));
+        player1Name.setMovementMethod(new ScrollingMovementMethod());
+        player2Name.setText(Util.getUpdatedName(model.getPlayer2Name()));
+        player2Name.setMovementMethod(new ScrollingMovementMethod());
+        if(model.isTeam())
+        {
             player1.setImageResource(R.drawable.user_icon);
+            player2.setImageResource(R.drawable.user_icon);
+        }else {
+            if (model.getPlayer2ImageUrl().length() > 0) {
+                Picasso.with(Dashboard.this).load(model.getPlayer2ImageUrl()).placeholder(R.drawable.user_icon).into(player2);
+            } else {
+                player2.setImageResource(R.drawable.user_icon);
+            }
+            if (model.getPlayer1ImageUrl().length() > 0) {
+                Picasso.with(Dashboard.this).load(model.getPlayer1ImageUrl()).placeholder(R.drawable.user_icon).into(player1);
+            } else {
+                player1.setImageResource(R.drawable.user_icon);
+            }
         }
         if(model.getMyBidToId()!=0)
         {
             placeBid.setText("Update Bid");
+        }else {
+            placeBid.setText("Place Bid");
         }
         if(model.getMyBidToId()==model.getPlayer1Id())
         {
             player2_selected_icon.setVisibility(View.GONE);
             player1_selected_icon.setVisibility(View.VISIBLE);
-            selectedId = model.getPlayer1Id();
+            if(model.isTeam())
+            {
+                selectedId = Integer.parseInt(model.getTeam1Id());
+            }else{
+                selectedId = model.getPlayer1Id();
+            }
+
+
             player1BidPoints=model.getMyBid();
             player1BidValue.setText(Integer.toString(player1BidPoints));
             player1BidOptions.setVisibility(View.VISIBLE);
@@ -631,7 +675,12 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         {
             player2_selected_icon.setVisibility(View.VISIBLE);
             player1_selected_icon.setVisibility(View.GONE);
-            selectedId = model.getPlayer2Id();
+            if(model.isTeam())
+            {
+                selectedId = Integer.parseInt(model.getTeam2Id());
+            }else{
+                selectedId = model.getPlayer2Id();
+            }
             player2BidPoints=model.getMyBid();
             player2BidValue.setText(Integer.toString(player2BidPoints));
             player2BidOptions.setVisibility(View.VISIBLE);
@@ -640,10 +689,10 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         increasePlayer1Bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (controller.getProfile().getTotalPoints() >= ((player1BidPoints + 100)- model.getMyBid())) {
-                    player1BidPoints = player1BidPoints + 100;
+                if (controller.getProfile().getTotalPoints() >= ((player1BidPoints + 10)- model.getMyBid())) {
+                    player1BidPoints = player1BidPoints + 10;
                 } else {
-                    int value= (player1BidPoints+ 100)- model.getMyBid();
+                    int value= (player1BidPoints+ 10)- model.getMyBid();
                     Util.showToast(Dashboard.this, "You do not have " +value + " points in your wallet.Please add more points or decrease bid");
                 }
                 player2BidPoints = 0;
@@ -656,14 +705,14 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             public void onClick(View view) {
                 if (model.getMyBidToId() == model.getPlayer1Id()) {
                     if (model.getMyBid() < player1BidPoints) {
-                        player1BidPoints = player1BidPoints - 100;
+                        player1BidPoints = player1BidPoints - 10;
                     }else{
                         Util.showToast(Dashboard.this, "Your Bid should be greater then previously made bid.");
 
                     }
                 }else {
                     if (player1BidPoints != 0) {
-                        player1BidPoints = player1BidPoints - 100;
+                        player1BidPoints = player1BidPoints - 10;
                     } else {
                         Util.showToast(Dashboard.this, "Your bid is already 0");
                     }
@@ -677,10 +726,10 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         increasePlayer2Bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (controller.getProfile().getTotalPoints() >=  ((player2BidPoints + 100)- model.getMyBid())) {
-                    player2BidPoints = player2BidPoints + 100;
+                if (controller.getProfile().getTotalPoints() >=  ((player2BidPoints + 10)- model.getMyBid())) {
+                    player2BidPoints = player2BidPoints + 10;
                 } else {
-                    int neededPoints = (player2BidPoints + 100)- model.getMyBid();
+                    int neededPoints = (player2BidPoints + 10)- model.getMyBid();
                     Util.showToast(Dashboard.this, "You do not have " + neededPoints + " points in your wallet.Please add more points or decrease bid");
                 }
                 player1BidPoints = 0;
@@ -693,14 +742,14 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             public void onClick(View view) {
                 if (model.getMyBidToId() == model.getPlayer2Id()) {
                     if (model.getMyBid() < player2BidPoints) {
-                        player2BidPoints = player2BidPoints - 100;
+                        player2BidPoints = player2BidPoints - 10;
                     }else{
                         Util.showToast(Dashboard.this, "Your Bid should be greater then previously made bid.");
 
                     }
                 } else {
                     if (player2BidPoints != 0) {
-                        player2BidPoints = player2BidPoints - 100;
+                        player2BidPoints = player2BidPoints - 10;
                     } else {
                         Util.showToast(Dashboard.this, "Your bid is already 0");
                     }
@@ -714,13 +763,26 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         player1View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(model.getMyBidToId()==model.getPlayer2Id())
+                String errorMessage="You can not place bid on this player,as You have already placed bid on player2.";
+                int id=model.getPlayer2Id();
+                if(model.isTeam())
                 {
-                    Util.showToast(Dashboard.this,"You can not place bid on this player,as You have already placed bid on player2.");
+                    id=Integer.parseInt(model.getTeam2Id());
+                    errorMessage="You can not place bid on this Team,as You have already placed bid on Team2.";
+                }
+                if(model.getMyBidToId()== id)
+                {
+                    Util.showToast(Dashboard.this, errorMessage);
                 }else {
                     player2_selected_icon.setVisibility(View.GONE);
                     player1_selected_icon.setVisibility(View.VISIBLE);
-                    selectedId = model.getPlayer1Id();
+                    if(model.isTeam())
+                    {
+                        selectedId = Integer.parseInt(model.getTeam1Id());
+                    }else
+                        {
+                        selectedId = model.getPlayer1Id();
+                         }
                     player1BidPoints=model.getMyBid();
                     player1BidValue.setText(Integer.toString(player1BidPoints));
                     player1BidOptions.setVisibility(View.VISIBLE);
@@ -732,13 +794,25 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         player2View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(model.getMyBidToId()==model.getPlayer1Id())
+                String errorMessage="You can not place bid on this player,as You have already placed bid on player1.";
+                int id=model.getPlayer1Id();
+                if(model.isTeam())
                 {
-                    Util.showToast(Dashboard.this,"You can not place bid on this player,as You have already placed bid on player1.");
+                    id=Integer.parseInt(model.getTeam1Id());
+                    errorMessage="You can not place bid on this Team,as You have already placed bid on Team1.";
+                }
+                if(model.getMyBidToId()== id)
+                {
+                    Util.showToast(Dashboard.this, errorMessage);
                 }else {
                     player1_selected_icon.setVisibility(View.GONE);
                     player2_selected_icon.setVisibility(View.VISIBLE);
-                    selectedId = model.getPlayer2Id();
+                    if(model.isTeam())
+                    {
+                        selectedId = Integer.parseInt(model.getTeam2Id());
+                    }else {
+                        selectedId = model.getPlayer2Id();
+                    }
                     player1BidOptions.setVisibility(View.INVISIBLE);
                     player2BidOptions.setVisibility(View.VISIBLE);
                     player2BidPoints=model.getMyBid();
@@ -803,6 +877,7 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
     public void MyMatchesViewALL() {
         Intent in = new Intent(Dashboard.this,MyMatchesViewAll.class);
        MyMatchesViewAll.list = myMatches;
+        MyMatchesViewAll.headingValue="My Matches";
         Util.startActivityCommon(Dashboard.this, in);
     }
 
@@ -810,20 +885,28 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
     public void UpComingViewALL() {
         Intent in = new Intent(Dashboard.this, UpcomingMatchesViewAll.class);
         UpcomingMatchesViewAll.list = upComingMatches;
+
+        UpcomingMatchesViewAll.headingValue="Upcoming Matches";
         Util.startActivityForResultCommon(Dashboard.this, in);
     }
 
     @Override
-    public void TournamentsViewALL() {
+    public void MyMatchesDoublesViewAll() {
+        Intent in = new Intent(Dashboard.this, UpcomingMatchesViewAll.class);
+        UpcomingMatchesViewAll.list = myMatchesDoubles;
 
+        MyMatchesViewAll.headingValue="My Doubles Matches";
+        Util.startActivityForResultCommon(Dashboard.this, in);
     }
 
     @Override
-    public void NewsViewALL() {
-        Intent in = new Intent(Dashboard.this, NewsViewAll.class);
-        NewsViewAll.list = newslist;
-        Util.startActivityCommon(Dashboard.this, in);
+    public void UpComingDoublesViewAll() {
+        Intent in = new Intent(Dashboard.this, UpcomingMatchesViewAll.class);
+        UpcomingMatchesViewAll.list = upComingDoublesMatches;
+        UpcomingMatchesViewAll.headingValue="Upcoming Doubles Matches";
+        Util.startActivityForResultCommon(Dashboard.this, in);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -854,6 +937,7 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         try {
             jsonObject.put("ChallengeId", model.getChallengeId());
             jsonObject.put("BidBy", controller.getProfile().getUserId());
+            jsonObject.put("BidOn", selectedId);
             jsonObject.put("BidPoints", points);
             jsonObject.put("DeviceId", Util.getDeviceID(Dashboard.this));
         } catch (Exception ex) {

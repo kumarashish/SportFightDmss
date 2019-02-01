@@ -2,6 +2,7 @@ package sportsfight.com.s.mainmodule;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -55,13 +56,14 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
     Dialog dialogg,dialog;
     MatchesModel matchmodel=null;
     UpcomingMatchesAdapter adapter=null;
+    public static String headingValue="Upcoming Matches";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
         controller = (AppController) getApplicationContext();
         ButterKnife.bind(this);
-        heading.setText("Upcoming Matches");
+        heading.setText(headingValue);
         back.setOnClickListener(this);
         adapter=new UpcomingMatchesAdapter(list,UpcomingMatchesViewAll.this);
         listView.setAdapter(adapter);
@@ -114,8 +116,8 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         View player1View = (View) dialogg.findViewById(R.id.view1);
         View player2View = (View) dialogg.findViewById(R.id.view2);
         placeBid.setTypeface(controller.getDetailsFont());
-        player1Name.setText(model.getPlayer1Name());
-        player2Name.setText(model.getPlayer2Name());
+        player1Name.setText(Util.getUpdatedName(model.getPlayer1Name()));
+        player2Name.setText(Util.getUpdatedName(model.getPlayer2Name()));
         if (model.getPlayer2ImageUrl().length() > 0) {
             Picasso.with(UpcomingMatchesViewAll.this).load(model.getPlayer2ImageUrl()).placeholder(R.drawable.user_icon).into(player2);
         } else {
@@ -134,7 +136,11 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         {
             player2_selected_icon.setVisibility(View.GONE);
             player1_selected_icon.setVisibility(View.VISIBLE);
-            selectedId = model.getPlayer1Id();
+            if(model.isTeam()) {
+                selectedId = Integer.parseInt(model.getTeam1Id());
+            }else{
+                selectedId = model.getPlayer1Id();
+            }
             player1BidPoints=model.getMyBid();
             player1BidValue.setText(Integer.toString(player1BidPoints));
             player1BidOptions.setVisibility(View.VISIBLE);
@@ -143,7 +149,12 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         {
             player2_selected_icon.setVisibility(View.VISIBLE);
             player1_selected_icon.setVisibility(View.GONE);
-            selectedId = model.getPlayer2Id();
+            if(model.isTeam()) {
+                selectedId = Integer.parseInt(model.getTeam2Id());
+            }else{
+                selectedId = model.getPlayer2Id();
+            }
+
             player2BidPoints=model.getMyBid();
             player2BidValue.setText(Integer.toString(player2BidPoints));
             player2BidOptions.setVisibility(View.VISIBLE);
@@ -152,10 +163,10 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         increasePlayer1Bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (controller.getProfile().getTotalPoints() >=  ((player1BidPoints + 100)- model.getMyBid())) {
-                    player1BidPoints = player1BidPoints + 100;
+                if (controller.getProfile().getTotalPoints() >=  ((player1BidPoints + 10)- model.getMyBid())) {
+                    player1BidPoints = player1BidPoints + 10;
                 } else {
-                    int neededPoints = (player1BidPoints + 100)- model.getMyBid();
+                    int neededPoints = (player1BidPoints + 10)- model.getMyBid();
                     Util.showToast(UpcomingMatchesViewAll.this, "You do not have " + neededPoints+ " points in your wallet.Please add more points or decrease bid");
                 }
                 player2BidPoints = 0;
@@ -168,14 +179,14 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
             public void onClick(View view) {
                 if (model.getMyBidToId() == model.getPlayer1Id()) {
                     if (model.getMyBid() < player1BidPoints) {
-                        player1BidPoints = player1BidPoints - 100;
+                        player1BidPoints = player1BidPoints - 10;
                     }else{
                         Util.showToast(UpcomingMatchesViewAll.this, "Your Bid should be greater then previously made bid.");
 
                     }
                 }else {
                     if (player1BidPoints != 0) {
-                        player1BidPoints = player1BidPoints - 100;
+                        player1BidPoints = player1BidPoints - 10;
                     } else {
                         Util.showToast(UpcomingMatchesViewAll.this, "Your bid is already 0");
                     }
@@ -189,10 +200,10 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         increasePlayer2Bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (controller.getProfile().getTotalPoints() >=  ((player2BidPoints + 100)- model.getMyBid())) {
-                    player2BidPoints = player2BidPoints + 100;
+                if (controller.getProfile().getTotalPoints() >=  ((player2BidPoints + 10)- model.getMyBid())) {
+                    player2BidPoints = player2BidPoints + 10;
                 } else {
-                    int neededPoints = player2BidPoints + 100;
+                    int neededPoints = player2BidPoints + 10;
                     Util.showToast(UpcomingMatchesViewAll.this, "You do not have " + neededPoints + " points in your wallet.Please add more points or decrease bid");
                 }
                 player1BidPoints = 0;
@@ -205,7 +216,7 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
             public void onClick(View view) {
                 if (model.getMyBidToId() == model.getPlayer2Id()) {
                     if (model.getMyBid() < player2BidPoints) {
-                        player2BidPoints = player2BidPoints - 100;
+                        player2BidPoints = player2BidPoints - 10;
                     }else{
 
                         Util.showToast(UpcomingMatchesViewAll.this, "Your Bid should be greater then previously made bid.");
@@ -213,7 +224,7 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
                     }
                 } else {
                     if (player2BidPoints != 0) {
-                        player2BidPoints = player2BidPoints - 100;
+                        player2BidPoints = player2BidPoints - 10;
                     } else {
                         Util.showToast(UpcomingMatchesViewAll.this, "Your bid is already 0");
                     }
@@ -227,13 +238,25 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         player1View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(model.getMyBidToId()==model.getPlayer2Id())
+                String errorMessage="You can not place bid on this player,as You have already placed bid on player2.";
+                int id=model.getPlayer2Id();
+                if(model.isTeam())
                 {
-                    Util.showToast(UpcomingMatchesViewAll.this,"You can not place bid on this player,as You have already placed bid on player2.");
+                    id=Integer.parseInt(model.getTeam2Id());
+                    errorMessage="You can not place bid on this Team,as You have already placed bid on Team2.";
+                }
+                if(model.getMyBidToId()== id)
+                {
+                    Util.showToast(UpcomingMatchesViewAll.this,errorMessage);
                 }else {
                     player2_selected_icon.setVisibility(View.GONE);
                     player1_selected_icon.setVisibility(View.VISIBLE);
-                    selectedId = model.getPlayer1Id();
+                    if(model.isTeam()) {
+                        selectedId = Integer.parseInt(model.getTeam1Id());
+                    }else{
+                        selectedId = model.getPlayer1Id();
+                    }
+
                     player1BidPoints=model.getMyBid();
                     player1BidValue.setText(Integer.toString(player1BidPoints));
                     player1BidOptions.setVisibility(View.VISIBLE);
@@ -245,13 +268,24 @@ public class UpcomingMatchesViewAll extends Activity implements View.OnClickList
         player2View.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(model.getMyBidToId()==model.getPlayer1Id())
+                String errorMessage="You can not place bid on this player,as You have already placed bid on player1.";
+                int id=model.getPlayer1Id();
+                if(model.isTeam())
                 {
-                    Util.showToast(UpcomingMatchesViewAll.this,"You can not place bid on this player,as You have already placed bid on player1.");
+                    id=Integer.parseInt(model.getTeam1Id());
+                    errorMessage="You can not place bid on this Team,as You have already placed bid on Team1.";
+                }
+                if(model.getMyBidToId()== id)
+                {
+                    Util.showToast(UpcomingMatchesViewAll.this,errorMessage);
                 }else {
                     player1_selected_icon.setVisibility(View.GONE);
                     player2_selected_icon.setVisibility(View.VISIBLE);
-                    selectedId = model.getPlayer2Id();
+                    if(model.isTeam()) {
+                        selectedId = Integer.parseInt(model.getTeam2Id());
+                    }else{
+                        selectedId = model.getPlayer2Id();
+                    }
                     player1BidOptions.setVisibility(View.INVISIBLE);
                     player2BidOptions.setVisibility(View.VISIBLE);
                     player2BidPoints=model.getMyBid();

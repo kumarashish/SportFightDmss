@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -57,6 +58,7 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
        if(itemView==null) {
            holder=new ViewHolder();
            itemView = LayoutInflater.from(act).inflate(R.layout.upcomingmatches, null, true);
+           holder.header=(RelativeLayout) itemView.findViewById(R.id.header);
            holder.date = (TextView) itemView.findViewById(R.id.date);
            holder.time = (TextView) itemView.findViewById(R.id.time);
            holder.bid_count= (TextView) itemView.findViewById(R.id.bid_count);
@@ -65,10 +67,10 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
            holder.cardview = (LinearLayout) itemView.findViewById(R.id.cardview);
             holder.tticon = (ImageView) itemView.findViewById(R.id.tticon);
            holder.info_text = (TextView) itemView.findViewById(R.id.info_text);
-           holder.circleImageView = (ImageView) itemView.findViewById(R.id.circleImageView);
+           holder.circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
            holder.player1Name = (TextView) itemView.findViewById(R.id.player1Name);
            holder.player1Bid = (TextView) itemView.findViewById(R.id.player1Bid);
-           holder.circleImageView2 = (ImageView) itemView.findViewById(R.id.circleImageView2);
+           holder.circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
            holder.Player2Name = (TextView) itemView.findViewById(R.id.player2Name);
            holder.Player2Bid = (TextView) itemView.findViewById(R.id.player2Bid);
            holder.myBid = (TextView) itemView.findViewById(R.id.myBid);
@@ -77,8 +79,8 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
         }else{
            holder=(ViewHolder)itemView.getTag();
        }
+        holder.header.setVisibility(View.GONE);
         int val=model.getPlayer1Bids()+model.getPlayer2Bids();
-
         holder.bid_count.setText("Total bid (Current) : "+val+" pts");
         holder.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getMatchDate().length()+7}));
         holder.time.setText(Util.getMulticolorTextView("Time : "+model.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getSlotTime().length()+7}));
@@ -87,24 +89,24 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
         holder.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
         holder.info_text.setText(model.getGameName().toUpperCase());
         holder. info_text.setTextColor(Util.getTextColor(model.getGameName(),act));
-
-        if (model.getPlayer1ImageUrl().length() > 0) {
-            Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
-                    .centerInside().placeholder(R.drawable.user_icon).into(  holder.circleImageView);
-        } else {
-            holder.circleImageView.setImageResource(R.drawable.user_icon);
-        }
-        holder.player1Name.setText(model.getPlayer1Name());
+        holder.circleImageView.setText(Util.getInitial(model.getPlayer1Name()));
+//        if (model.getPlayer1ImageUrl().length() > 0) {
+//            Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
+//                    .centerInside().placeholder(R.drawable.user_icon).into(  holder.circleImageView);
+//        } else {
+//            holder.circleImageView.setImageResource(R.drawable.user_icon);
+//        }
+        holder.player1Name.setText(Util.getUpdatedName(model.getPlayer1Name()).toUpperCase());
         holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" pts");
-        if (model.getPlayer2ImageUrl().length() > 0) {
-            Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
-                    .centerInside().placeholder(R.drawable.user_icon).into(  holder.circleImageView2);
-        } else {
-            holder.circleImageView2.setImageResource(R.drawable.user_icon);
-        }
-        holder.Player2Name.setText(model.getPlayer2Name());
+//        if (model.getPlayer2ImageUrl().length() > 0) {
+//            Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
+//                    .centerInside().placeholder(R.drawable.user_icon).into(  holder.circleImageView2);
+//        } else {
+//            holder.circleImageView2.setImageResource(R.drawable.user_icon);
+//        }
+        holder.Player2Name.setText(Util.getUpdatedName(model.getPlayer2Name()).toUpperCase());
         holder.Player2Bid.setText("Bids: "+Integer.toString(model.getPlayer2Bids())+" pts");
-
+        holder.circleImageView2.setText(Util.getInitial(model.getPlayer2Name()));
         if(model.getMyBidToId()==model.getPlayer1Id()) {
             holder. myBid.setText("My Bid on "+model.getPlayer1Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
         }else if(model.getMyBidToId()==model.getPlayer2Id())
@@ -136,14 +138,15 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
         LinearLayout cardview;
         ImageView tticon ;
         TextView info_text ;
-        ImageView circleImageView ;
+        TextView circleImageView ;
         TextView player1Name ;
         TextView player1Bid ;
-        ImageView circleImageView2 ;
+        TextView circleImageView2 ;
         TextView Player2Name ;
         TextView Player2Bid ;
         TextView myBid ;
         TextView bidCount;
         Button placeBid ;
+        RelativeLayout header;
     }
 }

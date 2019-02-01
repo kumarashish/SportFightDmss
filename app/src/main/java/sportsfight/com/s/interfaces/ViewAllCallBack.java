@@ -10,7 +10,7 @@ public interface ViewAllCallBack {
     public void CongratulationViewALL();
     public void MyMatchesViewALL();
     public void UpComingViewALL();
-    public void TournamentsViewALL();
-    public void NewsViewALL();
+    public void MyMatchesDoublesViewAll();
+    public void UpComingDoublesViewAll();
 
 }

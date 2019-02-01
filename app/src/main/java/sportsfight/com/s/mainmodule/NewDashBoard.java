@@ -463,13 +463,16 @@ ImageView drop_down;
     }
 
     @Override
-    public void TournamentsViewALL() {
+    public void MyMatchesDoublesViewAll() {
 
     }
 
     @Override
-    public void NewsViewALL() {
+    public void UpComingDoublesViewAll() {
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -484,7 +487,6 @@ ImageView drop_down;
                 backPressedCount = 0;
             } else if (backPressedCount == 1) {
                 Toast.makeText(NewDashBoard.this, "Press again to close app", Toast.LENGTH_SHORT).show();
-
             }
         } else {
             finish();

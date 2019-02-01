@@ -248,17 +248,17 @@ public class Test  extends AppCompatActivity implements NavigationView.OnNavigat
     {        runOnUiThread(new Runnable() {
         @Override
         public void run() {
-            if ((myMatches.size() > 0) || (upComingMatches.size() > 0) || (bids.size() > 0) || (tournaments.size() > 0) || (newslist.size() > 0)) {
-                MyCustomLayoutManager mLayoutManager = new MyCustomLayoutManager(Test.this);
-                list.setLayoutManager(mLayoutManager);
-                list.smoothScrollToPosition(2);
-                list.setAdapter(new DashboardItemAdapter(Test.this, bids, myMatches, upComingMatches, tournaments, newslist));
-                list.setVisibility(View.VISIBLE);
-                noItem.setVisibility(View.GONE);
-            } else {
-                list.setVisibility(View.GONE);
-                noItem.setVisibility(View.VISIBLE);
-            }
+//            if ((myMatches.size() > 0) || (upComingMatches.size() > 0) || (bids.size() > 0) || (.size() > 0) || (newslist.size() > 0)) {
+//                MyCustomLayoutManager mLayoutManager = new MyCustomLayoutManager(Test.this);
+//                list.setLayoutManager(mLayoutManager);
+//                list.smoothScrollToPosition(2);
+//                list.setAdapter(new DashboardItemAdapter(Test.this, bids, myMatches, upComingMatches, tournaments, newslist));
+//                list.setVisibility(View.VISIBLE);
+//                noItem.setVisibility(View.GONE);
+//            } else {
+//                list.setVisibility(View.GONE);
+//                noItem.setVisibility(View.VISIBLE);
+//            }
             if (dialog != null) {
                 dialog.cancel();
             }
@@ -285,16 +285,15 @@ public class Test  extends AppCompatActivity implements NavigationView.OnNavigat
     }
 
     @Override
-    public void TournamentsViewALL() {
+    public void MyMatchesDoublesViewAll() {
 
     }
 
     @Override
-    public void NewsViewALL() {
-        Intent in = new Intent(Test.this, NewsViewAll.class);
-        NewsViewAll.list = newslist;
-        Util.startActivityCommon(Test.this, in);
+    public void UpComingDoublesViewAll() {
+
     }
+
     public void showAlert() {
         final Dialog dialog = new Dialog(this);
         LottieAnimationView animationView;

@@ -38,8 +38,8 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
     ArrayList<MatchesModel> myMatches=new ArrayList<>();
     ArrayList<MatchesModel> upComingMatches=new ArrayList<>();
     ArrayList<MatchesModel> bids=new ArrayList<>();
-    ArrayList<MatchesModel> tournaments=new ArrayList<>();
-    ArrayList<Article> newsList=new ArrayList<>();
+    ArrayList<MatchesModel> myMatchesDoubles=new ArrayList<>();
+    ArrayList<MatchesModel>  upComingDoublesMatches=new ArrayList<>();
     ArrayList<Integer> viewCount=new ArrayList<>();
     ArrayList<MatchesModel> addedModel=new ArrayList<>();
     Activity act;
@@ -54,12 +54,12 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         }
     }
 
-    public DashboardItemAdapter(Activity act, ArrayList<MatchesModel> bids, ArrayList<MatchesModel> myMatches, ArrayList<MatchesModel>upComingMatches, ArrayList<MatchesModel> tournaments, ArrayList<Article> news) {
+    public DashboardItemAdapter(Activity act, ArrayList<MatchesModel> bids, ArrayList<MatchesModel> myMatches, ArrayList<MatchesModel>upComingMatches, ArrayList<MatchesModel> myMatchesDoubles, ArrayList<MatchesModel> upComingDoublesMatches) {
        this.myMatches=myMatches;
        this.bids=bids;
-       this.newsList=news;
+       this.myMatchesDoubles=myMatchesDoubles;
        this.upComingMatches=upComingMatches;
-       this.tournaments=tournaments;
+       this.upComingDoublesMatches=upComingDoublesMatches;
        this.act=act;
        controller=(AppController)act.getApplicationContext();
         callBack=(ViewAllCallBack)act;
@@ -90,15 +90,21 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
             itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.upcomingmatches, parent, false);
             return new UpComingMatches(itemView);
-        } else if ((!viewCount.contains(3)) && (tournaments.size() > 0)) {
+        } else if ((!viewCount.contains(3)) && (myMatchesDoubles.size() > 0)) {
             viewCount.add(3);
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.open_tournament, parent, false);
-            return new MyViewHolder(itemView);
+            final PlaceBidCallBack callback=(PlaceBidCallBack) act;
+            final MatchesModel model=myMatchesDoubles.get(0);
+            addedModel.add(model);
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.mymatches, parent, false);
+            return new MyDoublesMatches(itemView);
         }
-        else if ((!viewCount.contains(4)) && (newsList.size() > 0)) {
+        else if ((!viewCount.contains(4)) && (upComingDoublesMatches.size() > 0)) {
             viewCount.add(4);
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.newscard, parent, false);
-            return new News(itemView);
+            final PlaceBidCallBack callback=(PlaceBidCallBack) act;
+            final MatchesModel model=upComingDoublesMatches.get(0);
+            addedModel.add(model);
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.upcoming_doubles, parent, false);
+            return new UpComingDoublesMatches(itemView);
         }
         return null;
 
@@ -109,15 +115,14 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         switch (viewCount.get(position))
         {
             case 0:
-                model=addedModel.get(position);
+               final MatchesModel model=addedModel.get(position);
                Congratulation c_holder=(Congratulation)holder;
                 c_holder.heading.setText("Results(" + bids.size() + ")");
                 ImageView img = new ImageView(act);
                 Picasso.with(act).load(Util.getCardBgInt(model.getGameName(), act)).into(   c_holder.cardview);
                 c_holder.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
                 c_holder.info_text.setText(model.getGameName().toUpperCase());
-
-
+                c_holder.circleImageView.setText(Util.getInitial(model.getPlayer1Name()));
 //                if (model.getPlayer1ImageUrl().length() > 0) {
 //
 //                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
@@ -125,7 +130,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
 //                } else {
 //                    c_holder.circleImageView.setImageResource(R.drawable.user_icon);
 //                }
-                c_holder.circleImageView.setImageResource(R.drawable.user_icon);
+               // c_holder.circleImageView.setImageResource(R.drawable.user_icon);
                 c_holder.player1Name.setText(model.getPlayer1Name());
                 c_holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" pts");
 //                if (model.getPlayer2ImageUrl().length() > 0) {
@@ -133,7 +138,8 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
 //                } else {
 //                    c_holder.circleImageView2.setImageResource(R.drawable.user_icon);
 //                }
-                c_holder.circleImageView2.setImageResource(R.drawable.user_icon);
+               // c_holder.circleImageView2.setImageResource(R.drawable.user_icon);
+                c_holder.circleImageView2.setText(Util.getInitial(model.getPlayer2Name()));
                 c_holder.Player2Name.setText(model.getPlayer2Name());
                 c_holder.Player2Bid.setText("Bids : "+Integer.toString(model.getPlayer2Bids()));
                 c_holder.yourBid.setText("My Bid :"+Integer.toString(model.getMyBid()));
@@ -174,22 +180,23 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 });
                 break;
             case 1:
-               model=addedModel.get(position);
+                MatchesModel  model2=addedModel.get(position);
                 MyMatches holderr=(MyMatches)holder;
                 holderr.heading.setText("My Matches(" + myMatches.size() + ")");
-                int val=model.getPlayer1Bids()+model.getPlayer2Bids();
+                int val=model2.getPlayer1Bids()+model2.getPlayer2Bids();
                 holderr.bid_count.setText("");
-                Picasso.with(act).load(Util.getCardBgInt(model.getGameName(), act)).into(holderr.cardview);
-                holderr.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
-                holderr.info_text.setText(model.getGameName().toUpperCase());
-                holderr.info_text.setTextColor(Util.getTextColor(model.getGameName(),act));
+                Picasso.with(act).load(Util.getCardBgInt(model2.getGameName(), act)).into(holderr.cardview);
+                holderr.tticon.setImageDrawable(Util.getIcon(model2.getGameName(), act));
+                holderr.info_text.setText(model2.getGameName().toUpperCase());
+                holderr.info_text.setTextColor(Util.getTextColor(model2.getGameName(),act));
+
 //                if (model.getPlayer1ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200).centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView);
 //                } else {
 //                    holderr.circleImageView.setImageResource(R.drawable.user_icon);
 //                }
-                holderr.circleImageView.setImageResource(R.drawable.user_icon);
-                holderr.player1Name.setText(model.getPlayer1Name());
+
+                holderr.player1Name.setText(Util.getUpdatedName(model2.getPlayer1Name()));
                 holderr.player1Bid.setText("");
 //                if (model.getPlayer2ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
@@ -197,57 +204,60 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
 //                } else {
 //                    holderr. circleImageView2.setImageResource(R.drawable.user_icon);
 //                }
-                holderr. Player2Name.setText(model.getPlayer2Name());
+                holderr.circleImageView.setText(Util.getInitial(model2.getPlayer1Name()));
+                holderr.circleImageView2.setText(Util.getInitial(model2.getPlayer2Name()));
+                holderr. Player2Name.setText(Util.getUpdatedName(model2.getPlayer2Name()));
                 holderr.Player2Bid.setText("");
-                holderr. circleImageView2.setImageResource(R.drawable.user_icon);
+
                 holderr. viewAllResult.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         callBack.MyMatchesViewALL();
                     }
                 });
-                holderr.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getMatchDate().length()+7}));
-                holderr.time.setText(Util.getMulticolorTextView("Time : "+model.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getSlotTime().length()+7}));
+                holderr.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model2.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model2.getMatchDate().length()+7}));
+                holderr.time.setText(Util.getMulticolorTextView("Time : "+model2.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model2.getSlotTime().length()+7}));
 
                 break;
             case 2:
-                 model=addedModel.get(position);
+              final  MatchesModel model3=addedModel.get(position);
                 UpComingMatches holderrr=(UpComingMatches)holder;
-                int vall=model.getPlayer1Bids()+model.getPlayer2Bids();
+                int vall=model3.getPlayer1Bids()+model3.getPlayer2Bids();
 
                 holderrr.bid_count.setText("Total bid (Current) "+Integer.toString(vall) +"pts");
-                holderrr.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getMatchDate().length()+7}));
-                holderrr.time.setText(Util.getMulticolorTextView("Time : "+model.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getSlotTime().length()+7}));
+                holderrr.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model3.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model3.getMatchDate().length()+7}));
+                holderrr.time.setText(Util.getMulticolorTextView("Time : "+model3.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model3.getSlotTime().length()+7}));
                 holderrr.heading.setText("Upcoming Matches(" + upComingMatches.size() + ")");
-                Picasso.with(act).load(Util.getCardBgInt(model.getGameName(), act)).into( holderrr.cardview);
-                holderrr.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
-                holderrr.info_text.setText(model.getGameName().toUpperCase());
-                holderrr.info_text.setTextColor(Util.getTextColor(model.getGameName(),act));
-                holderrr.circleImageView.setImageResource(R.drawable.user_icon);
+                Picasso.with(act).load(Util.getCardBgInt(model3.getGameName(), act)).into( holderrr.cardview);
+                holderrr.tticon.setImageDrawable(Util.getIcon(model3.getGameName(), act));
+                holderrr.info_text.setText(model3.getGameName().toUpperCase());
+                holderrr.info_text.setTextColor(Util.getTextColor(model3.getGameName(),act));
+               // holderrr.circleImageView.setImageResource(R.drawable.user_icon);
 //                if (model.getPlayer1ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
 //                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView);
 //                } else {
 //                    holderrr.circleImageView.setImageResource(R.drawable.user_icon);
 //                }
-                holderrr.player1Name.setText(model.getPlayer1Name());
-                holderrr.player1Bid.setText("Bids : "+Integer.toString(model.getPlayer1Bids())+" pts");
+                holderrr.player1Name.setText(model3.getPlayer1Name());
+                holderrr.player1Bid.setText("Bids : "+Integer.toString(model3.getPlayer1Bids())+" pts");
 //                if (model.getPlayer2ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
 //                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView2);
 //                } else {
 //                    holderrr.circleImageView2.setImageResource(R.drawable.user_icon);
 //                }
-                holderrr.circleImageView2.setImageResource(R.drawable.user_icon);
-                holderrr.Player2Name.setText(model.getPlayer2Name());
-                holderrr.Player2Bid.setText("Bids : "+Integer.toString(model.getPlayer2Bids())+" pts");
-                if(model.getMyBidToId()==model.getPlayer1Id()) {
-                    holderrr.myBid.setText("My Bid on "+model.getPlayer1Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
-                }else if(model.getMyBidToId()==model.getPlayer2Id())
+                holderrr.circleImageView.setText(Util.getInitial(model3.getPlayer1Name()));
+                holderrr.circleImageView2.setText(Util.getInitial(model3.getPlayer2Name()));
+                holderrr.Player2Name.setText(model3.getPlayer2Name());
+                holderrr.Player2Bid.setText("Bids : "+Integer.toString(model3.getPlayer2Bids())+" pts");
+                if(model3.getMyBidToId()==model3.getPlayer1Id()) {
+                    holderrr.myBid.setText("My Bid on "+model3.getPlayer1Name()+"\n" + Integer.toString(model3.getMyBid()) + " pts" );
+                }else if(model3.getMyBidToId()==model3.getPlayer2Id())
                 {
-                    holderrr.myBid.setText("My Bid on "+model.getPlayer2Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+                    holderrr.myBid.setText("My Bid on "+model3.getPlayer2Name()+"\n" + Integer.toString(model3.getMyBid()) + " pts" );
                 }else{
-                    holderrr.myBid.setText("My Bid  : " + Integer.toString(model.getMyBid()) + " pts" );
+                    holderrr.myBid.setText("My Bid  : " + Integer.toString(model3.getMyBid()) + " pts" );
                 }
                 holderrr.placeBid.setTypeface(controller.getDetailsFont());
                 holderrr.placeBid.setVisibility(View.VISIBLE);
@@ -260,38 +270,104 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 holderrr.placeBid.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                     placeBidCallBack.onPlaceBidClick(model);
+                     placeBidCallBack.onPlaceBidClick(model3);
                     }
                 });
                 break;
+            case 3:
+
+                MatchesModel model4=addedModel.get(position);
+                MyDoublesMatches holderr3=(MyDoublesMatches)holder;
+                holderr3.heading.setText("My Team Games(" + myMatchesDoubles.size() + ")");
+                int val3=model4.getPlayer1Bids()+model4.getPlayer2Bids();
+                holderr3.bid_count.setText("");
+                Picasso.with(act).load(Util.getCardBgInt(model4.getGameName(), act)).into(holderr3.cardview);
+                holderr3.tticon.setImageDrawable(Util.getIcon(model4.getGameName(), act));
+                holderr3.info_text.setText((model4.getGameName()).toUpperCase());
+                holderr3.info_text.setTextColor(Util.getTextColor(model4.getGameName(),act));
+//                if (model.getPlayer1ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200).centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView);
+//                } else {
+//                    holderr.circleImageView.setImageResource(R.drawable.user_icon);
+//                }
+              //  holderr3.circleImageView.setImageResource(R.drawable.user_icon);
+                holderr3.player1Name.setText(Util.getUpdatedName(model4.getPlayer1Name()));
+                holderr3.player1Bid.setText("");
+                holderr3.circleImageView.setText(Util.getInitial(model4.getPlayer1Name()));
+//                if (model.getPlayer2ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into(holderr.circleImageView2);
+//                } else {
+//                    holderr. circleImageView2.setImageResource(R.drawable.user_icon);
+//                }
+                holderr3.circleImageView2.setText(Util.getInitial(model4.getPlayer2Name()));
+                holderr3.Player2Name.setText(Util.getUpdatedName(model4.getPlayer2Name()).toUpperCase());
+                holderr3.Player2Bid.setText("");
+               // holderr3.circleImageView2.setImageResource(R.drawable.user_icon);
+                holderr3. viewAllResult.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        callBack.MyMatchesDoublesViewAll();
+                    }
+                });
+                holderr3.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model4.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model4.getMatchDate().length()+7}));
+                holderr3.time.setText(Util.getMulticolorTextView("Time : "+model4.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model4.getSlotTime().length()+7}));
+
+                break;
                case 4:
-                   Article model=newsList.get(0);
-                   try {
-                       News hold = (News) holder;
-                       hold.newsCount.setText("News(" + newsList.size() + ")");
-                       String[] desc = model.getDescription().split(" />");
-                       String image = desc[0].replace("<img src='", "");
-                       image=image.replaceAll("' width='90' height='62'", "");
 
-                       Picasso.with(act).load(image.trim()).resize(200, 200)
-                               .centerInside().placeholder(R.drawable.user_icon).into(hold.image);
-
-                       hold.viewAllResult.setOnClickListener(new View.OnClickListener() {
-                           @Override
-                           public void onClick(View view) {
-                               callBack.NewsViewALL();
-                           }
-                       });
-                       hold.heading.setText(model.getTitle());
-                       desc[1]=desc[1].replaceAll("&quot;","");
-                       hold.details.setText(desc[1]);
-                   }catch (Exception ex)
+                   final MatchesModel modell=addedModel.get(position);
+                   UpComingDoublesMatches holderrr4=( UpComingDoublesMatches)holder;
+                   int vall4=modell.getPlayer1Bids()+modell.getPlayer2Bids();
+                   holderrr4.bid_count.setText("Total bid (Current) "+Integer.toString(vall4) +"pts");
+                   holderrr4.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(modell.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,modell.getMatchDate().length()+7}));
+                   holderrr4.time.setText(Util.getMulticolorTextView("Time : "+modell.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,modell.getSlotTime().length()+7}));
+                   holderrr4.heading.setText("Upcoming Doubles Matches(" +upComingDoublesMatches.size() + ")");
+                   Picasso.with(act).load(Util.getCardBgInt(modell.getGameName(), act)).into( holderrr4.cardview);
+                   holderrr4.tticon.setImageDrawable(Util.getIcon(modell.getGameName(), act));
+                   holderrr4.info_text.setText(modell.getGameName().toUpperCase());
+                   holderrr4.info_text.setTextColor(Util.getTextColor(modell.getGameName(),act));
+                   holderrr4.circleImageView.setText(Util.getInitial(modell.getPlayer1Name()));
+//                if (model.getPlayer1ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView);
+//                } else {
+//                    holderrr.circleImageView.setImageResource(R.drawable.user_icon);
+//                }
+                   holderrr4.player1Name.setText(Util.getUpdatedName(modell.getPlayer1Name()).toUpperCase());
+                   holderrr4.player1Bid.setText("Bids : "+Integer.toString(modell.getPlayer1Bids())+" pts");
+//                if (model.getPlayer2ImageUrl().length() > 0) {
+//                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
+//                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView2);
+//                } else {
+//                    holderrr.circleImageView2.setImageResource(R.drawable.user_icon);
+//                }
+                  // holderrr4.circleImageView2.setImageResource(R.drawable.user_icon);
+                   holderrr4.circleImageView2.setText(Util.getInitial(modell.getPlayer2Name()));
+                   holderrr4.Player2Name.setText(Util.getUpdatedName(modell.getPlayer2Name()).toUpperCase());
+                   holderrr4.Player2Bid.setText("Bids : "+Integer.toString(modell.getPlayer2Bids())+" pts");
+                   if(modell.getMyBidToId()==modell.getPlayer1Id()) {
+                       holderrr4.myBid.setText("My Bid on "+modell.getPlayer1Name()+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
+                   }else if(modell.getMyBidToId()==modell.getPlayer2Id())
                    {
-                       ex.fillInStackTrace();
+                       holderrr4.myBid.setText("My Bid on "+modell.getPlayer2Name()+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
+                   }else{
+                       holderrr4.myBid.setText("My Bid  : " + Integer.toString(modell.getMyBid()) + " pts" );
                    }
-//                   STring imagePath=
-//                 image;
-
+                   holderrr4.placeBid.setTypeface(controller.getDetailsFont());
+                   holderrr4.placeBid.setVisibility(View.VISIBLE);
+                   holderrr4.viewAllResult.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           callBack.UpComingDoublesViewAll();
+                       }
+                   });
+                   holderrr4.placeBid.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           placeBidCallBack.onPlaceBidClick(modell);
+                       }
+                   });
                 break;
 
         }
@@ -317,10 +393,10 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         if ((upComingMatches.size() > 0)) {
             size = size + 1;
         }
-        if ((tournaments.size() > 0)) {
+        if ((myMatchesDoubles.size() > 0)) {
             size = size + 1;
         }
-        if ((newsList.size() > 0)) {
+        if ((upComingDoublesMatches.size() > 0)) {
             size = size + 1;
         }
         return size;
@@ -349,8 +425,84 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         }
     }
 
+    public static class UpComingDoublesMatches extends RecyclerView.ViewHolder {
 
+        TextView date;
+        TextView time;
+        TextView heading;
+        TextView viewAllResult;
+        TextView  bid_count;
+        ImageView tticon;
+        TextView info_text;
+        TextView circleImageView;
+        TextView player1Name;
+        TextView player1Bid;
+        TextView  circleImageView2;
+        TextView Player2Name;
+        TextView Player2Bid;
+        TextView myBid;
+        TextView bidCount;
+        sportsfight.com.s.common.CustomLayout cardview;
+        Button placeBid;
 
+        public  UpComingDoublesMatches(View itemView) {
+            super(itemView);
+            date = (TextView) itemView.findViewById(R.id.date);
+            time = (TextView) itemView.findViewById(R.id.time);
+            bid_count = (TextView) itemView.findViewById(R.id.bid_count);
+            heading = (TextView) itemView.findViewById(R.id.heading);
+            viewAllResult = (TextView) itemView.findViewById(R.id.viewAllResult);
+            cardview = (sportsfight.com.s.common.CustomLayout) itemView.findViewById(R.id.cardview);
+            tticon = (ImageView) itemView.findViewById(R.id.tticon);
+            info_text = (TextView) itemView.findViewById(R.id.info_text);
+           circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
+            player1Name = (TextView) itemView.findViewById(R.id.player1Name);
+            player1Bid = (TextView) itemView.findViewById(R.id.player1Bid);
+            circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
+            Player2Name = (TextView) itemView.findViewById(R.id.player2Name);
+            Player2Bid = (TextView) itemView.findViewById(R.id.player2Bid);
+            myBid = (TextView) itemView.findViewById(R.id.myBid);
+            bidCount = (TextView) itemView.findViewById(R.id.bid_count);
+            placeBid = (Button) itemView.findViewById(R.id.placeBid);
+
+        }
+    }
+
+    public static class MyDoublesMatches extends RecyclerView.ViewHolder {
+
+        TextView date;
+        TextView time;
+        TextView heading;
+        TextView viewAllResult;
+        sportsfight.com.s.common.CustomLayout  cardview;
+        ImageView tticon;
+        TextView info_text;
+        TextView circleImageView;
+        TextView player1Name;
+        TextView player1Bid;
+        TextView circleImageView2;
+        TextView Player2Name;
+        TextView Player2Bid;
+        TextView bid_count;
+        public MyDoublesMatches(View itemView) {
+            super(itemView);
+            date = (TextView) itemView.findViewById(R.id.date);
+            time = (TextView) itemView.findViewById(R.id.time);
+            heading = (TextView) itemView.findViewById(R.id.heading);
+            viewAllResult = (TextView) itemView.findViewById(R.id.viewAllResult);
+            cardview = (sportsfight.com.s.common.CustomLayout) itemView.findViewById(R.id.cardview);
+            tticon = (ImageView) itemView.findViewById(R.id.tticon);
+            info_text = (TextView) itemView.findViewById(R.id.info_text);
+           circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
+            player1Name = (TextView) itemView.findViewById(R.id.Player1Name);
+            player1Bid = (TextView) itemView.findViewById(R.id.Player1Bid);
+           circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
+            Player2Name = (TextView) itemView.findViewById(R.id.Player2Name);
+            Player2Bid = (TextView) itemView.findViewById(R.id.Player2Bid);
+            bid_count = (TextView) itemView.findViewById(R.id.bid_count);
+
+        }
+    }
 
     public static class UpComingMatches extends RecyclerView.ViewHolder {
 
@@ -361,10 +513,10 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         TextView  bid_count;
         ImageView tticon;
         TextView info_text;
-        ImageView circleImageView;
+      TextView circleImageView;
         TextView player1Name;
         TextView player1Bid;
-        ImageView circleImageView2;
+       TextView circleImageView2;
         TextView Player2Name;
         TextView Player2Bid;
         TextView myBid;
@@ -382,10 +534,10 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
             cardview = (sportsfight.com.s.common.CustomLayout) itemView.findViewById(R.id.cardview);
             tticon = (ImageView) itemView.findViewById(R.id.tticon);
             info_text = (TextView) itemView.findViewById(R.id.info_text);
-            circleImageView = (ImageView) itemView.findViewById(R.id.circleImageView);
+           circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
             player1Name = (TextView) itemView.findViewById(R.id.player1Name);
             player1Bid = (TextView) itemView.findViewById(R.id.player1Bid);
-            circleImageView2 = (ImageView) itemView.findViewById(R.id.circleImageView2);
+          circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
             Player2Name = (TextView) itemView.findViewById(R.id.player2Name);
             Player2Bid = (TextView) itemView.findViewById(R.id.player2Bid);
             myBid = (TextView) itemView.findViewById(R.id.myBid);
@@ -404,10 +556,10 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         sportsfight.com.s.common.CustomLayout  cardview;
         ImageView tticon;
         TextView info_text;
-        ImageView circleImageView;
+        TextView circleImageView;
         TextView player1Name;
         TextView player1Bid;
-        ImageView circleImageView2;
+        TextView circleImageView2;
         TextView Player2Name;
         TextView Player2Bid;
         TextView bid_count;
@@ -420,10 +572,10 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
             cardview = (sportsfight.com.s.common.CustomLayout) itemView.findViewById(R.id.cardview);
             tticon = (ImageView) itemView.findViewById(R.id.tticon);
             info_text = (TextView) itemView.findViewById(R.id.info_text);
-            circleImageView = (ImageView) itemView.findViewById(R.id.circleImageView);
+            circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
             player1Name = (TextView) itemView.findViewById(R.id.Player1Name);
             player1Bid = (TextView) itemView.findViewById(R.id.Player1Bid);
-            circleImageView2 = (ImageView) itemView.findViewById(R.id.circleImageView2);
+            circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
             Player2Name = (TextView) itemView.findViewById(R.id.Player2Name);
             Player2Bid = (TextView) itemView.findViewById(R.id.Player2Bid);
             bid_count = (TextView) itemView.findViewById(R.id.bid_count);
@@ -437,14 +589,14 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
         sportsfight.com.s.common.CustomLayout cardview;
         ImageView tticon;
         TextView info_text;
-        ImageView circleImageView;
+        TextView circleImageView;
         ImageView player1Won;
         TextView player1Name;
         TextView player1Bid;
         TextView result;
         TextView yourBid;
         TextView congratulation;
-        ImageView circleImageView2;
+        TextView circleImageView2;
         ImageView player2Won;
         TextView Player2Name;
         TextView Player2Bid;
@@ -456,14 +608,14 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
             cardview = (sportsfight.com.s.common.CustomLayout) itemView.findViewById(R.id.cardview);
             tticon = (ImageView) itemView.findViewById(R.id.tticon);
             info_text = (TextView) itemView.findViewById(R.id.info_text);
-            circleImageView = (ImageView) itemView.findViewById(R.id.circleImageView);
+           circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
             player1Won = (ImageView) itemView.findViewById(R.id.player1Won);
             player1Name = (TextView) itemView.findViewById(R.id.Player1Name);
             player1Bid = (TextView) itemView.findViewById(R.id.Player1Bid);
             result = (TextView) itemView.findViewById(R.id.result);
             yourBid = (TextView) itemView.findViewById(R.id.yourBid);
             congratulation = (TextView) itemView.findViewById(R.id.congratulation);
-            circleImageView2 = (ImageView) itemView.findViewById(R.id.circleImageView2);
+            circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
             player2Won = (ImageView) itemView.findViewById(R.id.player2Won);
             Player2Name = (TextView) itemView.findViewById(R.id.Player2Name);
             Player2Bid = (TextView) itemView.findViewById(R.id.Player2Bid);

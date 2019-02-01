@@ -31,13 +31,14 @@ public class MyMatchesViewAll  extends Activity implements View.OnClickListener 
     @BindView(R.id.listView)
     ListView listView;
     public static ArrayList<MatchesModel> list;
+    public static String headingValue="My Matches";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
         controller = (AppController) getApplicationContext();
         ButterKnife.bind(this);
-        heading.setText("My Matches");
+        heading.setText(headingValue);
         back.setOnClickListener(this);
         listView.setAdapter(new MyMatchesAdapter(list,MyMatchesViewAll.this));
     }

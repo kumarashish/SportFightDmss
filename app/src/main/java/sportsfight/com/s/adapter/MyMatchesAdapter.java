@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import sportsfight.com.s.R;
@@ -64,10 +66,10 @@ public class MyMatchesAdapter  extends BaseAdapter{
             holder.cardview = (LinearLayout) itemView.findViewById(R.id.cardview);
             holder.tticon = (ImageView) itemView.findViewById(R.id.tticon);
             holder.info_text = (TextView) itemView.findViewById(R.id.info_text);
-            holder.circleImageView = (ImageView) itemView.findViewById(R.id.circleImageView);
+            holder.circleImageView = (TextView) itemView.findViewById(R.id.circleImageView);
             holder.player1Name = (TextView) itemView.findViewById(R.id.Player1Name);
             holder.player1Bid = (TextView) itemView.findViewById(R.id.Player1Bid);
-            holder.circleImageView2 = (ImageView) itemView.findViewById(R.id.circleImageView2);
+            holder.circleImageView2 = (TextView) itemView.findViewById(R.id.circleImageView2);
             holder.Player2Name = (TextView) itemView.findViewById(R.id.Player2Name);
             holder.Player2Bid = (TextView) itemView.findViewById(R.id.Player2Bid);
             holder.bid_count = (TextView) itemView.findViewById(R.id.bid_count);
@@ -84,22 +86,26 @@ public class MyMatchesAdapter  extends BaseAdapter{
         holder.tticon.setImageDrawable(Util.getIcon(model.getGameName(), act));
         holder.info_text.setText(model.getGameName().toUpperCase());
         holder.info_text.setTextColor(Util.getTextColor(model.getGameName(),act));
-        if (model.getPlayer1ImageUrl().length() > 0) {
+//        if (model.getPlayer1ImageUrl().length() > 0) {
+//
+//            Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
+//                    .centerInside().placeholder(R.drawable.user_icon).into( holder.circleImageView);
+//        } else {
+//            holder.circleImageView.setImageResource(R.drawable.user_icon);
+//        }
+        holder.circleImageView.setText(Util.getInitial(model.getPlayer1Name()));
 
-            Picasso.with(act).load(model.getPlayer1ImageUrl()).resize(200, 200)
-                    .centerInside().placeholder(R.drawable.user_icon).into( holder.circleImageView);
-        } else {
-            holder.circleImageView.setImageResource(R.drawable.user_icon);
-        }
-        holder.player1Name.setText(model.getPlayer1Name());
+        holder.player1Name.setText(Util.getUpdatedName(model.getPlayer1Name()).toUpperCase());
         holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" pts");
-        if (model.getPlayer2ImageUrl().length() > 0) {
-            Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
-                    .centerInside().placeholder(R.drawable.user_icon).into( holder.circleImageView2);
-        } else {
-            holder.circleImageView2.setImageResource(R.drawable.user_icon);
-        }
-        holder.Player2Name.setText(model.getPlayer2Name());
+//        if (model.getPlayer2ImageUrl().length() > 0) {
+//            Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
+//                    .centerInside().placeholder(R.drawable.user_icon).into( holder.circleImageView2);
+//        } else {
+//            holder.circleImageView2.setImageResource(R.drawable.user_icon);
+//        }
+        holder.circleImageView2.setText(Util.getInitial(model.getPlayer2Name()));
+
+        holder.Player2Name.setText(Util.getUpdatedName(model.getPlayer2Name()).toUpperCase());
         holder.Player2Bid.setText("Bids: "+Integer.toString(model.getPlayer2Bids())+" pts");
         holder.header.setVisibility(View.GONE);
         itemView.setTag(holder);
@@ -114,10 +120,10 @@ public class MyMatchesAdapter  extends BaseAdapter{
         LinearLayout cardview;
         ImageView tticon;
         TextView info_text;
-        ImageView circleImageView;
+        TextView circleImageView;
         TextView player1Name;
         TextView player1Bid;
-        ImageView circleImageView2;
+        TextView circleImageView2;
         TextView Player2Name;
         TextView Player2Bid;
         TextView  bid_count;

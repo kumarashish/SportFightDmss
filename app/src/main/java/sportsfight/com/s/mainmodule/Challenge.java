@@ -366,9 +366,9 @@ public class Challenge extends Activity implements View.OnClickListener,WebApiRe
                 basketballSelectedIcon.setVisibility(View.GONE);
                 break;
             case R.id.carrom_view:
-                model.setGameID( Util.getGameId(Common.carrom, list));
-                model.setGameName(Common.carrom);
-                min_max=Util.getMin_maxPoints(Common.carrom, list);
+                model.setGameID( Util.getGameId(Common.carrom_S, list));
+                model.setGameName(Common.carrom_S);
+                min_max=Util.getMin_maxPoints(Common.carrom_S, list);
                 model.setMinPoints(min_max[0]);
                 model.setMaxPoints(min_max[1]);
                 snookerSelectedIcon.setVisibility(View.GONE);
@@ -411,9 +411,9 @@ public class Challenge extends Activity implements View.OnClickListener,WebApiRe
                 basketballSelectedIcon.setVisibility(View.GONE);
                 break;
             case R.id.tt_view:
-                model.setGameID(Util.getGameId(Common.tt, list));
-                model.setGameName(Common.tt);
-                min_max=Util.getMin_maxPoints(Common.tt, list);
+                model.setGameID(Util.getGameId(Common.tt_d, list));
+                model.setGameName(Common.tt_d);
+                min_max=Util.getMin_maxPoints(Common.tt_d, list);
                 model.setMinPoints(min_max[0]);
                 model.setMaxPoints(min_max[1]);
                 snookerSelectedIcon.setVisibility(View.GONE);
@@ -998,6 +998,8 @@ public void handleView4()
                 gameIcon = R.drawable.chess_orange;
                 break;
             case Common.pool:
+            case Common.snooker_D:
+            case Common.snooker_S:
                 gameIcon = R.drawable.pool_orange;
                 break;
             case Common.minibasketball:
@@ -1009,10 +1011,11 @@ public void handleView4()
             case Common.fussball:
                 gameIcon = R.drawable.foos_ball_orange;
                 break;
-            case Common.tt:
+            case Common.tt_d:
                 gameIcon = R.drawable.tt_orange;
                 break;
-            case Common.carrom:
+            case Common.carrom_S:
+            case Common.carrom_D:
                 gameIcon = R.drawable.carrom_orange;
                 break;
             case Common.golf:

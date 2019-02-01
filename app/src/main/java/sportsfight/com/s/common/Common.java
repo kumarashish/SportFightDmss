@@ -94,12 +94,16 @@ public class Common {
     public static int won = 3;
     public static int added = 4;
     public static final String chess = "Chess";
-    public static final String pool = "pool or snooker";
+    public static final String pool = "pool";
+    public static final String snooker_S = "Snooker(S)";
+    public static final String snooker_D = "Snooker(D)";
     public static final String minibasketball = "Mini Basketball";
     public static final String airhockey = "Air Hockey";
     public static final String fussball = "Fossball(S)";
-    public static final String tt = "Table Tennis(S)";
-    public static final String carrom = "Carrom";
+    public static final String tt_S = "Table Tennis(S)";
+    public static final String tt_d = "Table Tennis(D)";
+    public static final String carrom_S = "Carrom(S)";
+    public static final String carrom_D = "Carrom(D)";
     public static final String golf = "Mini Golf";
     public static String SessionExpired="Session Expired";
     public static String getLoginUrl( String deviceID,String fCMId,String Appversion) {

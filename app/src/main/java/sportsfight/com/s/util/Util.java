@@ -111,13 +111,17 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
     public static int getCardBgInt(String gameName,Activity act)
     {   int d=-1;
         switch (gameName)
-        {case Common.carrom:
+        {case Common.carrom_S:
+            case Common.carrom_D:
             d=R.drawable.red_card;
             break;
             case Common.pool:
+            case Common.snooker_D:
+            case Common.snooker_S:
                 d=R.drawable.black_card;
                 break;
-            case Common.tt:
+            case Common.tt_d:
+            case Common.tt_S:
                 d=R.drawable.orange_card;
                 break;
             case Common.fussball:
@@ -144,14 +148,17 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
     public static Drawable getCardBg(String gameName,Activity act)
     {Drawable d=null;
         switch (gameName)
-
-        {case Common.carrom:
+        {   case    Common.carrom_S:
+            case Common.carrom_D:
             d=act.getDrawable(R.drawable.red_card);
             break;
             case Common.pool:
+            case Common.snooker_D:
+            case Common.snooker_S:
                 d=act.getDrawable(R.drawable.black_card);
                 break;
-            case Common.tt:
+            case Common.tt_d:
+            case Common.tt_S:
                 d=act.getDrawable(R.drawable.orange_card);
                 break;
             case Common.fussball:
@@ -175,17 +182,56 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
         }
         return d;
     }
+       public static String getInitial(String name)
+       {String val="";
+           if(name.contains(","))
+           {
+               String []  values=name.split(",");
+               val=values[0].substring(0,1).toUpperCase() +" & "+values[1].substring(0,1).toUpperCase();
+           }else{
+               if(name.contains(" ")) {
+                   String []  values=name.split(" ");
+                   val=values[0].substring(0,1).toUpperCase() +""+values[1].substring(0,1).toUpperCase();
+               }
+           }
+           return val;
+       }
 
+    public static String getUpdatedName(String name)
+    {String val="";
+        if(name.contains(","))
+        {
+            String []  values=name.split(",");
+            int index1=values[0].length();
+            int index2=values[1].length();
+            if(values[0].length()>6)
+            {
+                index1=6;
+            }
+            if(values[1].length()>6)
+            {
+                index2=6;
+            }
+            val=values[0].substring(0,index1).toUpperCase() +","+values[1].substring(0,index2).toUpperCase();
+        }else{
+           val=name;
+        }
+        return val;
+    }
     public static Drawable getIcon(String gameName, Activity act) {
         Drawable d = null;
         switch (gameName) {
-            case Common.carrom:
+            case Common.carrom_S:
+            case Common.carrom_D:
                 d = act.getDrawable(R.drawable.carrom_orange);
                 break;
             case Common.pool:
+            case Common.snooker_D:
+            case Common.snooker_S:
                 d = act.getDrawable(R.drawable.pool_orange);
                 break;
-            case Common.tt:
+            case Common.tt_d:
+            case Common.tt_S:
                 d = act.getDrawable(R.drawable.tt_orange);
                 break;
             case Common.fussball:
@@ -213,13 +259,17 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
     {int d=-1;
         switch (gameName)
 
-        {case Common.carrom:
+        { case Common.carrom_S:
+            case Common.carrom_D:
             d=act.getResources().getColor(R.color.red_Carrom);
             break;
             case Common.pool:
+            case Common.snooker_D:
+            case Common.snooker_S:
                 d=act.getResources().getColor(R.color.black_font);
                 break;
-            case Common.tt:
+            case Common.tt_d:
+            case Common.tt_S:
                 d=act.getResources().getColor(R.color.orangecolor);
                 break;
             case Common.fussball:

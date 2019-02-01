@@ -29,8 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <ListView
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:divider="@color/white"
+        android:dividerHeight="10dp"
         android:id="@+id/listView"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

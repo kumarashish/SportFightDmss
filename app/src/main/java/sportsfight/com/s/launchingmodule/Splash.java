@@ -97,6 +97,7 @@ public class Splash extends Activity {
                             Intent i = new Intent(Splash.this, Dashboard.class);
                             startActivity(i);
                         }else{
+                            Login.EmailId = "";
                             Intent i = new Intent(Splash.this, Login.class);
                             startActivity(i);
                         }
