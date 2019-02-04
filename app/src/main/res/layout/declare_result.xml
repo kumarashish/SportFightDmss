@@ -23,7 +23,8 @@
             android:layout_height="match_parent" />
         <Button
             android:id="@+id/approveResult"
-            android:background="@drawable/logout"
+            android:backgroundTint="@color/light_grey"
+            android:background="@drawable/approve_result"
             android:layout_width="25dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -68,6 +69,8 @@
     <ListView
 
         android:id="@+id/matcheslist"
+        android:scrollbars="none"
+        android:divider="@null"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <sportsfight.com.s.common.Heading

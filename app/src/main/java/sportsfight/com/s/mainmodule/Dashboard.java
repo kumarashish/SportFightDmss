@@ -177,8 +177,8 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         challengeTv.setOnClickListener(this);
         challengeTv.setTypeface(controller.getDetailsFont());
         ipl.setBackgroundResource(R.drawable.event_icon);
-        ipl.setVisibility(View.VISIBLE);
-        if (controller.getProfile().getUserId() == 1) {
+        ipl.setVisibility(View.GONE);
+        if ((controller.getProfile().getRoleId() == 1)||(controller.getProfile().getRoleId() == 2)||(controller.getProfile().getRoleId() == 5) ){
             declareResult.setVisibility(View.VISIBLE);
         } else {
             declareResult.setVisibility(View.GONE);

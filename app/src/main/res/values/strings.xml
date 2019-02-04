@@ -34,9 +34,9 @@
     <string name="assistance">For any assistance, please do drop in an \nemail to: <u>ashishk@dmss.co.in </u> </string>
     <string name="reotp"><u>Resend OTP</u></string>
     <string name="verify"><u>Verify</u></string>
-    <string name="addpoints">Add Points</string>
+    <string name="addpoints">Add Coins</string>
     <string name="viewall"><u>View All</u></string>
-    <string name="note">* Please note that Rs 1 = 10 points.\nMinimum points that can be added = 100 points.</string>
+    <string name="note">* Please note that Rs 1 = 1 coin.\nMinimum coins that can be added = 10 coins.</string>
     <string name="title_activity_testing2">Testing2</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

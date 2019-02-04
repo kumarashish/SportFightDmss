@@ -150,7 +150,8 @@ android:layout_height="220dp"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/player1Name"
-                android:gravity="center"
+                android:gravity="left"
+                android:layout_marginLeft="5dp"
                 android:maxLength="12"
                 android:textColor="@color/black_font"
                 android:textSize="12dp"
@@ -195,9 +196,10 @@ android:layout_height="220dp"
             <TextView
                 android:id="@+id/player2Name"
                 android:maxLength="12"
+                android:layout_marginRight="5dp"
                 android:textColor="@color/black_font"
                 android:textSize="12dp"
-                android:gravity="center"
+                android:gravity="end"
                 android:text="Ranga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -209,11 +211,12 @@ android:layout_height="220dp"
                 android:id="@+id/declareResult"
                 android:textAllCaps="false"
                 android:text="Declare Result"
+                android:textSize="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/white"
                 android:background="@drawable/purplebutton"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="35dp" />
 </LinearLayout>
 

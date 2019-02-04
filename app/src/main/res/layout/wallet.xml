@@ -41,7 +41,7 @@
     <sportsfight.com.s.common.Heading
         android:textSize="14dp"
         android:textColor="@color/black_font"
-        android:text="Available Points"
+        android:text="Available Coins"
         android:layout_marginTop="20dp"
   android:gravity="center_horizontal"
         android:layout_width="match_parent"

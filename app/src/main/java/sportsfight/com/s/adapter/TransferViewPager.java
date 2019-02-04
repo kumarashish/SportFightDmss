@@ -144,9 +144,9 @@ EditText userNumber;
                      {
                          Util.showToast(mContext, "Please enter points to transfer");
                      }else{
-                         if(Integer.parseInt(points.getText().toString())<500)
+                         if(Integer.parseInt(points.getText().toString())<10)
                          {
-                             Util.showToast(mContext, "Points should be greater than 500");
+                             Util.showToast(mContext, "Points should be greater than 10");
                          }
                         else if(controller.getProfile().getUserId()==beneficieryProfile.getUserId())
                          {

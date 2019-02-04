@@ -22,10 +22,15 @@ import com.instamojo.android.helpers.Constants;
 import com.instamojo.android.models.Errors;
 import com.instamojo.android.models.Order;
 import com.instamojo.android.network.Request;
+import com.paytm.pgsdk.PaytmOrder;
+import com.paytm.pgsdk.PaytmPGService;
+import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 
 import org.json.JSONObject;
 
 import java.sql.BatchUpdateException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -35,8 +40,11 @@ import sportsfight.com.s.adapter.DashboardItemAdapter;
 import sportsfight.com.s.common.AppController;
 import sportsfight.com.s.common.Common;
 import sportsfight.com.s.interfaces.WebApiResponseCallback;
+import sportsfight.com.s.launchingmodule.PaymentGateway;
 import sportsfight.com.s.mainmodule.Dashboard;
 import sportsfight.com.s.mainmodule.Profile;
+import sportsfight.com.s.model.TransactionModel;
+import sportsfight.com.s.util.Contants;
 import sportsfight.com.s.util.Util;
 
 /**
@@ -56,9 +64,12 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
     @BindView(R.id.pay)
     Button pay;
     int apiCall=0;
-    int AddPoints=1,getAcessToken=2;
+    int AddPoints=1,getAcessToken=2,getCheckSum=3,getTranactionCheckSum=4,validateTransaction=5;
     Dialog dialog;
     String instamojoAcessToken="";
+    String orderId="";
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +92,8 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if (charSequence.length() > 2) {
-                    amountPayable.setText("Total Amount payable : Rs."+Integer.parseInt(charSequence.toString()) / 10);
+                if (charSequence.length() > 1) {
+                    amountPayable.setText("Total Amount payable : Rs."+Integer.parseInt(charSequence.toString()));
                 }
             }
 
@@ -97,15 +108,15 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
     public boolean isEditTextValidated() {
         if (points_Edt.getText().length() > 0) {
             int points = Integer.parseInt(points_Edt.getText().toString());
-            if (points < 100) {
-                Toast.makeText(this, "Points should be greater than 100", Toast.LENGTH_SHORT).show();
+            if (points < 10) {
+                Toast.makeText(this, "Coins should be greater than 10", Toast.LENGTH_SHORT).show();
             } else {
                 if (points % 10 != 0) {
-                    Toast.makeText(this, "Points should be multiple of 10", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Coins should be multiple of 10", Toast.LENGTH_SHORT).show();
                 } else {
                     if (points > 10000) {
 
-                        Toast.makeText(this, "Points should be less than 10001", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Coins should be less than 10001", Toast.LENGTH_SHORT).show();
 
                     } else {
                         return true;
@@ -124,17 +135,18 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
                 break;
             case R.id.pay:
                 if(isEditTextValidated()==true) {
-                    if (instamojoAcessToken != null) {
-                            callOrder();
-
-                    } else {
-                        if (Util.isNetworkAvailable(AddPoints.this)) {
-                            dialog = Util.showPogress(AddPoints.this);
-                            //controller.getApiCall().postData(Common.getAddPoints_Url,getAddPointJSON().toString(),this);
-                            apiCall = getAcessToken;
-                            controller.getApiCall().getAcessToken(Common.paymentGatewayUrlLive, this);
-                        }
-                    }
+//                    if (instamojoAcessToken != null) {
+//                            callOrder();
+//
+//                    } else {
+//                        if (Util.isNetworkAvailable(AddPoints.this)) {
+//                            dialog = Util.showPogress(AddPoints.this);
+//                            //controller.getApiCall().postData(Common.getAddPoints_Url,getAddPointJSON().toString(),this);
+//                            apiCall = getAcessToken;
+//                            controller.getApiCall().getAcessToken(Common.paymentGatewayUrlLive, this);
+//                        }
+//                    }
+                    generateChecksum(view);
                 }
 
                 break;
@@ -145,6 +157,7 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
 
     public void callUpdatePayment(final String orderId, final String transactionId, final String paymentId) {
         if (Util.isNetworkAvailable(AddPoints.this)) {
+
             dialog = Util.showPogress(AddPoints.this);
             {
                 Thread t = new Thread(new Runnable() {
@@ -179,8 +192,10 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
     }
 
     public void UpdatePoints(String orderId, String transactionId, final String paymentId, final boolean paymentStatus) {
+        dialog = Util.showPogress(this);
         controller.getApiCall().postData(Common.getAddPoints_Url, getAddPointJSON(orderId, transactionId, paymentId,paymentStatus).toString(),controller.getPrefManager().getUserToken(), this);
         apiCall = AddPoints;
+
     }
     @Override
     public void onSucess(String value) {
@@ -191,7 +206,52 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
             if (!value.contains("null") || (value != null)) {
                 getAcessToken(value);
             }
-        } else {
+        } else if (apiCall == getCheckSum) {
+            if (value.length() > 0) {
+                try {
+                    JSONObject jsonObject = new JSONObject(value);
+                    final String checksum = jsonObject.getString("CHECKSUMHASH");
+                    {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                StartTransaction(checksum);
+                            }
+                        });
+                    }
+                } catch (Exception ex) {
+                    ex.fillInStackTrace();
+                }
+            }
+        } else if (apiCall == getTranactionCheckSum) {
+            if (value.length() > 0) {
+                try {
+                    JSONObject jsonObject = new JSONObject(value);
+                    final String checksum = jsonObject.getString("CHECKSUMHASH");
+                    {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                validateTransaction(checksum);
+                            }
+                        });
+                    }
+                } catch (Exception ex) {
+                    ex.fillInStackTrace();
+                }
+            }
+        } else if (apiCall == validateTransaction) {
+
+            if (value.length() > 0) {
+                try {
+                    TransactionModel model=new TransactionModel(value);
+                    UpdatePoints(model.getORDERID(),model.getTXNID(),model.getBANKTXNID(),true);
+
+                } catch (Exception ex) {
+                    ex.fillInStackTrace();
+                }
+            }
+        }  else if(apiCall==AddPoints){
             Util.showToast(AddPoints.this, Util.getMessage(value));
             if (Util.getStatus(value) == true) {
                 controller.setPoints(controller.getProfile().getTotalPoints() + Integer.parseInt(points_Edt.getText().toString()));
@@ -238,6 +298,212 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
         return jsonObject;
     }
 
+
+
+
+    /************paytm******************************************/
+
+
+    private void initOrderId() {
+        long r = System.currentTimeMillis();
+        orderId = "SportsFight" + r;
+    }
+
+    public void generateChecksum(View view)
+    {   initOrderId();
+        apiCall=getCheckSum;
+        dialog = Util.showPogress(this);
+        controller.getApiCall().getCheckSum("http://192.168.100.92:9019/GenerateChecksum.aspx",orderId,Integer.toString(controller.getProfile().getUserId()),points_Edt.getText().toString(),this);
+    }
+
+    public void getTransactionCheckSum() {
+        apiCall = getTranactionCheckSum;
+        dialog = Util.showPogress(this);
+        controller.getApiCall().getCheckSum("http://192.168.100.92:9019/GenerateChecksumforTransactions.aspx", orderId,Integer.toString(controller.getProfile().getUserId()),points_Edt.getText().toString(), this);
+    }
+
+    public void validateTransaction(String checksum) {
+        apiCall = validateTransaction;
+        dialog = Util.showPogress(this);
+        controller.getApiCall().postData(Common.validateTransactionUrl, validateTransactionJson(checksum).toString(), "", this);
+    }
+
+
+    public JSONObject validateTransactionJson(String checkSum) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put("ORDERID", orderId);
+            jsonObject.put("MID", Contants.MID);
+            jsonObject.put("CHECKSUMHASH", checkSum);
+
+        } catch (Exception ex) {
+            ex.fillInStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public  void getTransactionStatus(String orderId,String checksum)
+    {
+        PaytmPGService Service = PaytmPGService.getStagingService();
+        Map<String, String> paramMap = new HashMap<String, String>();
+        paramMap.put("MID",  Contants.MID);
+        paramMap.put("ORDER_ID",  orderId);
+
+
+    }
+    public void StartTransaction(String checksum) {
+        PaytmPGService Service = PaytmPGService.getProductionService();
+        Map<String, String> paramMap = new HashMap<String, String>();
+        // these are mandatory parameters
+        paramMap.put("CALLBACK_URL", Contants.CALLBACKURL+orderId);
+        paramMap.put("CHANNEL_ID", Contants.CHANNEL_ID);
+        paramMap.put("CHECKSUMHASH", checksum);
+        paramMap.put("CUST_ID",Integer.toString( controller.getProfile().getUserId()));
+        paramMap.put("INDUSTRY_TYPE_ID", Contants.INDUSTRY_TYPE_ID);
+        paramMap.put("MID",  Contants.MID);
+        paramMap.put("ORDER_ID", orderId);
+        paramMap.put("TXN_AMOUNT",points_Edt.getText().toString());
+        paramMap.put("WEBSITE",  Contants.WEBSITE);
+
+        PaytmOrder Order = new PaytmOrder(paramMap);
+        Service.initialize(Order, null);
+        Service.startPaymentTransaction(this, true, true,
+                new PaytmPaymentTransactionCallback() {
+                    @Override
+                    public void someUIErrorOccurred(String inErrorMessage) {
+
+                        // Some UI Error Occurred in Payment Gateway Activity.
+                        // // This may be due to initialization of views in
+                        // Payment Gateway Activity or may be due to //
+                        // initialization of webview. // Error Message details
+                        // the error occurred.
+                    }
+
+					/*@Override
+					public void onTransactionSuccess(Bundle inResponse) {
+						// After successful transaction this method gets called.
+						// // Response bundle contains the merchant response
+						// parameters.
+						Log.d("LOG", "Payment Transaction is successful " + inResponse);
+						Toast.makeText(getApplicationContext(), "Payment Transaction is successful ", Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onTransactionFailure(String inErrorMessage,
+							Bundle inResponse) {
+						// This method gets called if transaction failed. //
+						// Here in this case transaction is completed, but with
+						// a failure. // Error Message describes the reason for
+						// failure. // Response bundle contains the merchant
+						// response parameters.
+						Log.d("LOG", "Payment Transaction Failed " + inErrorMessage);
+						Toast.makeText(getBaseContext(), "Payment Transaction Failed ", Toast.LENGTH_LONG).show();
+					}*/
+
+                    @Override
+                    public void onTransactionResponse(Bundle inResponse) {
+                        Log.d("LOG", "Payment Transaction is successful " + inResponse);
+                        String message=inResponse.getString("RESPMSG");
+                        String code=inResponse.getString("RESPCODE");
+                        if (code.equalsIgnoreCase("01")) {
+                            getTransactionCheckSum();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Payment Transaction response " + inResponse.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void networkNotAvailable() { // If network is not
+                        // available, then this
+                        // method gets called.
+
+                    }
+
+                    @Override
+                    public void clientAuthenticationFailed(String inErrorMessage) {
+                        // This method gets called if client authentication
+                        // failed. // Failure may be due to following reasons //
+                        // 1. Server error or downtime. // 2. Server unable to
+                        // generate checksum or checksum response is not in
+                        // proper format. // 3. Server failed to authenticate
+                        // that client. That is value of payt_STATUS is 2. //
+                        // Error Message describes the reason for failure.
+                    }
+
+                    @Override
+                    public void onErrorLoadingWebPage(int iniErrorCode,
+                                                      String inErrorMessage, String inFailingUrl) {
+
+
+                    }
+
+                    // had to be added: NOTE
+                    @Override
+                    public void onBackPressedCancelTransaction() {
+                        Toast.makeText(AddPoints.this, "Back pressed. Transaction cancelled", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onTransactionCancel(String inErrorMessage, Bundle inResponse) {
+                        Log.d("LOG", "Payment Transaction Failed " + inErrorMessage);
+                        Toast.makeText(getBaseContext(), "Payment Transaction Failed ", Toast.LENGTH_LONG).show();
+
+                    }
+
+                });
+    }
+
+//    @Override
+//    public void onSucess(String value) {
+//        if (dialog != null) {
+//            dialog.cancel();
+//        }
+//
+//        if (apiCall == getCheckSum) {
+//            if (value.length() > 0) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(value);
+//                    final String checksum = jsonObject.getString("CHECKSUMHASH");
+//                    {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                StartTransaction(checksum);
+//                            }
+//                        });
+//                    }
+//                } catch (Exception ex) {
+//                    ex.fillInStackTrace();
+//                }
+//            }
+//        } else if (apiCall == getTranactionCheckSum) {
+//            if (value.length() > 0) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(value);
+//                    final String checksum = jsonObject.getString("CHECKSUMHASH");
+//                    {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                validateTransaction(checksum);
+//                            }
+//                        });
+//                    }
+//                } catch (Exception ex) {
+//                    ex.fillInStackTrace();
+//                }
+//            }
+//        }
+//        else{
+//            if(value.length()>0)
+//            {
+//                TransactionModel model=new TransactionModel(value);
+//                Util.showToast(AddPoints.this,model.getRESPMSG());
+//            }
+//
+//        }
+//    }
 
     /**********************payment gateway***********************/
     public void startRequest(Order order) {

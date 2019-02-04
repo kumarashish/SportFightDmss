@@ -18,7 +18,7 @@
 
             android:textSize="18dp"
             android:textColor="@color/black_font"
-            android:text="Add Points"
+            android:text="Add Coins"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -31,7 +31,7 @@
     <sportsfight.com.s.common.Heading
         android:textSize="14dp"
         android:textColor="@color/black_font"
-        android:text="Available Points"
+        android:text="Available Coins"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:textSize="16dp"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black_font"
-            android:text="Add Points to wallet"
+            android:text="Add Coins to wallet"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -66,7 +66,7 @@
         android:maxLength="5"
         android:inputType="number"
         android:padding="5dp"
-        android:hint="Enter points to be added"
+        android:hint="Enter coins to be added"
         android:id="@+id/addPoints_Edt"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"

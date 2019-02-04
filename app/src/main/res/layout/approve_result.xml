@@ -24,8 +24,9 @@
             android:layout_height="match_parent" />
         <Button
             android:id="@+id/approveMatches"
-            android:background="@drawable/logout"
+            android:background="@drawable/approve_result"
             android:layout_width="25dp"
+            android:backgroundTint="@color/light_grey"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_height="25dp"

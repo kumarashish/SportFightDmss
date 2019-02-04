@@ -82,7 +82,7 @@ public class Transfer extends Activity implements View.OnClickListener,AddBenefi
         controller = (AppController) getApplicationContext();
         ButterKnife.bind(this);
         back.setOnClickListener(this);
-        points_Tv.setText(controller.getProfile().getTotalPoints() + " pts.");
+        points_Tv.setText(controller.getProfile().getTotalPoints() + " coins.");
         transfer_user.setOnClickListener(this);
         transfer_bank.setOnClickListener(this);
         if (Util.isNetworkAvailable(Transfer.this)) {
@@ -238,10 +238,8 @@ public class Transfer extends Activity implements View.OnClickListener,AddBenefi
                     amountValue.setText("0");
 
                 } else {
-                    if (Integer.parseInt(editable.toString()) < 500) {
-
-                    } else {
-                        int value = Integer.parseInt(editable.toString()) / 10;
+                    if (Integer.parseInt(editable.toString()) >=50) {
+                        int value = Integer.parseInt(editable.toString());
                         long fee = Math.round(value * 0.08);
                         int amount = Math.round(value - fee);
                         feeValue.setText("" + fee);
@@ -254,19 +252,19 @@ public class Transfer extends Activity implements View.OnClickListener,AddBenefi
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Integer.parseInt(points.getText().toString()) < 500) {
-                    Util.showToast(Transfer.this, "Points should be greater than 500");
+                if (Integer.parseInt(points.getText().toString()) < 50) {
+                    Util.showToast(Transfer.this, "Minimum coins for transfer is 50");
                 } else if (Integer.parseInt(points.getText().toString()) % 10 != 0) {
-                    Util.showToast(Transfer.this, "Points should be multiple of 10 ");
+                    Util.showToast(Transfer.this, "coins should be multiple of 10 ");
                 } else {
                     if(controller.getProfile().getTotalPoints()<Integer.parseInt(points.getText().toString()))
                     {int point=Integer.parseInt(points.getText().toString());
                      int diff=point-controller.getProfile().getTotalPoints();
-                        Util.showToast(Transfer.this, "You do not have "+point+" pts in your wallet.Please add "+diff+" more points to continue this transaction.");
+                        Util.showToast(Transfer.this, "You do not have "+point+" coins in your wallet.Please add "+diff+" more points to continue this transaction.");
                     }else {
                         apiCall = transferMoney;
                         dialog = Util.showPogress(Transfer.this);
-                        int amount = Integer.parseInt(points.getText().toString()) / 10;
+                        int amount = Integer.parseInt(points.getText().toString());
                         transfferedPoint=Integer.parseInt(points.getText().toString());
                         controller.getApiCall().postData(Common.getTransferMoneyUrl, getMoneyTransferJSON(model, amount).toString(),controller.getPrefManager().getUserToken(), Transfer.this);
                     }

@@ -29,10 +29,12 @@ public class UserProfile  {
       boolean isEmailVerified;
       boolean isSelected=false;
       int totalPoints=0;
+      int roleId;
     public UserProfile(JSONObject jsonObject) {
         try {
             userId = jsonObject.getInt("RegistrationId");
             userName = jsonObject.getString("Name");
+            roleId= jsonObject.isNull("RoleId")?0:jsonObject.getInt("RoleId");
             email = jsonObject.getString("Email");
             mobile = jsonObject.getString("Mobile");
             profilePic = jsonObject.isNull("profileImageUrl") ? "" : jsonObject.getString("profileImageUrl");
@@ -86,6 +88,11 @@ public class UserProfile  {
             gender = "Female";
         }
     }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
     }

@@ -28,7 +28,7 @@
         android:textSize="10dp"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:text="Minimum points to be transfer: 500 points"
+        android:text="Minimum coins to be transfer: 10 points"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
