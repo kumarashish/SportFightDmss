@@ -191,10 +191,16 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
         return status;
     }
 
-    public void UpdatePoints(String orderId, String transactionId, final String paymentId, final boolean paymentStatus) {
-        dialog = Util.showPogress(this);
-        controller.getApiCall().postData(Common.getAddPoints_Url, getAddPointJSON(orderId, transactionId, paymentId,paymentStatus).toString(),controller.getPrefManager().getUserToken(), this);
-        apiCall = AddPoints;
+    public void UpdatePoints(final String orderId, final String transactionId, final String paymentId, final boolean paymentStatus) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                dialog = Util.showPogress(AddPoints.this);
+                controller.getApiCall().postData(Common.getAddPoints_Url, getAddPointJSON(orderId, transactionId, paymentId,paymentStatus).toString(),controller.getPrefManager().getUserToken(), AddPoints.this);
+                apiCall = AddPoints;
+            }
+        });
+
 
     }
     @Override
@@ -313,13 +319,13 @@ public class AddPoints extends Activity implements View.OnClickListener,WebApiRe
     {   initOrderId();
         apiCall=getCheckSum;
         dialog = Util.showPogress(this);
-        controller.getApiCall().getCheckSum("http://192.168.100.92:9019/GenerateChecksum.aspx",orderId,Integer.toString(controller.getProfile().getUserId()),points_Edt.getText().toString(),this);
+        controller.getApiCall().getCheckSum(Common.BaseUrl1+"paytm/GenerateChecksum.aspx",orderId,Integer.toString(controller.getProfile().getUserId()),points_Edt.getText().toString(),this);
     }
 
     public void getTransactionCheckSum() {
         apiCall = getTranactionCheckSum;
         dialog = Util.showPogress(this);
-        controller.getApiCall().getCheckSum("http://192.168.100.92:9019/GenerateChecksumforTransactions.aspx", orderId,Integer.toString(controller.getProfile().getUserId()),points_Edt.getText().toString(), this);
+        controller.getApiCall().getCheckSum(Common.BaseUrl1+"paytm/GenerateChecksumforTransactions.aspx", orderId,Integer.toString(controller.getProfile().getUserId()),points_Edt.getText().toString(), this);
     }
 
     public void validateTransaction(String checksum) {

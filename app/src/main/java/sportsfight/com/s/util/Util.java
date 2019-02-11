@@ -131,6 +131,7 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
                 d=R.drawable.light_brown_card;
                 break;
             case Common.golf:
+            case Common.golf_S:
                 d=R.drawable.light_black;
                 break;
             case Common.airhockey:
@@ -168,6 +169,7 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
                 d=act.getDrawable(R.drawable.light_brown_card);
                 break;
             case Common.golf:
+            case Common.golf_S:
                 d=act.getDrawable(R.drawable.light_black);
                 break;
             case Common.airhockey:
@@ -192,6 +194,8 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
                if(name.contains(" ")) {
                    String []  values=name.split(" ");
                    val=values[0].substring(0,1).toUpperCase() +""+values[1].substring(0,1).toUpperCase();
+               }else{
+                   val=name.substring(0,2).toUpperCase();
                }
            }
            return val;
@@ -241,6 +245,7 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
                 d = act.getDrawable(R.drawable.bb_ornage_icon);
                 break;
             case Common.golf:
+            case  Common.golf_S:
                 d = act.getDrawable(R.drawable.golf_orange);
                 break;
             case Common.airhockey:
@@ -279,6 +284,7 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
                 d=act.getResources().getColor(R.color.lightbrown);
                 break;
             case Common.golf:
+            case Common.golf_S:
                 d=act.getResources().getColor(R.color.light_grey);
                 break;
             case Common.airhockey:

@@ -71,10 +71,10 @@ public class Wallet extends Activity implements View.OnClickListener,WebApiRespo
     int year;
     int month;
     int day;
-boolean isStartDateClicked;
-boolean isEndDateClicked;
-String startDateValue="";
-String endDateValue="";
+    boolean isStartDateClicked;
+    boolean isEndDateClicked;
+    String startDateValue="";
+    String endDateValue="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,17 +94,13 @@ String endDateValue="";
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
-
             @Override
             public void onPageSelected(int position) {
                 handleTabs(position);
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
         if(Util.isNetworkAvailable(Wallet.this))
@@ -115,7 +111,6 @@ String endDateValue="";
         }
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
@@ -149,7 +144,6 @@ String endDateValue="";
             case R.id.startDate:
                 isStartDateClicked=true;
                 isEndDateClicked=false;
-
                 showDialog(999);
                 break;
             case R.id.endDate:
@@ -272,12 +266,10 @@ public void getTransactions(String startDate,String endDate)
                     public void run() {
                         availablePoints.setText(Integer.toString(controller.getProfile().getTotalPoints()));
                         getTransactions(Util.getDefaultStartDate(), Util.getCurrentDateWithoutTime());
-
                     }
                 });
             } else {
                 transactionHistoryParsing(value);
-
             }
         }
 

@@ -132,7 +132,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
 //                }
                // c_holder.circleImageView.setImageResource(R.drawable.user_icon);
                 c_holder.player1Name.setText(model.getPlayer1Name());
-                c_holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" pts");
+                c_holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" coins");
 //                if (model.getPlayer2ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer2ImageUrl()).placeholder(R.drawable.user_icon).into(   c_holder.circleImageView2);
 //                } else {
@@ -224,7 +224,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 UpComingMatches holderrr=(UpComingMatches)holder;
                 int vall=model3.getPlayer1Bids()+model3.getPlayer2Bids();
 
-                holderrr.bid_count.setText("Total bid (Current) "+Integer.toString(vall) +"pts");
+                holderrr.bid_count.setText("Total bid (Current) "+Integer.toString(vall) +"coins");
                 holderrr.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model3.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model3.getMatchDate().length()+7}));
                 holderrr.time.setText(Util.getMulticolorTextView("Time : "+model3.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model3.getSlotTime().length()+7}));
                 holderrr.heading.setText("Upcoming Matches(" + upComingMatches.size() + ")");
@@ -240,7 +240,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
 //                    holderrr.circleImageView.setImageResource(R.drawable.user_icon);
 //                }
                 holderrr.player1Name.setText(model3.getPlayer1Name());
-                holderrr.player1Bid.setText("Bids : "+Integer.toString(model3.getPlayer1Bids())+" pts");
+                holderrr.player1Bid.setText("Bids : "+Integer.toString(model3.getPlayer1Bids())+" coins");
 //                if (model.getPlayer2ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
 //                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView2);
@@ -250,14 +250,14 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                 holderrr.circleImageView.setText(Util.getInitial(model3.getPlayer1Name()));
                 holderrr.circleImageView2.setText(Util.getInitial(model3.getPlayer2Name()));
                 holderrr.Player2Name.setText(model3.getPlayer2Name());
-                holderrr.Player2Bid.setText("Bids : "+Integer.toString(model3.getPlayer2Bids())+" pts");
+                holderrr.Player2Bid.setText("Bids : "+Integer.toString(model3.getPlayer2Bids())+" coins");
                 if(model3.getMyBidToId()==model3.getPlayer1Id()) {
-                    holderrr.myBid.setText("My Bid on "+model3.getPlayer1Name()+"\n" + Integer.toString(model3.getMyBid()) + " pts" );
+                    holderrr.myBid.setText("My Bid on "+model3.getPlayer1Name()+"\n" + Integer.toString(model3.getMyBid()) + " coins" );
                 }else if(model3.getMyBidToId()==model3.getPlayer2Id())
                 {
-                    holderrr.myBid.setText("My Bid on "+model3.getPlayer2Name()+"\n" + Integer.toString(model3.getMyBid()) + " pts" );
+                    holderrr.myBid.setText("My Bid on "+model3.getPlayer2Name()+"\n" + Integer.toString(model3.getMyBid()) + " coins" );
                 }else{
-                    holderrr.myBid.setText("My Bid  : " + Integer.toString(model3.getMyBid()) + " pts" );
+                    holderrr.myBid.setText("My Bid  : " + Integer.toString(model3.getMyBid()) + " coins" );
                 }
                 holderrr.placeBid.setTypeface(controller.getDetailsFont());
                 holderrr.placeBid.setVisibility(View.VISIBLE);
@@ -319,7 +319,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                    final MatchesModel modell=addedModel.get(position);
                    UpComingDoublesMatches holderrr4=( UpComingDoublesMatches)holder;
                    int vall4=modell.getPlayer1Bids()+modell.getPlayer2Bids();
-                   holderrr4.bid_count.setText("Total bid (Current) "+Integer.toString(vall4) +"pts");
+                   holderrr4.bid_count.setText("Total bid (Current) "+Integer.toString(vall4) +"coins");
                    holderrr4.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(modell.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,modell.getMatchDate().length()+7}));
                    holderrr4.time.setText(Util.getMulticolorTextView("Time : "+modell.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,modell.getSlotTime().length()+7}));
                    holderrr4.heading.setText("Upcoming Doubles Matches(" +upComingDoublesMatches.size() + ")");
@@ -335,7 +335,7 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
 //                    holderrr.circleImageView.setImageResource(R.drawable.user_icon);
 //                }
                    holderrr4.player1Name.setText(Util.getUpdatedName(modell.getPlayer1Name()).toUpperCase());
-                   holderrr4.player1Bid.setText("Bids : "+Integer.toString(modell.getPlayer1Bids())+" pts");
+                   holderrr4.player1Bid.setText("Bids : "+Integer.toString(modell.getPlayer1Bids())+" coins");
 //                if (model.getPlayer2ImageUrl().length() > 0) {
 //                    Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
 //                            .centerInside().placeholder(R.drawable.user_icon).into( holderrr.circleImageView2);
@@ -345,14 +345,14 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
                   // holderrr4.circleImageView2.setImageResource(R.drawable.user_icon);
                    holderrr4.circleImageView2.setText(Util.getInitial(modell.getPlayer2Name()));
                    holderrr4.Player2Name.setText(Util.getUpdatedName(modell.getPlayer2Name()).toUpperCase());
-                   holderrr4.Player2Bid.setText("Bids : "+Integer.toString(modell.getPlayer2Bids())+" pts");
+                   holderrr4.Player2Bid.setText("Bids : "+Integer.toString(modell.getPlayer2Bids())+" coins");
                    if((modell.getMyBidToId()==modell.getPlayer1Id())||((modell.getMyBidToId()==Integer.parseInt(modell.getTeam1Id())))) {
-                       holderrr4.myBid.setText("My Bid on "+Util.getUpdatedName(modell.getPlayer1Name())+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
+                       holderrr4.myBid.setText("My Bid on "+Util.getUpdatedName(modell.getPlayer1Name())+"\n" + Integer.toString(modell.getMyBid()) + " coins" );
                    }else if((modell.getMyBidToId()==modell.getPlayer2Id())||((modell.getMyBidToId()==Integer.parseInt(modell.getTeam2Id()))))
                    {
-                       holderrr4.myBid.setText("My Bid on "+Util.getUpdatedName(modell.getPlayer2Name())+"\n" + Integer.toString(modell.getMyBid()) + " pts" );
+                       holderrr4.myBid.setText("My Bid on "+Util.getUpdatedName(modell.getPlayer2Name())+"\n" + Integer.toString(modell.getMyBid()) + " coins" );
                    }else {
-                       holderrr4.myBid.setText("My Bid : "+ Integer.toString(modell.getMyBid()) + " pts" );
+                       holderrr4.myBid.setText("My Bid : "+ Integer.toString(modell.getMyBid()) + " coins" );
                    }
                    holderrr4.placeBid.setTypeface(controller.getDetailsFont());
                    holderrr4.placeBid.setVisibility(View.VISIBLE);

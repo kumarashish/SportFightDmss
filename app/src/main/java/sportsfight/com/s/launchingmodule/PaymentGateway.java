@@ -65,13 +65,13 @@ public class PaymentGateway extends Activity  implements WebApiResponseCallback{
  {   initOrderId();
      apiCall=getCheckSum;
      progressDialog = Util.showPogress(this);
-     controller.getApiCall().getCheckSum("http://192.168.100.92:9019/GenerateChecksum.aspx",orderId,"2","1",this);
+     controller.getApiCall().getCheckSum(Common.BaseUrl1+"paytm/GenerateChecksum.aspx",orderId,"2","1",this);
  }
 
     public void getTransactionCheckSum() {
         apiCall = getTranactionCheckSum;
         progressDialog = Util.showPogress(this);
-        controller.getApiCall().getCheckSum("http://192.168.100.92:9019/GenerateChecksumforTransactions.aspx", orderId, "2", "1", this);
+        controller.getApiCall().getCheckSum(Common.BaseUrl1+"paytm/GenerateChecksumforTransactions.aspx", orderId, "2", "1", this);
     }
 
     public void validateTransaction(String checksum) {

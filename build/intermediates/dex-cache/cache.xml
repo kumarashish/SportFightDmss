@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\library-2.1.4.aar\d6e95d4e9ac220eb1e4034d14505770e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="288913b440a3c61c30aa171095453a605432277a">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.5.1\bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc\butterknife-annotations-8.5.1.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\86\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\0ea03e4ea0ed5615207b5c84e518b02a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\66\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.1.1\98e484e67f913e934559f7f55f0c94be5593f03c\kotlin-stdlib-1.1.1.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="98e484e67f913e934559f7f55f0c94be5593f03c">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\91\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-gcm-10.2.1.aar\3fc96da6ebf1f144d39dd12624b6d0af\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cfa47e1b140562d47bc670629d07e209cd8b02c4">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\35\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\butterknife-8.5.1.aar\0f11b0019fa2d0726f15700254370267\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\68\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-ads-10.2.1.aar\13d9fc94a1c58490a59a59af59e78850\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="da5c606c36276a12a356e351882044c6b4b9e8d4">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\19\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-auth-base-10.2.1.aar\90e11bf8a5afd3016259e28378dd5cbb\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="12032271e6be735e811ad529cb08ff066c381640">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\27\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-24.0.0.aar\d1dc77b8070c41c04201879d24b120be\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\14\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-vision-10.2.1.aar\e63068b50a93386c3b8be2c9a80a3ac3\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4e684205744f814a73b7752545e0661330415c9e">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\48\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\multidex-1.0.1.aar\d10d36b86c558a45263a7f09ca72b170\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-analytics-10.2.1.aar\15ea07b0e279209b85ac63bc01b86c73\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0a5d5553c308643a9022f15513ebdd59e9c78d82">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\56\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-config-10.2.1.aar\8f928d52aa2122dc5b65fa19f92f1406\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bb004ea36f8802bad30000e286c177691740a322">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\29\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.0.0\a2d487452376193fc8c103dd2b9bd5f2b1b44563\common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\96\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\babc2ce7843cc92bbeb802cca8ce104c\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\94\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-wearable-10.2.1.aar\a36513c3e91f4a13cdfe4ea5c4e90fad\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6c74dab42788b458960618238f338d324b6f0656">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\49\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\84851747be5f39bd0ac379bc74c6ba18\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\80\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-location-10.2.1.aar\0cfe9290c64aca2362e96e4c458d3ffe\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bb115a110992b254f767f337da233071f6f940b8">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\41\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-analytics-10.2.1.aar\cc98863424cffe0fe37ae1a36c51bdab\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c3c7f923e1df76640acb3a24823600f034a5d226">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\21\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-iid-10.2.1.aar\e7302fb014317bc8a49b3b25d5da8ef8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="399f75732ff1ac159f9e73611536f1508bf18d3b">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\58\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\konfetti-1.1.0.aar\a40fe0c324ec1b4ba705970d22462bc7\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ae331ab43aaadb3c9f9fb667c7117c002a11febf">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\71\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-appinvite-10.2.1.aar\60dae23be49319a5ce9665910006dc73\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1f9df8b2bfff203397548ee400789154968adfe8">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\25\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-24.0.0.aar\d1dc77b8070c41c04201879d24b120be\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\15\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\NoInternetDialog-1.1.3.aar\831ee853776ce536a146e5014c54ca3e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="39e24803fa86c7615bf63ec5f86a4701ca617d8d">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\77\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\92\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\lottie-2.1.2.aar\46dc2a7604fdf88d6091f633ed093e3d\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bb1a5b58743fb97cd80b39d44655e12ea7b3236e">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-database-connection-10.2.1.aar\c967e8c6c617dce75427b5faa043766e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2a7ffe939ffd830b5d4052f3c1c4c235923790ce">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\53\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\ca598453685ee9287b65c5b590e60be8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\facc63522de2de4b3e40d78ec06434a1\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\82\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-26.1.0.aar\461d2893b8695a0551aefce2ba72fcb5\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\81\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\godel-0.6.18.1423.aar\3a1f65b72e37879afe3edf8eef6073c8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="52f6bcc4bb9657967ad3451a87b88bc907af87ca">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\d7cb0bcaa4b1e33714d293d5814f1dc9\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\83\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\85\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-identity-10.2.1.aar\8a2959b74cde46017051c0f2284dc45d\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ec7d3099b4e3cf23230c78acaae438f3371e1c19">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\38\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Program Files\Android\Android Studio1\gradle\m2repository\org\jetbrains\annotations\13.0\annotations-13.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="919f0dfe192fb4e063e7dacadee7f8bb9a2672a9">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\93\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-places-10.2.1.aar\b7c1a5495bb7c07410f93775076b712f\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e4851331b3944beb6e7f77316a7661f53781da62">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\42\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-games-10.2.1.aar\515d24cf042474ac833f0dc94dc8d2ce\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8dfe54fbaf4f2a27d395ddf806d0c011170999e0">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\31\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\6fae377ff72aa47ac4814fe1b579f64c\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\16\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-clearcut-10.2.1.aar\232586b8976aed720900431e47a74848\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3683531139103cc263b71d8b5ac6062832a8fd30">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\28\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-crash-10.2.1.aar\a4b2977e49c4ca164a5bbf21c043fcd0\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b2349ddfe04831042844cbf055e5a072da37ddf8">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\51\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-appindexing-10.2.1.aar\6370ebd3f9b86ebb469bdcaa814f3b2e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="125bce1fb2d481b964fabf75f0949957ebe9ecd1">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\36\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\AppData\Local\Android\Sdk\build-tools\26.0.2\renderscript\lib\renderscript-v8.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="215805fbe923c9b192d4a9a3d13a07c7fc1d3f53">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-maps-10.2.1.aar\047155da562e10a77d10188372d557ff\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c7626a9aa507bbbdc16188bc9a9f9bf3370c1ddd">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\43\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-iid-10.2.1.aar\a35c6226210d5ee748477e0d05ac9309\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="abf7c64e0bbaaa931738856734f76646ae62d9a5">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\39\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-safetynet-10.2.1.aar\d85b89231852eafa181d356b252092ac\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d81a3b0a16f48b4456f442552b62f4b1a472ce24">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\47\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-auth-10.2.1.aar\3eaf9bc058147dee60c26a1c46ffbb11\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="25f55515117e14a658120a7b01a9ea5170409db4">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\26\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-database-10.2.1.aar\dc6335d27075e88d53af58320ee04a2e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d0a843615f3b5fa3a080497709f5436696149a09">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\52\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\godel-osd-0.6.14.aar\f4dc9611a232b07d0c3463e9c713ef18\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d17e10fb4175ea7b416cb954a2ec874af303de71">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\10\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-messaging-10.2.1.aar\bd53fe3926f9d27bd2b5e5a4ad9b1c1a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b215e312bdc1ee7bfda31674eab5df8bad45c014">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\18\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\4ef1d86e4a0fec8027223b2cf7e8f928\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\84\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-tagmanager-api-10.2.1.aar\edf959a3f2cece9d27fca6e514b67924\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="536fd6afd6e1280607c5d70306eb32d385db7964">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\55\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\etsyblur-0.2.1.aar\b8624782e7348b3e70ee0bb2cc93cb95\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7be0c825fc04fef0599bf65ae6664819f30417ce">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-analytics-impl-10.2.1.aar\0916213c946bdb1779a25e5099116102\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="888983f51cf34f57a93ff16832552f2f15937212">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\57\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.1\2a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0\gson-2.8.1.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="02a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\72\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.1.0\814258103cf26a15fcc26ecce35f5b7d24b73f8\support-annotations-26.1.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\87\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-26.1.0.aar\0c9b701436fda53ca7a5da372189e1fc\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-nearby-10.2.1.aar\fc149339ae54bd10aa1274318b863238\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cce5792fa30ee8520620f298bf920309423b180f">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\44\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-fitness-10.2.1.aar\766a01ef7a620854d2393eaef847e9cf\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a3826817a4de1daa170c33bbc04db24ab6826bd5">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\34\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-panorama-10.2.1.aar\7961fba7e7b427a6035a4b27091231f9\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6f233cb35a6ea92364130d2d48791c461ec65983">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\45\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-awareness-10.2.1.aar\38948c34f99fd5e7baea580783fc1588\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c7ba26433d9e9f4429d83ff65ad79bfc801dc00a">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\30\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.0.0\e414a4cb28434e25c4f6aa71426eb20cf4874ae9\common-1.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\95\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-26.1.0.aar\4c1f73d3c7988d7d153cdc426309159b\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\76\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\android-sdk-1.2.6.aar\235a3033ee502a67987e731fd666caa9\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5e3316f4c2a17533c5662c85780bd3ba278afca5">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-common-10.2.1.aar\414e3755cd6e93f2140968c93cc234e1\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a1aa1dd9917e887bfe732cc5e561ae6ae8f9a84a">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\61\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jre7\1.1.1\e3be78b463658ae5a8c8b446b811671998c91f5\kotlin-stdlib-jre7-1.1.1.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0e3be78b463658ae5a8c8b446b811671998c91f5">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\89\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-cast-framework-10.2.1.aar\d1857b4df1ba3e42093970dadc95cbff\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b136ac09f209c1d91fec7db8518e33d4373c8f39">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\12\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-wallet-10.2.1.aar\6158d043e349deb4fa78dd8cdf452d8a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d395c5142f474891c7750f13b6a85d14682f166b">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\37\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-cast-10.2.1.aar\d60b6357eced6a8de5b442d9c3dda692\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="825c2e97a00df4df5b0f3081faa4fd6280cd7c72">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\bd25ed21001811f8d7c58565ae6b89a4\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\67\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\transition-26.1.0.aar\e7ba655fe2f06957d86149baae5355ef\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\17\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\rssparser-1.3.1.aar\2a6878f75b40f773083f1891f4b20027\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="497cc394ba09db7e2ebb9c92b59bc008fe28c7b6">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-tagmanager-10.2.1.aar\b7049996274284e8539398a64b1c8971\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0bb2f0934fa55799508ba58ffc9ba579b35744b8">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\22\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\cardview-v7-26.1.0.aar\1017a3e0f04cb7dbe1b252d0b6727a65\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b4d6fbbb48b42dd03fd9c5a09b3b7a53266df6ed">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\69\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.8.1\1eb6690b0c629d7000c77a72df5e822fb974f521\jsoup-1.8.1.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1eb6690b0c629d7000c77a72df5e822fb974f521">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\90\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-base-10.2.1.aar\d6a540a8f8647e5923804e98542f834a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="19696dc358ac668e341f28c41e3387d61ccdb81d">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\50\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.0\7ff0e000d1e27e356567f56c92af3b8ab912636f\picasso-2.5.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\73\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-tasks-10.2.1.aar\bc792eaaf3b281caf42284dfa0b8c65f\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6003d64df88a6ce5e961fa2bad7f1b9b97689ac1">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-analytics-impl-10.2.1.aar\64c93eaa04fef998985d0093ecd80c06\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7d67042688d34474a82fe4ef4c6514ef471377ef">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\24\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-tagmanager-v4-impl-10.2.1.aar\1ba5701a4e4600f65e4f6da86626408e\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="efae381df589f3d4977c346c8a980f030315bb8b">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\23\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-instantapps-10.2.1.aar\6b9b11b71533324ab1f9d649e20f9d34\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5ee29abfc804ebd51d65a4bde424c0ee74363939">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-plus-10.2.1.aar\079887d496c7128bea2c2f0ed1ccf3ed\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b32372f6821e003ae24cd3389bdd7925247f100">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\46\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\palette-v7-24.0.0.aar\dabcf79dab931cc01e0c1679a90f05f8\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\65\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-storage-common-10.2.1.aar\78517a106d90d1b2f35402dd6327e830\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44098e691b36776973374ac03afe0225b17f8a74">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\60\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\70\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-drive-10.2.1.aar\c3d639d61a07c127fd66355a4ac1330f\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b6818f5804ca0b5eb089d902458faea4179eca1d">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\circleimageview-2.2.0.aar\d51dcd3131247bcd65c9ee56ec42cb72\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e70a3fed299d84cd868614e11021664d72b8e488">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\74\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-basement-10.2.1.aar\40f900c28b66abc18826b54d81b421ca\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bdcc2a9572f18b8c90a3a157cab6cdfc97c6c736">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\64\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-auth-10.2.1.aar\954c3216e9e6f9b8f8d04240daa7c07c\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4b42a61cd5924f28e95894e859e6abe57847e2f3">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\33\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\88\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\280e89a29b6fbe88910f3c67790f82ee\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\79\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-gass-10.2.1.aar\f29284602c6971e03188a6d06e20deee\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bfd85a88cf976eb2c54507cc914d8e8914c2f71e">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\62\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-10.2.1.aar\6899acc98f8a55a09e7e500e4868a51a\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ab8343c3aadefce37313ceadd8bc4db1993f2ff0">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\20\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\firebase-storage-10.2.1.aar\e55f15e6ec43633d768d546e41228df0\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="dbae35d7fc3427d30bef0037bdf61ad0d8d984f8">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\59\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ashish.kumar\.gradle\caches\transforms-1\files-1.1\pgplussdk-1.1.2.aar\5298d18f7d197c0b5f9682d590f39797\jars\classes.jar"
+        jumboMode="false"
+        min-sdk-version="21"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7f08b6cc0e256b449ce734c1138e464380f57dbd">
+        <dex dex="D:\SportsFight\GitSportsFightCode\SportsFight\app\build\intermediates\transforms\preDex\release\75\classes.dex" />
+    </item>
+
+</items>

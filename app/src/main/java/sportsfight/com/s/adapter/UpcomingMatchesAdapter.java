@@ -81,7 +81,7 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
        }
         holder.header.setVisibility(View.GONE);
         int val=model.getPlayer1Bids()+model.getPlayer2Bids();
-        holder.bid_count.setText("Total bid (Current) : "+val+" pts");
+        holder.bid_count.setText("Total bid (Current) : "+val+" coins");
         holder.date.setText(Util.getMulticolorTextView("Date : "+Util.getDateinMMDDYY(model.getMatchDate()),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getMatchDate().length()+7}));
         holder.time.setText(Util.getMulticolorTextView("Time : "+model.getSlotTime(),new Integer[]{act.getResources().getColor(R.color.black_font),act.getResources().getColor(R.color.light_grey)},new Integer[]{0,5,7,model.getSlotTime().length()+7}));
         holder.heading.setText("");
@@ -97,7 +97,7 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
 //            holder.circleImageView.setImageResource(R.drawable.user_icon);
 //        }
         holder.player1Name.setText(Util.getUpdatedName(model.getPlayer1Name()).toUpperCase());
-        holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" pts");
+        holder.player1Bid.setText("Bids: "+Integer.toString(model.getPlayer1Bids())+" coins");
 //        if (model.getPlayer2ImageUrl().length() > 0) {
 //            Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)
 //                    .centerInside().placeholder(R.drawable.user_icon).into(  holder.circleImageView2);
@@ -105,15 +105,15 @@ public class UpcomingMatchesAdapter extends BaseAdapter{
 //            holder.circleImageView2.setImageResource(R.drawable.user_icon);
 //        }
         holder.Player2Name.setText(Util.getUpdatedName(model.getPlayer2Name()).toUpperCase());
-        holder.Player2Bid.setText("Bids: "+Integer.toString(model.getPlayer2Bids())+" pts");
+        holder.Player2Bid.setText("Bids: "+Integer.toString(model.getPlayer2Bids())+" coins");
         holder.circleImageView2.setText(Util.getInitial(model.getPlayer2Name()));
         if(model.getMyBidToId()==model.getPlayer1Id()) {
-            holder. myBid.setText("My Bid on "+model.getPlayer1Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+            holder. myBid.setText("My Bid on "+model.getPlayer1Name()+"\n" + Integer.toString(model.getMyBid()) + " coins" );
         }else if(model.getMyBidToId()==model.getPlayer2Id())
         {
-            holder. myBid.setText("My Bid on "+model.getPlayer2Name()+"\n" + Integer.toString(model.getMyBid()) + " pts" );
+            holder. myBid.setText("My Bid on "+model.getPlayer2Name()+"\n" + Integer.toString(model.getMyBid()) + " coins" );
         }else{
-            holder. myBid.setText("My Bid  : " + Integer.toString(model.getMyBid()) + " pts" );
+            holder. myBid.setText("My Bid  : " + Integer.toString(model.getMyBid()) + " coins" );
         }
 
         holder. placeBid.setTypeface(controller.getDetailsFont());

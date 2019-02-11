@@ -111,9 +111,9 @@ public class WebApiCall {
     }
     public void getCheckSum(String url,String orderId,String customerId,String amount, final WebApiResponseCallback callback) {
         client = new OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(120, TimeUnit.SECONDS)
                 .build();
         RequestBody formBody = null;
 

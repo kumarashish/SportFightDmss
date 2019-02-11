@@ -15,6 +15,7 @@ public class Common {
 
     //public static String BaseUrl = "http://192.168.100.92:9191/api/";
     public static String BaseUrl = "http://api.sportsfight.co.in/api/";
+    public static String BaseUrl1 = "http://api.sportsfight.co.in/";
     //public static String LoginUrl = BaseUrl + "login/userlogin";
     public static String LoginUrl = BaseUrl +"login/userloginWithAppVersion";
     public static String SignUpUrl = BaseUrl + "login/Register";
@@ -105,6 +106,7 @@ public class Common {
     public static final String carrom_S = "Carrom(S)";
     public static final String carrom_D = "Carrom(D)";
     public static final String golf = "Mini Golf";
+    public static final String golf_S = "Mini Golf(S)";
     public static String SessionExpired="Session Expired";
     public static String getLoginUrl( String deviceID,String fCMId,String Appversion) {
         return LoginUrl + "?deviceId=" + deviceID + "&fcmId=" + fCMId+"&Appversion="+Appversion;
