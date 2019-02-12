@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
+import sportsfight.com.s.Background_Service;
 import sportsfight.com.s.R;
 import sportsfight.com.s.common.AppController;
 
@@ -37,7 +38,7 @@ public class Splash extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-
+        startService(new Intent(Splash.this, Background_Service.class));
         controller=(AppController)getApplicationContext();
         int permissionCheck = ContextCompat.checkSelfPermission(Splash.this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);

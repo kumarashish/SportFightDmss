@@ -251,7 +251,6 @@ public void login(String url,String json,String userName,String password,final W
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
                 callback.onError(e.fillInStackTrace().toString());
             }
             @Override
@@ -268,6 +267,20 @@ public void login(String url,String json,String userName,String password,final W
                 }
             }
         });
+    }
+
+    public String postData(String url, String json, String token) {
+        client.newBuilder().connectTimeout(60000, TimeUnit.MILLISECONDS).readTimeout(60000, TimeUnit.MILLISECONDS).build();
+        RequestBody reqBody = RequestBody.create(JSON, json);
+        Request request = new Request.Builder().header("Token", token).url(url).post(reqBody).build();
+        try {
+           Response response= client.newCall(request).execute();
+           return response.body().string();
+        }catch (Exception ex)
+        {
+            ex.fillInStackTrace();
+        }
+return "";
     }
     }
 

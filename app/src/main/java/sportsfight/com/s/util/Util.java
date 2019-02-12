@@ -64,14 +64,14 @@ import sportsfight.com.s.model.GameModel;
 
 public class Util {
 public static String[] months={"Jan","Feb ","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"};
-    public static boolean isNetworkAvailable(Activity act) {
+    public static boolean isNetworkAvailable(Context act) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) act.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if ((activeNetworkInfo != null) && (activeNetworkInfo.isConnected())) {
             return true;
         } else {
-            showInternetDialog(act);
+            showInternetDialog((Activity)act);
             return false;
         }
     }
