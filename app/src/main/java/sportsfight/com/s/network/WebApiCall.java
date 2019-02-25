@@ -244,7 +244,8 @@ public void login(String url,String json,String userName,String password,final W
             }
         });
     }
-    public void postData(String url, String json, String token,final WebApiResponseCallback callback) {
+
+    public void postData(String url, String json, String token, final WebApiResponseCallback callback) {
         client.newBuilder().connectTimeout(60000, TimeUnit.MILLISECONDS).readTimeout(60000, TimeUnit.MILLISECONDS).build();
         RequestBody reqBody = RequestBody.create(JSON, json);
         Request request = new Request.Builder().header("Token", token).url(url).post(reqBody).build();
@@ -255,7 +256,7 @@ public void login(String url,String json,String userName,String password,final W
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-               // cancelProgressDialog(pd);
+                // cancelProgressDialog(pd);
                 if (response.code() == 200 || response.code() == 201) {
                     if (response != null) {
                         callback.onSucess(response.body().string());
@@ -274,13 +275,12 @@ public void login(String url,String json,String userName,String password,final W
         RequestBody reqBody = RequestBody.create(JSON, json);
         Request request = new Request.Builder().header("Token", token).url(url).post(reqBody).build();
         try {
-           Response response= client.newCall(request).execute();
-           return response.body().string();
-        }catch (Exception ex)
-        {
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (Exception ex) {
             ex.fillInStackTrace();
         }
-return "";
+        return "";
     }
     }
 

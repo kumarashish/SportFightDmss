@@ -48,7 +48,6 @@ public class Background_Service extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // TODO do something useful
-
         return START_STICKY;
     }
 
