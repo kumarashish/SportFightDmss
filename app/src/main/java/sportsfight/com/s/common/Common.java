@@ -46,7 +46,7 @@ public class Common {
     public static String getDashBoardUrl=BaseUrl + "user/dashboard?";
     public static String getPlaceBidUrl=BaseUrl + "bid/addBid";
     public static String getUpdateBidUrl=BaseUrl + "bid/updateBid";
-    public static String getMatchesForResultDeclarationUrl=BaseUrl + "referee/getallmatches_referee?id=8";
+   public static String getMatchesForResultDeclarationUrl=BaseUrl + "referee/getallmatches_referee?";
     public static String getUrlForResultDeclarationUrl=BaseUrl + "referee/declareresult_referee";
     public static String getMatchesListForAdminApprovalUrl=BaseUrl + "admin/get-match-results";
     public static String getApproveResultUrl=BaseUrl + "admin/approve-result?";
@@ -203,8 +203,8 @@ public class Common {
         return paymentVerificationUrlLive + "" + paymentId;
     }
 
-    public static String getGetMatchesForResultDeclarationUrl(String date) {
-        return getMatchesForResultDeclarationUrl + "&date=" + date;
+    public static String getGetMatchesForResultDeclarationUrl(int id,String date) {
+        return getMatchesForResultDeclarationUrl +"id="+id+"&date=" + date;
     }
 
     public static String getApproveResultUrl(int challengeResultId, int adminId) {

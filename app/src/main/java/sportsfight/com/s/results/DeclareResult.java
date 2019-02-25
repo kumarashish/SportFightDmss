@@ -87,7 +87,7 @@ public class DeclareResult extends Activity implements View.OnClickListener,WebA
         if (Util.isNetworkAvailable(DeclareResult.this)) {
             apicall = getListApiCall;
             dialog = Util.showPogress(DeclareResult.this);
-            controller.getApiCall().getData(Common.getGetMatchesForResultDeclarationUrl(date),controller.getPrefManager().getUserToken(), this);
+            controller.getApiCall().getData(Common.getGetMatchesForResultDeclarationUrl(controller.getProfile().getUserId(),date),controller.getPrefManager().getUserToken(), this);
         }
     }
 
