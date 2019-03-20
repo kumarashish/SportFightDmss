@@ -282,5 +282,19 @@ public void login(String url,String json,String userName,String password,final W
         }
         return "";
     }
+    public String sendPushNotification(String url, String json) {
+
+        client.newBuilder().connectTimeout(60000, TimeUnit.MILLISECONDS).readTimeout(60000, TimeUnit.MILLISECONDS).build();
+        RequestBody reqBody = RequestBody.create(JSON, json);
+        Request request = new Request.Builder().header("Authorization", "key=AAAAhz_0d8A:APA91bHjCwi8HG6VJaV4_GayZPn1prGZcmfswid2iAo5fkLGqhovuzjlfRcKVA9ntx3RHRveIWHhZV-8365JiECgG0annIa8hgbP6WUWhdHoKNo_a-IZHS-0ceTyaHkLA6BHfvfEaU4o").header("Content-Type","application/json").url(url).post(reqBody).build();
+        try {
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (Exception ex) {
+            ex.fillInStackTrace();
+        }
+        return "";
     }
+    }
+
 

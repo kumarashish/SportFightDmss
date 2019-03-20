@@ -97,7 +97,7 @@ public class WonViewAllAdapter extends BaseAdapter {
 //        }
         holder.result.setText(model.getMessage());
         holder.yourBid.setText("My Bid :"+Integer.toString(model.getMyBid()));
-        holder.player1Name.setText(Util.getUpdatedName(model.getPlayer2Name()).toUpperCase());
+        holder.player1Name.setText(Util.getUpdatedName(model.getPlayer1Name()).toUpperCase());
         holder.player1Bid.setText("Bids: " + Integer.toString(model.getPlayer1Bids()) + " pts");
 //        if (model.getPlayer2ImageUrl().length() > 0) {
 //            Picasso.with(act).load(model.getPlayer2ImageUrl()).resize(200, 200)

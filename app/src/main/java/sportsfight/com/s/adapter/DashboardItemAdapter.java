@@ -48,7 +48,6 @@ public class DashboardItemAdapter extends RecyclerView.Adapter  {
     PlaceBidCallBack placeBidCallBack;
     MatchesModel model;
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
         public MyViewHolder(View view) {
             super(view);
         }

@@ -70,6 +70,7 @@ public class Common {
     public static String getNewDashBoardUrl=BaseUrl+"dashboard/dashboard?";
     public static String getUpdateGameUrl=BaseUrl+"user/addupdategames?";
     public static String noImageUrl="https://treefurniturerental.ca/wp-content/uploads/2017/05/sorry-image-not-available.jpg";
+    public static String fcmUrl="https://fcm.googleapis.com/fcm/send";
     /*****************************************paymentgateway***************************************/
     public static String paymentGatewayUrlLive="https://api.instamojo.com/oauth2/token/";
     public static String paymentVerificationUrlLive="https://api.instamojo.com/v2/payments/";

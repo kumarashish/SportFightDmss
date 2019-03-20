@@ -382,7 +382,6 @@ boolean isGameEdited=false;
             jsonObject.put("RegistrationId", controller.getProfile().getUserId());
             jsonObject.put("Name", f.getName());
             jsonObject.put("ImageChars", getImageBase64(Common.tempPath));
-
         } catch (Exception ex) {
             ex.fillInStackTrace();
         }

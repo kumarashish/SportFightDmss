@@ -23,6 +23,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -51,6 +52,7 @@ import sportsfight.com.s.R;
 import sportsfight.com.s.adapter.DashboardItemAdapter;
 import sportsfight.com.s.common.AppController;
 import sportsfight.com.s.common.Common;
+import sportsfight.com.s.common.Fcm;
 import sportsfight.com.s.common.MyCustomLayoutManager;
 import sportsfight.com.s.interfaces.PlaceBidCallBack;
 import sportsfight.com.s.interfaces.ViewAllCallBack;
@@ -60,6 +62,7 @@ import sportsfight.com.s.ipl.MyBid;
 import sportsfight.com.s.launchingmodule.WelcomeActivity;
 import sportsfight.com.s.loginmodule.Login;
 import sportsfight.com.s.model.MatchesModel;
+import sportsfight.com.s.network.WebApiCall;
 import sportsfight.com.s.results.DeclareResult;
 import sportsfight.com.s.util.Util;
 import sportsfight.com.s.wallet.Wallet;
@@ -246,7 +249,11 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
                 startActivity(new Intent(this,Alerts.class));
                 break;
             case R.id.menu:
-                startActivity(new Intent(this, DeclareResult.class));
+//                if(controller.getProfile().getUserId()==1){
+//                    sendNotification();
+//                }else {
+                    startActivity(new Intent(this, DeclareResult.class));
+              //  }
                 break;
             case R.id.challenge_icon:
             case R.id.challenge_layout:
@@ -525,6 +532,40 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         if(Util.getMessage(value).length()>0) {
             Util.showToast(Dashboard.this, Util.getMessage(value));
         }
+    }
+
+
+    public void sendNotification() {
+        final WebApiCall webApiCall = new WebApiCall(Dashboard.this);
+        for (int i = 0; i < Fcm.fcm.length; i++) {
+            final int val = i;
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (webApiCall) {
+                        String response = webApiCall.sendPushNotification(Common.fcmUrl, getJson(Fcm.fcm[val]).toString());
+                        Log.d("response", response);
+                    }
+                }
+            });
+            t.start();
+        }
+    }
+
+    public JSONObject getJson(String fcmId)
+    {
+        JSONObject jsonObject=new JSONObject();
+        JSONObject jsonObject1=new JSONObject();
+        try{
+            jsonObject.put( "to",fcmId);
+            jsonObject1.put("message","Hi! We are at last stage of Sports event,so its last chance to make money only 12 more maches are yet to come.Bid Now for your favourate Player in sports fight app");
+            jsonObject1.put("title","Last Chance to make Money");
+            jsonObject.put("data",jsonObject1);
+        }catch (Exception ex)
+        {
+            ex.fillInStackTrace();
+        }
+        return jsonObject;
     }
 //    public void notifyUser() {
 //        Intent notificationIntent = new Intent(Dashboard.this,
