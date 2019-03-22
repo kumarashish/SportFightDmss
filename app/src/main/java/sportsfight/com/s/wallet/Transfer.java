@@ -236,7 +236,6 @@ public class Transfer extends Activity implements View.OnClickListener,AddBenefi
                 if (editable.length() == 0) {
                     feeValue.setText("0");
                     amountValue.setText("0");
-
                 } else {
                     if (Integer.parseInt(editable.toString()) >=50) {
                         int value = Integer.parseInt(editable.toString());

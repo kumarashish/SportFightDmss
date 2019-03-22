@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/view1"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -1576,7 +1576,7 @@ android:layout_marginLeft="15dp"
     </LinearLayout>
 
     <LinearLayout
-
+        android:visibility="gone"
         android:id="@+id/view5"
         android:orientation="vertical"
         android:layout_width="match_parent"

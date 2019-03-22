@@ -76,7 +76,6 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
         setContentView(R.layout.ipl_screen);
         ButterKnife.bind(this);
         controller = (AppController) getApplicationContext();
-
         back.setOnClickListener(this);
         myBid.setOnClickListener(this);
         myBid.setTypeface(controller.getDetailsFont());
@@ -216,10 +215,10 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
         increasePlayer1Bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (controller.getProfile().getTotalPoints() >= ((player1BidPoints + 100)- model.getMyBid())) {
-                    player1BidPoints = player1BidPoints + 100;
+                if (controller.getProfile().getTotalPoints() >= ((player1BidPoints + 10)- model.getMyBid())) {
+                    player1BidPoints = player1BidPoints + 10;
                 } else {
-                    int value= (player1BidPoints+ 100)- model.getMyBid();
+                    int value= (player1BidPoints+ 10)- model.getMyBid();
                     Util.showToast(IplMatches.this, "You do not have " +value + " points in your wallet.Please add more points or decrease bid");
                 }
                 player2BidPoints = 0;
@@ -232,14 +231,14 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
             public void onClick(View view) {
                 if (model.getMyBidToId() == model.getPlayer1Id()) {
                     if (model.getMyBid() < player1BidPoints) {
-                        player1BidPoints = player1BidPoints - 100;
+                        player1BidPoints = player1BidPoints - 10;
                     }else{
                         Util.showToast(IplMatches.this, "Your Bid should be greater then previously made bid.");
 
                     }
                 }else {
                     if (player1BidPoints != 0) {
-                        player1BidPoints = player1BidPoints - 100;
+                        player1BidPoints = player1BidPoints - 10;
                     } else {
                         Util.showToast(IplMatches.this, "Your bid is already 0");
                     }
@@ -253,11 +252,11 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
         increasePlayer2Bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (controller.getProfile().getTotalPoints() >=  ((player2BidPoints + 100)- model.getMyBid())) {
-                    player2BidPoints = player2BidPoints + 100;
+                if (controller.getProfile().getTotalPoints() >=  ((player2BidPoints + 10)- model.getMyBid())) {
+                    player2BidPoints = player2BidPoints + 10;
                 } else {
-                    int neededPoints = (player2BidPoints + 100)- model.getMyBid();
-                    Util.showToast(IplMatches.this, "You do not have " + neededPoints + " points in your wallet.Please add more points or decrease bid");
+                    int neededPoints = (player2BidPoints + 10)- model.getMyBid();
+                    Util.showToast(IplMatches.this, "You do not have " + neededPoints + " coins in your wallet.Please add more points or decrease bid");
                 }
                 player1BidPoints = 0;
                 player1BidValue.setText(Integer.toString(player1BidPoints));
@@ -269,14 +268,14 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
             public void onClick(View view) {
                 if (model.getMyBidToId() == model.getPlayer2Id()) {
                     if (model.getMyBid() < player2BidPoints) {
-                        player2BidPoints = player2BidPoints - 100;
+                        player2BidPoints = player2BidPoints - 10;
                     }else{
                         Util.showToast(IplMatches.this, "Your Bid should be greater then previously made bid.");
 
                     }
                 } else {
                     if (player2BidPoints != 0) {
-                        player2BidPoints = player2BidPoints - 100;
+                        player2BidPoints = player2BidPoints - 10;
                     } else {
                         Util.showToast(IplMatches.this, "Your bid is already 0");
                     }
@@ -415,13 +414,6 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
                     dialogg.cancel();
                 }
 
-                Util.showToast(IplMatches.this, Util.getMessage(value));
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshScreen();
-                    }
-                });
             } else if (apiCall == refreshScreen) {
                 jsonParsing(value);
             }else if (apiCall == getHistory) {
@@ -453,6 +445,7 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
                     }
 
                 }
+
 
             }
         } else {

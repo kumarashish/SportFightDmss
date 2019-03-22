@@ -142,7 +142,6 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
      Dialog dialogg;
     MatchesModel matchmodel=null;
     public static boolean isCongratulationShown=false;
-    //String urlString = "https://www.news18.com/rss/cricketnext.xml";
     Parser parser;
     ArrayList<Article> newslist=new ArrayList<>();
     NoInternetDialog noInternetDialog ;
@@ -179,8 +178,8 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         challengeIcon.setOnClickListener(this);
         challengeTv.setOnClickListener(this);
         challengeTv.setTypeface(controller.getDetailsFont());
-        ipl.setBackgroundResource(R.drawable.event_icon);
-        ipl.setVisibility(View.GONE);
+        ipl.setBackgroundResource(R.drawable.ipl);
+        ipl.setVisibility(View.VISIBLE);
         if ((controller.getProfile().getRoleId() == 1)||(controller.getProfile().getRoleId() == 2)||(controller.getProfile().getRoleId() == 5) ){
             declareResult.setVisibility(View.VISIBLE);
         } else {
@@ -258,36 +257,38 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
             case R.id.challenge_icon:
             case R.id.challenge_layout:
             case R.id.challenge_tv:
-                //startActivity(new Intent(this, Challenge.class));
+
                 if((view.getId()==challengeIcon.getId())||(view.getId()==challengeTv.getId()))
                 {
                     handleClick();
+
                 }else{
                     challengeLayout.setBackground(getResources().getDrawable(R.drawable.challenge_selector));
                 }
-               Toast.makeText(Dashboard.this,"This section has been disabled for short time",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Challenge.class));
                 break;
             case R.id.ipl:
-                Intent intent = getPackageManager().getLaunchIntentForPackage("com.dmss.dmssevent");
-                if (intent != null) {
-                    Bundle b=new Bundle();
-                    // We found the activity now start the activity
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    //Intent sendIntent = new Intent();
-                    intent.setAction(Intent.ACTION_SEND);
-                    b.putString("SportsFight","SportsFight");
-                    b.putString("SessionToken",controller.getPrefManager().getUserToken());
-                    b.putString("Profile", controller.getPrefManager().getUserProfile());
-                    intent.putExtras(b);
-                    intent.setType("text/plain");
-                    //startActivity(sendIntent);
-                    startActivity(intent);
-                }else{
-                    String url="https://play.google.com/store/apps/details?id=com.dmss.dmssevent";
-                    intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    startActivity(intent);
-                }
+                startActivity(new Intent(Dashboard.this,IplMatches.class));
+//                Intent intent = getPackageManager().getLaunchIntentForPackage("com.dmss.dmssevent");
+//                if (intent != null) {
+//                    Bundle b=new Bundle();
+//                    // We found the activity now start the activity
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    //Intent sendIntent = new Intent();
+//                    intent.setAction(Intent.ACTION_SEND);
+//                    b.putString("SportsFight","SportsFight");
+//                    b.putString("SessionToken",controller.getPrefManager().getUserToken());
+//                    b.putString("Profile", controller.getPrefManager().getUserProfile());
+//                    intent.putExtras(b);
+//                    intent.setType("text/plain");
+//                    //startActivity(sendIntent);
+//                    startActivity(intent);
+//                }else{
+//                    String url="https://play.google.com/store/apps/details?id=com.dmss.dmssevent";
+//                    intent = new Intent(Intent.ACTION_VIEW);
+//                    intent.setData(Uri.parse(url));
+//                    startActivity(intent);
+//                }
 
                 break;
         }
@@ -956,7 +957,6 @@ public class Dashboard extends Activity implements View.OnClickListener ,WebApiR
         {
             getDashBoardData();
         }
-
     }
 
     public JSONObject getAddBidJSON(MatchesModel model, int points) {

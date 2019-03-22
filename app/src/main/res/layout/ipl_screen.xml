@@ -17,7 +17,7 @@
         <sportsfight.com.s.common.Heading
             android:textSize="18dp"
             android:textColor="@color/black_font"
-            android:text="FIFA WORLD CUP 2018"
+            android:text="IPL 2019"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

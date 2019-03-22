@@ -29,6 +29,15 @@ public class IPLMatchesAdapter extends BaseAdapter {
     LayoutInflater inflater;
     AppController controller;
     PlaceBidCallBack callBack;
+    public static String []icons={"https://logosvector.net/wp-content/uploads/2014/01/chennai-super-kings-vector-logo.png",
+            "https://upload.wikimedia.org/wikipedia/bn/thumb/c/cd/Mumbai_Indians_Logo.svg/1280px-Mumbai_Indians_Logo.svg.png",
+            "https://i.pinimg.com/originals/f1/90/68/f190685a1bdc97d2a068e1af4bbe5f36.png",
+            "http://4.bp.blogspot.com/-8APRf8KRDOs/UN2BdrYSDyI/AAAAAAAAAW4/tL3h1i7IQM8/s400/Delhi_Daredevils_Logo.png",
+            "https://i.pinimg.com/originals/5b/a9/59/5ba9592c9608c9f627c6c2a2aeaaa516.jpg",
+            "https://i.pinimg.com/originals/be/63/f9/be63f97f89eff774678695cb0a94e60c.png",
+            "https://i.pinimg.com/236x/eb/5e/65/eb5e656dcb3411fd84853de8e2a9e346--cricket-score-live-cricket.jpg",
+            "https://seeklogo.com/images/I/ipl-kings-xi-punjab-logo-6747D5C02B-seeklogo.com.png"};
+
     public IPLMatchesAdapter(ArrayList<MatchesModel> matchList, Activity act) {
         this.matchList = matchList;
         this.act = act;
@@ -76,26 +85,26 @@ public class IPLMatchesAdapter extends BaseAdapter {
         holder.placeBid.setTypeface(controller.getDetailsFont());
         holder.team1Icon = (sportsfight.com.s.common.CircleImageView) view.findViewById(R.id.team1Icon);
         holder.team2Icon = (sportsfight.com.s.common.CircleImageView) view.findViewById(R.id.team2Icon);
-        Picasso.with(act).load(model.getPlayer1ImageUrl().replace("http://www.dmss.co.in/sportsfight/docs/images/profile/","")).resize(200, 200)
+        Picasso.with(act).load(getimageUrl(model.getPlayer1Name())).resize(200, 200)
                 .centerInside().placeholder(R.drawable.user_icon).into(holder.team1Icon);
-        Picasso.with(act).load(model.getPlayer2ImageUrl().replace("http://www.dmss.co.in/sportsfight/docs/images/profile/","")).resize(200, 200)
+        Picasso.with(act).load(getimageUrl(model.getPlayer2Name())).resize(200, 200)
                 .centerInside().placeholder(R.drawable.user_icon).into(holder.team2Icon);
-        holder.match_date.setText(Util. getDateinMMDDYY(model.getMatchDate()) +System.getProperty("line.separator")+" "+model.getSlotTime());
+       holder.match_date.setText(Util. getDateinMMDDYY(model.getMatchDate()) +System.getProperty("line.separator")+" "+model.getSlotTime());
         holder.venue = (TextView) view.findViewById(R.id.venue);
         holder.venue.setText(model.getMatchPlace());
-        holder.player1Bid.setText("Bid : "+model.getPlayer1Bids()+" pts.");
-        holder.player2Bid.setText("Bid : "+model.getPlayer2Bids()+" pts.");
-        holder.totalBid.setText("Total Bid : "+model.getTotalBids()+" pts.");
+        holder.player1Bid.setText("Bid : "+model.getPlayer1Bids()+" coins.");
+        holder.player2Bid.setText("Bid : "+model.getPlayer2Bids()+"  coins.");
+        holder.totalBid.setText("Total Bid : "+model.getTotalBids()+"  coins.");
         holder.team1.setText(model.getPlayer1Name());
         holder.team2.setText(model.getPlayer2Name());
         if (model.getMyBid() > 0) {
             if (model.getMyBidToId() == model.getPlayer1Id()) {
-                holder.myBid.setText("My Bid on " + model.getPlayer1Name() + " : " + model.getMyBid() + " pts.");
+                holder.myBid.setText("My Bid on " + model.getPlayer1Name() + " : " + model.getMyBid() + " coins.");
             } else {
-                holder.myBid.setText("My Bid on " + model.getPlayer2Name() + " : " + model.getMyBid() + " pts.");
+                holder.myBid.setText("My Bid on " + model.getPlayer2Name() + " : " + model.getMyBid() + " coins.");
             }
         } else {
-            holder.myBid.setText("My Bid : 0 pts.");
+            holder.myBid.setText("My Bid : 0 coins.");
         }
         view.setTag(holder);
         holder.placeBid.setOnClickListener(new View.OnClickListener() {
@@ -112,5 +121,38 @@ public class IPLMatchesAdapter extends BaseAdapter {
         sportsfight.com.s.common.CircleImageView team2Icon;
         TextView match_date, totalBid, venue,myBid,player1Bid,player2Bid,team1,team2;
         Button placeBid;
+    }
+
+
+    public static String getimageUrl(String teamName)
+    {
+        switch (teamName)
+        {
+            case "Chennai Super Kings":
+                return icons[0];
+
+            case "Mumbai Indians":
+                return icons[1];
+
+            case "Kolkata Knight Riders":
+                return icons[2];
+
+            case "Delhi Daredevils":
+                return icons[3];
+
+            case "Sunrisers Hyderabad":
+                return icons[4];
+
+            case "Rajasthan Royals":
+                return icons[5];
+
+            case "Royal Challengers Bangalore":
+                return icons[6];
+
+            case "Kings XI Punjab":
+                return icons[7];
+
+        }
+        return "";
     }
 }
