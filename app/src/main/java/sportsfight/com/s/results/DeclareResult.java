@@ -72,8 +72,8 @@ public class DeclareResult extends Activity implements View.OnClickListener,WebA
         today.setOnClickListener(this);
         yesterday.setOnClickListener(this);
         approveResult.setOnClickListener(this);
-         //date=Util.getCurrentDate();
-        date="03/07/2019";
+        date=Util.getCurrentDate();
+       // date="03/24/2019";
         if(controller.getProfile().getRoleId()==1)
         {approveResult.setVisibility(View.VISIBLE);
         }else{

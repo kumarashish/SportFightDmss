@@ -37,7 +37,7 @@ public class Background_Service extends Service {
                 String data="";
                 if(Util.isNetworkAvailable(getApplicationContext()))
                 { JSONObject jsonObject=new JSONObject();
-                    data= controller.getApiCall().postData(Common.getLoginUrl("abc","def","2.1"),jsonObject.toString(),"");
+                    data= controller.getApiCall().postData(Common.getLoginUrl("abc","def","2.2"),jsonObject.toString(),"");
                 }
                 Log.d("ServiceCalled","from backed"+data);
             }

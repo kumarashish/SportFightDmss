@@ -91,28 +91,32 @@ public class BidListAdapter extends BaseAdapter {
           congrats.setTextColor(activity.getResources().getColor(R.color.red));
         result.setText("You lost "+model.getBidPoints()+"pts. "+model.getPlayer1Name()+" looses.");
         }
-       player1Name.setText(model.getPlayer1Name());
-        player2Name.setText(model.getPlayer2Name());
+       player1Name.setText(Util.getInitialsForName(model.getPlayer1Name()));
+        player2Name.setText(Util.getInitialsForName(model.getPlayer2Name()));
 
         myBid.setText("My Bid was on "+model.getPlayer1Name() +" for "+model.getBidPoints()+" pts.");
-        if ((model.getPlayer2Image().length() > 1)) {
-            if ((!model.getPlayer1Image().contains("http://www.dmss.co.in/sportsfight/docs/images/profile/")) && (!model.getPlayer1Image().contains("http"))) {
-                Picasso.with(activity).load("http://www.dmss.co.in/sportsfight/docs/images/profile/" + model.getPlayer1Image()).resize(200, 200)
-                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView);
-            } else {
-                Picasso.with(activity).load(model.getPlayer1Image()).resize(200, 200)
-                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView);
-            }
-        }
-        if ((model.getPlayer2Image().length() > 1)) {
-            if ((!model.getPlayer2Image().contains("http://www.dmss.co.in/sportsfight/docs/images/profile/")) && (!model.getPlayer2Image().contains("http"))) {
-                Picasso.with(activity).load("http://www.dmss.co.in/sportsfight/docs/images/profile/" + model.getPlayer2Image()).resize(200, 200)
-                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView2);
-            } else {
-                Picasso.with(activity).load(model.getPlayer2Image()).resize(200, 200)
-                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView2);
-            }
-        }
+//        if ((model.getPlayer2Image().length() > 1)) {
+//            if ((!model.getPlayer1Image().contains("http://www.dmss.co.in/sportsfight/docs/images/profile/")) && (!model.getPlayer1Image().contains("http"))) {
+//                Picasso.with(activity).load("http://www.dmss.co.in/sportsfight/docs/images/profile/" + model.getPlayer1Image()).resize(200, 200)
+//                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView);
+//            } else {
+//                Picasso.with(activity).load(model.getPlayer1Image()).resize(200, 200)
+//                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView);
+//            }
+//        }
+        Picasso.with(activity).load(IPLMatchesAdapter.getimageUrl(model.getPlayer1Name())).resize(200, 200)
+                   .centerInside().placeholder(R.drawable.user_icon).into(circleImageView);
+//        if ((model.getPlayer2Image().length() > 1)) {
+//            if ((!model.getPlayer2Image().contains("http://www.dmss.co.in/sportsfight/docs/images/profile/")) && (!model.getPlayer2Image().contains("http"))) {
+//                Picasso.with(activity).load("http://www.dmss.co.in/sportsfight/docs/images/profile/" + model.getPlayer2Image()).resize(200, 200)
+//                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView2);
+//            } else {
+//                Picasso.with(activity).load(model.getPlayer2Image()).resize(200, 200)
+//                        .centerInside().placeholder(R.drawable.user_icon).into(circleImageView2);
+//            }
+//        }
+        Picasso.with(activity).load(IPLMatchesAdapter.getimageUrl(model.getPlayer2Name())).resize(200, 200)
+                .centerInside().placeholder(R.drawable.user_icon).into(circleImageView2);
 
         return view;
     }

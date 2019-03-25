@@ -336,13 +336,16 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
                             points = player2BidPoints;
                         }
                         placeBid(model, points);
+
                     } else {
                      Util.showToast(IplMatches.this, "Please enter your bid.");
                     }
                 }
             }
         });
-        dialogg.show();
+
+            dialogg.show();
+
     }
 
     @Override
@@ -352,6 +355,7 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
             public void run() {
 
                 placeBidAlert(model);
+
             }
         });
 
@@ -359,22 +363,34 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
 
     public void refreshScreen() {
         if (Util.isNetworkAvailable(IplMatches.this)) {
-            apiCall = refreshScreen;
-            dialog = Util.showPogress(IplMatches.this);
-            controller.getApiCall().getData(Common.getIPLMatchesList(controller.getProfile().getUserId()),controller.getPrefManager().getUserToken(), this);
-        }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    apiCall = refreshScreen;
+                    dialog = Util.showPogress(IplMatches.this);
+                    controller.getApiCall().getData(Common.getIPLMatchesList(controller.getProfile().getUserId()),controller.getPrefManager().getUserToken(), IplMatches.this);
+
+                }
+            });
+                  }
     }
-    public void placeBid(MatchesModel model, int points) {
-        if (Util.isNetworkAvailable(IplMatches.this)) {
-            apiCall=placeBid;
-            dialog = Util.showPogress(IplMatches.this);
-            if(model.getMyBidToId()!=0)
-            {
-                controller.getApiCall().postData(Common.getUpdateBidUrl, getUpdateBidJSON(model, points).toString(),controller.getPrefManager().getUserToken(), this);
-            }else {
-                controller.getApiCall().postData(Common.getPlaceBidUrl, getAddBidJSON(model, points).toString(),controller.getPrefManager().getUserToken(), this);
+    public void placeBid(final MatchesModel model,final int points) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (Util.isNetworkAvailable(IplMatches.this)) {
+                    apiCall=placeBid;
+                    dialog = Util.showPogress(IplMatches.this);
+                    if(model.getMyBidToId()!=0)
+                    {
+                        controller.getApiCall().postData(Common.getUpdateBidUrl, getUpdateBidJSON(model, points).toString(),controller.getPrefManager().getUserToken(),IplMatches.this);
+                    }else {
+                        controller.getApiCall().postData(Common.getPlaceBidUrl, getAddBidJSON(model, points).toString(),controller.getPrefManager().getUserToken(), IplMatches.this);
+                    }
+                }
             }
-        }
+        });
+
     }
     public JSONObject getAddBidJSON(MatchesModel model, int points) {
         JSONObject jsonObject = new JSONObject();
@@ -410,9 +426,12 @@ public class IplMatches extends Activity implements View.OnClickListener,PlaceBi
                 if (dialog != null) {
                     dialog.cancel();
                 }
-                if (dialogg != null) {
+                if(dialogg!=null)
+                {
                     dialogg.cancel();
                 }
+                Util.showToast(IplMatches.this,"Your Bid has been placed sucessfully.");
+                refreshScreen();
 
             } else if (apiCall == refreshScreen) {
                 jsonParsing(value);

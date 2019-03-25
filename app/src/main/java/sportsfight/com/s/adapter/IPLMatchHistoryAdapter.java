@@ -63,9 +63,9 @@ public class IPLMatchHistoryAdapter extends BaseAdapter {
         holder.winner=(sportsfight.com.s.common.CircleImageView) view.findViewById(R.id.winner);
         holder.date.setText(Util.getDateinMMDDYY(model.getMatchDate())+" at "+model.getSlotTime());
         holder.result.setText(model.getResultText());
-        Picasso.with(act).load(model.getWinnerImage()).resize(200, 200)
+        Picasso.with(act).load(IPLMatchesAdapter.getimageUrl(model.getWinnerName())).resize(200, 200)
                 .centerInside().placeholder(R.drawable.user_icon).into(holder.winner);
-        Picasso.with(act).load(model.getLooserImage()).resize(200, 200)
+        Picasso.with(act).load(IPLMatchesAdapter.getimageUrl(model.getLooserName())).resize(200, 200)
                 .centerInside().placeholder(R.drawable.user_icon).into( holder.losser);
         view.setTag(holder);
         return view;
@@ -75,6 +75,5 @@ public class IPLMatchHistoryAdapter extends BaseAdapter {
         TextView result, date;
         sportsfight.com.s.common.CircleImageView winner;
         sportsfight.com.s.common.CircleImageView losser;
-
     }
 }

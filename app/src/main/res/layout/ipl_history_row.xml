@@ -19,7 +19,8 @@
             <sportsfight.com.s.common.CircleImageView
                 android:id="@+id/winner"
                 android:layout_marginLeft="30dp"
-                android:src="@drawable/kingsxi"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/user_icon"
                 android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp" />
@@ -28,7 +29,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignBottom="@+id/winner"
-                android:visibility="visible"
+
                 android:id="@+id/player2Won"
                 android:src="@drawable/medal"
                 android:layout_marginBottom="-10dp"
@@ -41,18 +42,19 @@
             android:layout_width="0dp"
             android:orientation="vertical"
             android:layout_height="match_parent">
+
             <sportsfight.com.s.common.Heading
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:text="Played on"
-                android:gravity="center"
-                android:textSize="18dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Played on"
+                android:textSize="18dp" />
             <sportsfight.com.s.common.Heading
                 android:id="@+id/date"
 android:layout_marginTop="3dp"
-                android:text="12-April-2018 9:00 IST"
+                android:text=""
                 android:textSize="12dp"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -60,7 +62,7 @@ android:layout_marginTop="3dp"
             <sportsfight.com.s.common.DetailsCustomTextView
                 android:id="@+id/result"
 
-                android:text=" Kings XI won !"
+                android:text=" "
                 android:textSize="16dp"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -74,7 +76,7 @@ android:layout_marginTop="3dp"
             <sportsfight.com.s.common.CircleImageView
                 android:id="@+id/losser"
                 android:layout_marginRight="30dp"
-                android:src="@drawable/rc_logo"
+                android:src="@drawable/user_icon"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
 

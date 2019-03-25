@@ -222,6 +222,40 @@ public static String[] months={"Jan","Feb ","March","April","May","June","July",
         }
         return val;
     }
+    public static String getInitialsForName(String teamName)
+    {
+        switch (teamName)
+        {
+            case "Chennai Super Kings":
+                return "Chennai(CSK)";
+
+            case "Mumbai Indians":
+                return "Mumbai(MI)";
+
+            case "Kolkata Knight Riders":
+                return "Kolkata(KKR)";
+
+            case "Delhi Capitans":
+                return "Delhi(DC)";
+
+            case "Sunrisers Hyderabad":
+                return "Hyderabad(SRH)";
+
+            case "Rajasthan Royals":
+                return "Rajasthan(RR)";
+
+            case "Royal Challengers Bangalore":
+                return "Banglore(RCB)";
+
+            case "Kings XI Punjab":
+                return "Punjab(KXI)";
+
+            default:
+                return teamName;
+
+        }
+
+    }
     public static Drawable getIcon(String gameName, Activity act) {
         Drawable d = null;
         switch (gameName) {

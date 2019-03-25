@@ -32,7 +32,7 @@ public class IPLMatchesAdapter extends BaseAdapter {
     public static String []icons={"https://logosvector.net/wp-content/uploads/2014/01/chennai-super-kings-vector-logo.png",
             "https://upload.wikimedia.org/wikipedia/bn/thumb/c/cd/Mumbai_Indians_Logo.svg/1280px-Mumbai_Indians_Logo.svg.png",
             "https://i.pinimg.com/originals/f1/90/68/f190685a1bdc97d2a068e1af4bbe5f36.png",
-            "http://4.bp.blogspot.com/-8APRf8KRDOs/UN2BdrYSDyI/AAAAAAAAAW4/tL3h1i7IQM8/s400/Delhi_Daredevils_Logo.png",
+            "https://timesofindia.indiatimes.com/thumb/msid-67149952,imgsize-367356,width-400,resizemode-4/67149952.jpg",
             "https://i.pinimg.com/originals/5b/a9/59/5ba9592c9608c9f627c6c2a2aeaaa516.jpg",
             "https://i.pinimg.com/originals/be/63/f9/be63f97f89eff774678695cb0a94e60c.png",
             "https://i.pinimg.com/236x/eb/5e/65/eb5e656dcb3411fd84853de8e2a9e346--cricket-score-live-cricket.jpg",
@@ -95,13 +95,13 @@ public class IPLMatchesAdapter extends BaseAdapter {
         holder.player1Bid.setText("Bid : "+model.getPlayer1Bids()+" coins.");
         holder.player2Bid.setText("Bid : "+model.getPlayer2Bids()+"  coins.");
         holder.totalBid.setText("Total Bid : "+model.getTotalBids()+"  coins.");
-        holder.team1.setText(model.getPlayer1Name());
-        holder.team2.setText(model.getPlayer2Name());
+        holder.team1.setText(Util.getInitialsForName(model.getPlayer1Name()));
+        holder.team2.setText(Util.getInitialsForName(model.getPlayer2Name()));
         if (model.getMyBid() > 0) {
             if (model.getMyBidToId() == model.getPlayer1Id()) {
-                holder.myBid.setText("My Bid on " + model.getPlayer1Name() + " : " + model.getMyBid() + " coins.");
+                holder.myBid.setText("My Bid on " + Util.getInitialsForName(model.getPlayer1Name() )+ " : " + model.getMyBid() + " coins.");
             } else {
-                holder.myBid.setText("My Bid on " + model.getPlayer2Name() + " : " + model.getMyBid() + " coins.");
+                holder.myBid.setText("My Bid on " + Util.getInitialsForName( model.getPlayer2Name()) + " : " + model.getMyBid() + " coins.");
             }
         } else {
             holder.myBid.setText("My Bid : 0 coins.");
@@ -137,7 +137,7 @@ public class IPLMatchesAdapter extends BaseAdapter {
             case "Kolkata Knight Riders":
                 return icons[2];
 
-            case "Delhi Daredevils":
+            case "Delhi Capitans":
                 return icons[3];
 
             case "Sunrisers Hyderabad":
@@ -152,7 +152,10 @@ public class IPLMatchesAdapter extends BaseAdapter {
             case "Kings XI Punjab":
                 return icons[7];
 
+                default:
+                    return "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+
         }
-        return "";
+
     }
 }
